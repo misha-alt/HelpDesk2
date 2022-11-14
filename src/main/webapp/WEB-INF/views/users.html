@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New Person</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+</head>
+<body>
+
+<p th:text="${userName}"></p>
+
+<form  th:action="@{/ert}" th:object="${comment}"th:method="GET">
+
+
+    <label for="comment">Enter name</label>
+    <input type="text" th:field="*{comment}" id="comment"/>
+
+    <br/>
+    <label for="date">Enter age</label>
+    <input type="text" th:field="*{date}" id="date"/>
+
+
+    <br/>
+    <input type="submit" value="Create"/>
+
+</form>
+
+<p th:text="${userComment}"></p>
+
+
+</body>
+</html>

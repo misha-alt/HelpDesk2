@@ -2,6 +2,7 @@ package misha.service;
 
 
 import misha.domain.Comments;
+
 import misha.domain.User;
 import org.dom4j.Comment;
 import org.hibernate.Session;
@@ -35,16 +36,26 @@ public class CreateComment {
         session.update(user);
     }
 
-        public void seveUserCmments (Comments comments){
-            createComentAndSave(comments);
+    public void upDateComments(Comments comments){
+        sessionFactory.getCurrentSession().update(comments);
+    }
 
+        public void seveUserCmments (Comments comments){
+
+
+        /*createComentAndSave(comments);
+        Comments comments1 = getById(comments.getId());
+        userService.getOurUser().getComments().add(comments1);
+        upDateComments(comments1);*/
+
+
+
+
+
+            createComentAndSave(comments);
             User user = userService.getOurUser();
             user.getComments().add( getById(comments.getId()));
-
-      // userService.getOurUser().getComments().add( getById(comments.getId()));
-
-
-        updateUsersComment(user);
+            updateUsersComment(user);
 
 
 
@@ -58,23 +69,19 @@ public class CreateComment {
 
 
 
+
     public Comments getById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments p where p.id = :id");
         query.setParameter("id", id);
         return (Comments) query.list().get(0);
     }
 
-    public Comments getByUser_Id(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Comments p where p.user_id = :id");
-        query.setParameter("id", id);
-        return (Comments) query.list();
-    }
+
 
     public List<Comments> getAll() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments");
         return query.list();
     }
-
 
 
 

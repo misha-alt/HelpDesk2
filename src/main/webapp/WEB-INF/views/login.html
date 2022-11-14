@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+
+</head>
+<body>
+
+<div class="box">
+    <p class="msg">Welcome to Online Shop</p>
+
+    <form method="post" action="login">
+        <input type="text" placeholder="Username" name="customer" required>
+        <br>
+        <input type="password" placeholder="Password" name="password" required>
+        <br>
+        <input type="checkbox" id="acceptTerms" name="acceptTerms" required/>
+        <p>I agree with the terms of service</p>
+        <input type="submit" value="Enter">
+    </form>
+</div>
+
+
+
+</body>
+</html>
