@@ -29,10 +29,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
+               /* .antMatchers("/").permitAll()
                 .antMatchers("/makeTest").hasAnyRole("USER","MANAGER")
                 .antMatchers("/newCom").hasRole("MANAGER")
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .passwordParameter("password")
+                .usernameParameter("login")
+                .defaultSuccessUrl("/newCom", false);*/
+                /*.and().logout().logoutUrl("/logout")
+                .logoutSuccessUrl("/login");
+*/
+                .antMatchers("/makeTest").permitAll()
+                .antMatchers("/newCom").hasAnyRole("USER","ENGINEER","MANAGER")
+                .antMatchers("/engineer").hasAnyRole("ENGINEER","MANAGER")
+
+                .antMatchers("/manager").hasRole("MANAGER")
                 .and().formLogin()
-         .and().logout().logoutUrl("/logout")
+                .and().logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/makeTest");
 
     }

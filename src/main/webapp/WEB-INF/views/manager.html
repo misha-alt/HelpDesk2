@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+
+</head>
+<body>
+
+<p th:text="${ManagerName}"></p>
+
+<div th:each="person:${SomeComment}">
+    <a th:text="${person.getComments()} + ' '+${person.getLast_name()}"></a>
+</div>
+
+<form  th:action="@{/ert}" th:object="${comment}"th:method="POST">
+
+    <label for="comment">Enter name</label>
+    <input type="text" th:field="*{comment}" id="comment"/>
+
+    <br/>
+    <label for="date">Enter age</label>
+    <input type="text" th:field="*{date}" id="date"/>
+
+    <br/>
+    <input type="submit" value="Create"/>
+
+</form>
+<!--<div class="box">
+    <form method="GET" action="@{/product"} >
+        <select name="selected">
+            <option th:each="person:${SomeComment}" th:value="${person.getId}"
+                    th:text="${person.getComments()} + ' '+${person.getLast_name()}"></option>
+        </select>
+        <input type="submit" value="Add item"/>
+    </form>
+</div>-->
+</body>
+</html>

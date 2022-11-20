@@ -19,71 +19,37 @@ import java.security.Principal;
 
 public class CommentController {
 
-
    private CreateComment createComment;
     private UserService userService;
     @Autowired
     public CommentController(CreateComment createComment, UserService userService) {
-
         this.createComment= createComment;
         this.userService = userService;
     }
 
+    @RequestMapping("/login")
+    public String login(Principal principal, Model model) {
+            return "login";
 
-
-
-
-@GetMapping("/newCom")
-public String newComent(Model model){
-
+    }
+@RequestMapping("/newCom")
+public String newComent(Model model, Principal principal){
     model.addAttribute("comment", new Comments());
-    model.addAttribute("userName", userService.getOurUser().getFirst_name());
-
+    model.addAttribute("userName", userService.getByLogin(principal.getName()));
     return "users";
 }
-
     @GetMapping("/makeTest")
     public String newTest (Principal principal, Model model){
-
-       // createComment.testsMet();
-        model.addAttribute("userName", userService.getByLogin(principal.getName()).get(0).getFirst_name());
-
-       // model.addAttribute("userComment", userService.getOurUser().getComments());
-        //model.addAttribute("fuckName",createComment.getByUser_Id(userService.getOurUser().getId()));
-      //  model.addAttribute("getAllComments", userService.getOurUser().getComments());
-      //  model.addAttribute("userComment", userService.getOurUser().getComments());
-
         return "test";
     }
-
-   /* @GetMapping("/newCom")
-    public String edit ( Model model){
-       User user  = userService.getOurUser();
-        model.addAttribute("user",user);
-        model.addAttribute("userName", userService.getOurUser().getFirst_name());
-        return "users";
-
-    }*/
-
-        @GetMapping("/ert")
-        public String upDate(Model model,@ModelAttribute("comment") Comments comments){
-       // createComment.seveUserCmments(comments);
+        @RequestMapping("/ert")
+        public String upDate(Model model,@ModelAttribute("comment") Comments comments, Principal principal){
             createComment.createComentAndSave(comments);
-            createComment.seveUserCmments(comments);
+            createComment.seveUserCmments(comments, principal.getName());
             model.addAttribute("comment", new Comments());
-            model.addAttribute("userName", userService.getOurUser().getFirst_name());
-           /* model.addAttribute("getComment", userService.getOurUser().getComments().get(0).getComment());
-            model.addAttribute("getDate", userService.getOurUser().getComments().get(0).getDate());*/
-            model.addAttribute("userComment", userService.getOurUser().getComments());
+            model.addAttribute("userName", userService.getByLogin(principal.getName()).get(0).getFirst_name());
+            model.addAttribute("userComment", userService.getOurCom(principal.getName()));
         return "users";
         }
-
-   /* @PatchMapping("/PostErt")
-    public String post(Model model, @ModelAttribute("comment") Comments comments){
-        createComment.seveUserCmments(comments);
-
-        return "redirect:/ert";
-    }*/
-
 
 }

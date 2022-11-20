@@ -18,6 +18,18 @@ user_id integer,
 primary key (id)
 );
 
+create table TICKED
+(
+id integer not null;
+name varchar(255);
+description varchar(255);
+assignee_id varchar(255);
+owner_id varchar(255);
+category_id varchar(255);
+approver_id varchar(255)
+);
+
+
 create table USER
 (
 id integer not null,

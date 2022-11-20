@@ -27,10 +27,11 @@ public class UserService {
 
     }
 
-    public User getOurUser(){
+    public Object getOurCom(String name){
 
-        User users = getUser().get(0);
-        return users;
+        /*User users = getUser().get(0);*/
+
+        return getByLogin(name).get(0).getComments();
     }
 
     public List<User> getByLogin(String name){

@@ -50,7 +50,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/css/**")
-                .addResourceLocations("/webapp/css/");
+                .addResourceLocations("/css/");
     }
 
 }

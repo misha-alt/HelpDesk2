@@ -15,21 +15,17 @@ public class User {
     private String first_name;
     @Column( nullable = false)
     private String last_name;
-    /*@Column(nullable = false)
-    private String role_id;*/
-    @Column(nullable = false)
+       @Column(nullable = false)
     private String login;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
     private String authority;
-
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Comments> comments;
 
-  /*  @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    private List<FeedBack> feedBacks;*/
+
 
 
     public User(){

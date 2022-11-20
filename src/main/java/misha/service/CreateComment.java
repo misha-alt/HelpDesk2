@@ -40,7 +40,7 @@ public class CreateComment {
         sessionFactory.getCurrentSession().update(comments);
     }
 
-        public void seveUserCmments (Comments comments){
+        public void seveUserCmments (Comments comments, String name){
 
 
         /*createComentAndSave(comments);
@@ -53,7 +53,7 @@ public class CreateComment {
 
 
             createComentAndSave(comments);
-            User user = userService.getOurUser();
+            User user = userService.getByLogin(name).get(0);
             user.getComments().add( getById(comments.getId()));
             updateUsersComment(user);
 
@@ -85,7 +85,7 @@ public class CreateComment {
 
 
 
-    public void testsMet(){
+  /*  public void testsMet(){
 
         Comments comments = new Comments();
         comments.setId(1);
@@ -98,7 +98,7 @@ public class CreateComment {
         User user = userService.getOurUser();
         user.getComments().add(comments);
         user.getComments().add(comments2);
-    }
+    }*/
 
 
 
