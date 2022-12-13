@@ -1,7 +1,7 @@
 package misha.domain;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER")
@@ -15,7 +15,7 @@ public class User {
     private String first_name;
     @Column( nullable = false)
     private String last_name;
-       @Column(nullable = false)
+    @Column(nullable = false)
     private String login;
     @Column(nullable = false)
     private String password;
@@ -23,10 +23,13 @@ public class User {
     private String authority;
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private List<Comments> comments;
+    private Set<Comments> comments;
 
+    /*Lists for Ticket*/
 
-
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Set<Ticked> ticked;
 
     public User(){
 
@@ -73,11 +76,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Comments> getComments() {
+    public Set<Comments> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comments> comments) {
+    public void setComments(Set<Comments> comments) {
         this.comments = comments;
     }
 
@@ -89,14 +92,30 @@ public class User {
         this.authority = authority;
     }
 
+    /*Getters and Setters Ticket lists*/
+
+
+
+
+    public Set<Ticked> getTicked() {
+        return ticked;
+    }
+
+    public void setTicked(Set<Ticked> ticked) {
+        this.ticked = ticked;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", password='" + password + '\'' +
-                ", comments=" + comments +
+                ", first_name='" + first_name + '\n' +
+                ", last_name='" + last_name + '\n' +
+                ", password='" + password + '\n' +
+                ", comments=" + comments  +
+
+
+
                 '}';
     }
 }

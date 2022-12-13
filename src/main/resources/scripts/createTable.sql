@@ -5,7 +5,7 @@ id integer, not null,
 rate integer, not null,
 date_rate DATE,
 text varchar(255), not null,
-user_id integer not null
+user_id integer not null,
 primary key (id)
 );
 
@@ -20,13 +20,11 @@ primary key (id)
 
 create table TICKED
 (
-id integer not null;
-name varchar(255);
-description varchar(255);
-assignee_id varchar(255);
-owner_id varchar(255);
-category_id varchar(255);
-approver_id varchar(255)
+id integer not null,
+name varchar(255),
+description varchar(255),
+user_id integer,
+primary key (id)
 );
 
 
@@ -48,6 +46,7 @@ create sequence hibernate_sequence start with 1 increment by 1;
 
 alter table FEEDBACK add constraint for_FB foreign key (user_id) references USER;
 alter table USERS_COMMENT add constraint for_UC foreign key (user_id) references USER;
+alter table TICKED add constraint for_Tick_approv foreign key (approver_id) references USER;
 
 
 

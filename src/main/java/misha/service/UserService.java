@@ -2,6 +2,7 @@ package misha.service;
 
 import misha.domain.Comments;
 import misha.domain.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,18 @@ public class UserService {
 
     public Object getOurCom(String name){
 
-        /*User users = getUser().get(0);*/
-
         return getByLogin(name).get(0).getComments();
+    }
+
+    public  Object getListTicked(String name){
+
+       /* List<User> users = sessionFactory.getCurrentSession().createQuery("From User").list();
+        User userLazyLoaded = users.get(3);
+        return (userLazyLoaded.getOrderDetail());*/
+
+       //getByLogin(name).get(0).getTicked();
+
+        return getByLogin(name).get(0).getTicked();
     }
 
     public List<User> getByLogin(String name){
@@ -41,6 +51,12 @@ public class UserService {
 
             return user;
         }
+
+
+    public User getById(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(User.class, id);
+    }
 
 
 

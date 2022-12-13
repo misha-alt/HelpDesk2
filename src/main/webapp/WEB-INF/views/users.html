@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>New Person</title>
@@ -10,24 +11,47 @@
 
 <p th:text="${userName}"></p>
 
+<p th:text="${myDate}"></p>
+
 <form  th:action="@{/ert}" th:object="${comment}"th:method="POST">
 
-
-    <label for="comment">Enter name</label>
-    <input type="text" th:field="*{comment}" id="comment"/>
-
-    <br/>
-    <label for="date">Enter age</label>
-    <input type="text" th:field="*{date}" id="date"/>
-
+    <label for="comment">Enter comment</label>
+    <input type="text"  th:field="*{comment}" id="comment"/>
 
     <br/>
     <input type="submit" value="Create"/>
+
 
 </form>
 
 <p th:text="${userComment}"></p>
 
 
+<a th:href="@{/logout}">Press here if you want logout</a>
+
+<!--<input type="text" name="withoutName" value="My value" th:value=${myDate}"/>-->
+<!--<p id="current_date"></p>
+    <script>
+date = new Date();
+year = date.getFullYear();
+month = date.getMonth() + 1;
+day = date.getDate();
+document.getElementById("current_date").innerHTML = year + "-" + month + "-" + day;
+</script>
+<p th:text="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"></p>
+-->
+
+<!--
+<p id="test"></p>
+<script>
+        function My_Date() {
+            var d = document.getElementById(
+                    "test_Date").autocomplete = "off";
+
+            document.getElementById("test").innerHTML
+                    = "The value was changed to " + d;
+        }
+    </script>
+-->
 </body>
 </html>

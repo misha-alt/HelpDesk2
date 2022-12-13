@@ -4,37 +4,40 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" data-th-href="@{/css/style.css}"
           media="all">
-
 </head>
 <body>
 
 <p th:text="${ManagerName}"></p>
 
-<div th:each="person:${SomeComment}">
+<!--<div th:each="person:${SomeComment}">
     <a th:text="${person.getComments()} + ' '+${person.getLast_name()}"></a>
+</div>-->
+
+<div th:each="person:${onleUsersWithComm}">
+    <a  th:text="${person.getComments()} + ' '+${person.getLast_name()}"></a>
 </div>
 
-<form  th:action="@{/ert}" th:object="${comment}"th:method="POST">
 
-    <label for="comment">Enter name</label>
-    <input type="text" th:field="*{comment}" id="comment"/>
+<a th:href="@{/create_ticket}">Create Ticket</a>
 
-    <br/>
-    <label for="date">Enter age</label>
-    <input type="text" th:field="*{date}" id="date"/>
+<a>All ticked</a>
 
-    <br/>
-    <input type="submit" value="Create"/>
+<div th:each="specific_tickets:${ticket}">
+    <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
+</div>
 
-</form>
-<!--<div class="box">
-    <form method="GET" action="@{/product"} >
-        <select name="selected">
-            <option th:each="person:${SomeComment}" th:value="${person.getId}"
-                    th:text="${person.getComments()} + ' '+${person.getLast_name()}"></option>
-        </select>
-        <input type="submit" value="Add item"/>
-    </form>
-</div>-->
+
+
+<a>List of ticked</a>
+<p th:text= "${list_of_ticked}"></p>
+
+
+
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+
+
+
+
 </body>
 </html>

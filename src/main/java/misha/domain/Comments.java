@@ -1,6 +1,7 @@
 package misha.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "USERS_COMMENT")
@@ -20,6 +21,8 @@ public class Comments {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
+
+
 
     public Comments (){
 
