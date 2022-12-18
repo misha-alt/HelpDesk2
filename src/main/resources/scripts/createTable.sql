@@ -23,8 +23,13 @@ create table TICKED
 id integer not null,
 name varchar(255),
 description varchar(255),
-user_id integer,
 primary key (id)
+);
+
+create table USER_TICKED
+(
+user_id integer not null,
+ticked_id integer not null
 );
 
 
@@ -47,6 +52,9 @@ create sequence hibernate_sequence start with 1 increment by 1;
 alter table FEEDBACK add constraint for_FB foreign key (user_id) references USER;
 alter table USERS_COMMENT add constraint for_UC foreign key (user_id) references USER;
 alter table TICKED add constraint for_Tick_approv foreign key (approver_id) references USER;
+alter table USER_TICKED add constraint FKnrd8tgg7q foreign key (user_id) references USER;
+alter table USER_TICKED add constraint FKtepb8xswf foreign key (ticked_id) references TICKED;
+
 
 
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Accumulated work</title>
+</head>
+<body>
+
+<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST">
+
+    <label for="name">Enter name of problem</label>
+    <input type="text" th:field="*{name}" id="name"/>
+
+    <br/>
+    <label for="description">Enter description</label>
+    <input type="text" th:field="*{description}" id="description"/>
+
+
+
+    <br/>
+    <input type="submit" value="Create"/>
+
+</form >
+
+<!--<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST">
+
+  <br/>
+   <select name="selected">
+       <option th:each="engineer:${choose_an_engineer}"
+               th:text="${engineer.getLogin()} + ' '+${engineer.getLast_name()}"></option>
+   </select>
+    <input type="submit" value="Add item"/>
+
+</form>-->
+<br/>
+
+<div th:each="specific_tickets:${ticket}">
+    <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
+</div>
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+
+<!--<div th:each="engineer:${choose_an_engineer}">
+    <a th:text="${engineer.getLogin()} + ' '+${engineer.getLast_name()}"></a>
+</div>
+
+<form th:action="@{/ert}" th:object="${ticket}"th:method="POST">
+    <select name="selected">
+        <option th:each="engineer:${choose_an_engineer}"
+                th:text="${engineer.getLogin()} + ' '+${engineer.getLast_name()}"></option>
+    </select>
+    <input type="submit" value="Add item"/>
+</form>-->
+
+</body>
+</html>

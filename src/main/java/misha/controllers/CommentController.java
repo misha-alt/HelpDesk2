@@ -52,6 +52,7 @@ public class CommentController {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = dateFormat.format(new Date());
         model.addAttribute("myDate", dateString);
+        model.addAttribute("userComment", userService.getByLogin(principal.getName()).get(0).getComments());
         return "users";
     }
 
@@ -77,16 +78,6 @@ public class CommentController {
         return modelAndView;
         }
 }
-
-
-
-
-
-
-
-
-
-
 
 
     /*@RequestMapping("/newCom")

@@ -41,6 +41,9 @@ public class UsersControllers {
         model.addAttribute("list_of_ticked", userService.getListTicked(principal.getName()));
 
 
+
+
+
         return "manager";
     }
     @GetMapping("/engineer")

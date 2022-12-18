@@ -1,6 +1,7 @@
 package misha.service;
 
 import misha.domain.Comments;
+import misha.domain.Ticked;
 import misha.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

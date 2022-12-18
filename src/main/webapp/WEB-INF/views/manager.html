@@ -19,14 +19,28 @@
 
 
 <a th:href="@{/create_ticket}">Create Ticket</a>
-
+<br/>
 <a>All ticked</a>
 
 <div th:each="specific_tickets:${ticket}">
     <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
 </div>
 
+<form  th:action="@{/ticked}">
 
+    <br/>
+    <select name="name">
+        <option th:each="user:${onleUsersWithComm}"
+                th:text="${user.getLast_name()}"></option>
+    </select>
+    <br/>
+    <select name="id">
+        <option th:each="ticked:${list_of_ticked}"
+                th:text="${ticked.getId()}"></option>
+    </select>
+    <input type="submit" value="Add item"/>
+
+</form>
 
 <a>List of ticked</a>
 <p th:text= "${list_of_ticked}"></p>

@@ -27,8 +27,9 @@ public class User {
 
     /*Lists for Ticket*/
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "USER_TICKED",
+            joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "ticked_id"))
     private Set<Ticked> ticked;
 
     public User(){

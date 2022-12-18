@@ -14,9 +14,6 @@ public class Ticked {
     @Column( nullable = false)
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private User user;
-
 
     public Ticked() {
 
