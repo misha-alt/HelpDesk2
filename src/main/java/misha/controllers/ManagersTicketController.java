@@ -29,9 +29,12 @@ public class ManagersTicketController {
 
     @RequestMapping("/create_ticket")
     public String ticket (Principal principal, Model model){
-       model.addAttribute("choose_an_engineer", managerService.allEngineers());
+       //model.addAttribute("choose_an_engineer", managerService.allEngineers());
        model.addAttribute("form_ticket", new Ticked());
        model.addAttribute("ticket", managerService.onleExistsTickets());
+       model.addAttribute("assignee", userService.getUser());
+        model.addAttribute("approver", userService.getUser());
+
 
         return "create_ticket";
     }

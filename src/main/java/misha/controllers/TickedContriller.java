@@ -1,7 +1,10 @@
 package misha.controllers;
 
 import misha.domain.Ticked;
+import misha.domain.User;
+import misha.service.CreateComment;
 import misha.service.ManagerService;
+import misha.service.TickedService;
 import misha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,20 +23,29 @@ public class TickedContriller {
 
     private ManagerService managerService;
     private UserService userService;
+    private TickedService tickedService;
+    private CreateComment createComment;
 
     @Autowired
-    public TickedContriller(ManagerService managerService, UserService userService) {
+    public TickedContriller(CreateComment createComment, ManagerService managerService, UserService userService, TickedService tickedService) {
         this.managerService = managerService;
         this.userService = userService;
+        this.tickedService = tickedService;
+        this.createComment = createComment;
 
     }
+
     @RequestMapping("/ticked")
-    public ModelAndView create (@RequestParam("name") String name, @RequestParam("id") Long id, Principal principal, Model model){
+    public ModelAndView create (@RequestParam("name") String name, @RequestParam("id") int id, Principal principal, Model model){
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/manager");
-        model.addAttribute("list_of_ticked", userService.getListTicked(principal.getName()));
-        model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
+
+        User user = userService.getByLogin(name).get(0);
+        user.getTicked().add(tickedService.geTickedById(id));
+        createComment.updateUsersComment(user);
+
+
 
         return modelAndView;
     }

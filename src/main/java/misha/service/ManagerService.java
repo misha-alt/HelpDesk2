@@ -64,8 +64,6 @@ public class ManagerService {
         List list = new ArrayList();
         List lisrOfTicked = allTicket();
 
-        //Comments comment;
-
         for(int i = 0;i<lisrOfTicked.size();i++){
            Ticked ticked;
             ticked = (Ticked) lisrOfTicked.get(i);

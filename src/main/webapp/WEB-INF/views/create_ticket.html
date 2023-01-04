@@ -17,21 +17,41 @@
 
 
 
+        <br/>
+        <select name="MyState">
+
+            <option value="DRAFT">DRAFT</option>
+            <option value="NEW">NEW</option>
+            <option value="APPROVED">APPROVED</option>
+            <option value="DECLINED">DECLINED</option>
+            <option value="INPROGRESS">INPROGRESS</option>
+            <option value="DONE">DONE</option>
+            <option value="CANCELED">CANCELED</option>
+
+        </select>
+
+    <!--выбор правоприемника-->
+        <br/>
+        <select name="nameOfAssignee">
+            <option th:each="users:${assignee}"
+                    th:text="${users.getLogin()}"></option>
+        </select>
+        <br/>
+
+    <!--выбор ободрителя-->
+    <br/>
+    <select name="nameOfApprover">
+    <option th:each="users:${approver}"
+            th:text="${users.getLogin()}"></option>
+    </select>
+    <br/>
+
     <br/>
     <input type="submit" value="Create"/>
 
 </form >
 
-<!--<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST">
 
-  <br/>
-   <select name="selected">
-       <option th:each="engineer:${choose_an_engineer}"
-               th:text="${engineer.getLogin()} + ' '+${engineer.getLast_name()}"></option>
-   </select>
-    <input type="submit" value="Add item"/>
-
-</form>-->
 <br/>
 
 <div th:each="specific_tickets:${ticket}">
@@ -40,17 +60,6 @@
 
 <a th:href="@{/logout}">Press here if you want logout</a>
 
-<!--<div th:each="engineer:${choose_an_engineer}">
-    <a th:text="${engineer.getLogin()} + ' '+${engineer.getLast_name()}"></a>
-</div>
-
-<form th:action="@{/ert}" th:object="${ticket}"th:method="POST">
-    <select name="selected">
-        <option th:each="engineer:${choose_an_engineer}"
-                th:text="${engineer.getLogin()} + ' '+${engineer.getLast_name()}"></option>
-    </select>
-    <input type="submit" value="Add item"/>
-</form>-->
 
 </body>
 </html>

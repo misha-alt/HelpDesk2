@@ -9,10 +9,7 @@
 
 <p th:text="${ManagerName}"></p>
 
-<!--<div th:each="person:${SomeComment}">
-    <a th:text="${person.getComments()} + ' '+${person.getLast_name()}"></a>
-</div>-->
-
+<a>Persons with comments</a>
 <div th:each="person:${onleUsersWithComm}">
     <a  th:text="${person.getComments()} + ' '+${person.getLast_name()}"></a>
 </div>
@@ -22,28 +19,21 @@
 <br/>
 <a>All ticked</a>
 
-<div th:each="specific_tickets:${ticket}">
+<!--<div th:each="specific_tickets:${ticket}">
     <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
-</div>
-
-<form  th:action="@{/ticked}">
-
-    <br/>
-    <select name="name">
-        <option th:each="user:${onleUsersWithComm}"
-                th:text="${user.getLast_name()}"></option>
-    </select>
-    <br/>
-    <select name="id">
-        <option th:each="ticked:${list_of_ticked}"
-                th:text="${ticked.getId()}"></option>
-    </select>
-    <input type="submit" value="Add item"/>
-
-</form>
+</div>-->
 
 <a>List of ticked</a>
 <p th:text= "${list_of_ticked}"></p>
+
+
+<a>Ticked created by Manager</a>
+
+<div th:each="managerTicked:${tickedCreatedByManag}">
+    <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()"></a>
+</div>
+
+
 
 
 

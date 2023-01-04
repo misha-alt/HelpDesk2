@@ -37,9 +37,14 @@ public class CreateComment {
         session.update(user);
     }
 
+
+
+
     public void upDateComments(Comments comments){
         sessionFactory.getCurrentSession().update(comments);
     }
+
+
 
         public void seveUserCmments (Comments comments, String name){
 
@@ -49,16 +54,24 @@ public class CreateComment {
             updateUsersComment(user);
         }
 
+
+
         public void createComentAndSave(Comments comments){
             Session session = sessionFactory.getCurrentSession();
             session.save(comments);
         }
+
+
+
 
     public Comments getById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments p where p.id = :id");
         query.setParameter("id", id);
         return (Comments) query.list().get(0);
     }
+
+
+
 
     public List<Comments> getAll() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments");

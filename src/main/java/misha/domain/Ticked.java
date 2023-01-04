@@ -1,19 +1,30 @@
 package misha.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "TICKED")
-public class Ticked {
+public class Ticked implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable =  false)
     private int id;
     @Column( nullable = false)
+    private String assignee;
+    @Column(nullable = false)
+    private String approver;
+    @Column(nullable = false)
+    private String rollOfCreater;
+    @Column( nullable = false)
     private String name;
     @Column( nullable = false)
     private String description;
 
+
+    @Column( nullable = false)
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     public Ticked() {
 
@@ -43,13 +54,48 @@ public class Ticked {
         this.description = description;
     }
 
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
+    }
+
+    public String getApprover() {
+        return approver;
+    }
+
+    public void setApprover(String approver) {
+        this.approver = approver;
+    }
+
+    public String getRollOfCreater() {
+        return rollOfCreater;
+    }
+
+    public void setRollOfCreater(String rollOfCreater) {
+        this.rollOfCreater = rollOfCreater;
+    }
+
     @Override
     public String toString() {
         return "Ticked{" +
                 "id=" + id +
+                ", assignee='" + assignee + '\'' +
+                ", approver='" + approver + '\'' +
+                ", rollOfCreater='" + rollOfCreater + '\'' +
                 ", name='" + name + '\'' +
-                ", description='" + description +
-
+                ", description='" + description + '\'' +
+                ", state=" + state.getCat() +
                 '}';
     }
 }

@@ -110,13 +110,13 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\n' +
-                ", last_name='" + last_name + '\n' +
-                ", password='" + password + '\n' +
-                ", comments=" + comments  +
-
-
-
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", authority='" + authority + '\'' +
+                ", comments=" + comments +
+                ", ticked=" + ticked +
                 '}';
     }
 }

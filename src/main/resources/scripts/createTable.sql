@@ -21,8 +21,12 @@ primary key (id)
 create table TICKED
 (
 id integer not null,
+assignee varchar(255),
+approver varchar(255),
+rollOfCreater varchar(255),
 name varchar(255),
 description varchar(255),
+state varchar(255),
 primary key (id)
 );
 
@@ -31,7 +35,6 @@ create table USER_TICKED
 user_id integer not null,
 ticked_id integer not null
 );
-
 
 create table USER
 (
