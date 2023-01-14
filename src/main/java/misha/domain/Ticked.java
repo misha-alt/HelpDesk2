@@ -16,6 +16,8 @@ public class Ticked implements Serializable {
     private String approver;
     @Column(nullable = false)
     private String rollOfCreater;
+    @Column (nullable = false)
+    private  String loginOfcreater;
     @Column( nullable = false)
     private String name;
     @Column( nullable = false)
@@ -86,6 +88,14 @@ public class Ticked implements Serializable {
         this.rollOfCreater = rollOfCreater;
     }
 
+    public String getLoginOfcreater() {
+        return loginOfcreater;
+    }
+
+    public void setLoginOfcreater(String loginOfcreater) {
+        this.loginOfcreater = loginOfcreater;
+    }
+
     @Override
     public String toString() {
         return "Ticked{" +
@@ -93,6 +103,7 @@ public class Ticked implements Serializable {
                 ", assignee='" + assignee + '\'' +
                 ", approver='" + approver + '\'' +
                 ", rollOfCreater='" + rollOfCreater + '\'' +
+                ", loginOfcreater='" + loginOfcreater + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", state=" + state.getCat() +

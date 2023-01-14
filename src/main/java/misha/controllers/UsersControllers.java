@@ -70,6 +70,10 @@ public class UsersControllers {
         State state = State.valueOf(MyState);
         ticked.setState(state);
 
+
+        //устанавливаем LoginOfCreater
+        ticked.setLoginOfcreater(userService.getByLogin(principal.getName()).get(0).getLogin());
+
         //устанавливаем провоприемника и одобрителя в билете
         ticked.setAssignee(userService.getByLogin(nameOfAssignee).get(0).getLogin());
         ticked.setApprover(userService.getByLogin(nameOfApprover).get(0).getLogin());
@@ -82,6 +86,8 @@ public class UsersControllers {
         //добваить созданный тикет создавшему его ползователю
         User user = userService.getByLogin(principal.getName()).get(0);
         user.getTicked().add(tickedService.geTickedById(ticked.getId()));
+
+        createComment.updateUsersComment(user);
 
         model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
 

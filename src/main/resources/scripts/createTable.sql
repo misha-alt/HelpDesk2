@@ -23,6 +23,7 @@ create table TICKED
 id integer not null,
 assignee varchar(255),
 approver varchar(255),
+loginOfcreater varchar(255),
 rollOfCreater varchar(255),
 name varchar(255),
 description varchar(255),

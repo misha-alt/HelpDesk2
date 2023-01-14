@@ -23,8 +23,19 @@
 
 
 </form>
-
+<a>you comments</a>
 <p th:text="${userComment}"></p>
+
+<a th:href="@{/create_ticket}">Create Ticket</a>
+
+
+<a>Ticked created by User</a>
+
+<div th:each="userTicked:${tickedCreatedBy}">
+    <a th:text="${userTicked.getDescription()} + ' '+${userTicked.getName()} +' '+${userTicked.getState()"></a>
+</div>
+
+
 
 
 <a th:href="@{/logout}">Press here if you want logout</a>
