@@ -62,21 +62,11 @@ public class UserService {
         return session.get(User.class, id);
     }
 
-    public List<Ticked> listOfTickedCurrentUser(String login){
-
-            Query query = sessionFactory.getCurrentSession().createQuery
-                    ("from Ticked t where t.state = 'NEW' and t.rollOfCreater = 'ROLE_USER' or t.login = :login");
-            return query.list();
-
-        }
 
 
-    /* public List<Ticked> listOfTickedCurrentUser(){
 
-        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state = 'NEW' and t.rollOfCreater = 'ROLE_USER'");
-        return query.list();
-    }
-*/
+
+
 
 
 }

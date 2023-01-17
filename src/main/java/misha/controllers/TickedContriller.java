@@ -1,5 +1,6 @@
 package misha.controllers;
 
+import misha.domain.State;
 import misha.domain.Ticked;
 import misha.domain.User;
 import misha.service.CreateComment;
@@ -45,10 +46,34 @@ public class TickedContriller {
         user.getTicked().add(tickedService.geTickedById(id));
         createComment.updateUsersComment(user);
 
-
-
         return modelAndView;
     }
+
+    @RequestMapping("/create_ticket")
+    public String ticket (Principal principal, Model model){
+        //model.addAttribute("choose_an_engineer", managerService.allEngineers());
+        model.addAttribute("form_ticket", new Ticked());
+        model.addAttribute("ticket", managerService.onleExistsTickets());
+        model.addAttribute("assignee", userService.getUser());
+        model.addAttribute("approver", userService.getUser());
+
+        return "create_ticket";
+    }
+
+    @RequestMapping("/creation_ticked_view")
+    public ModelAndView create (@ModelAttribute("form_ticket") Ticked ticked, Principal principal, Model model
+            , @RequestParam("MyState") String MyState, @RequestParam("nameOfAssignee") String nameOfAssignee,@RequestParam("nameOfApprover")String nameOfApprover){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/manager");
+        tickedService.creationTiket(ticked, MyState, nameOfAssignee, nameOfApprover, principal);
+
+        //model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
+        model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
+        model.addAttribute("list_of_ticked", userService.getListTicked(principal.getName()));
+        return modelAndView;
+    }
+
 
 }
 

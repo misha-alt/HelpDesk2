@@ -16,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,65 +39,57 @@ public class UsersControllers {
        // this.state = state;
     }
 
+
+    @RequestMapping("/login")
+    public String login(Principal principal, Model model) {
+        return "login";
+
+    }
+
+
+    @RequestMapping("/newCom")
+    public String newComent(Model model, Principal principal){
+        model.addAttribute("comment", new Comments());
+        model.addAttribute("userName", userService.getByLogin(principal.getName()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = dateFormat.format(new Date());
+        model.addAttribute("myDate", dateString);
+        model.addAttribute("userComment", userService.getByLogin(principal.getName()).get(0).getComments());
+        return "users";
+    }
+
+
+
+
+
+    @RequestMapping("/ert")
+    public ModelAndView upDate(Model model,@ModelAttribute("comment") Comments comments, Principal principal){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = dateFormat.format(new Date());
+        comments.setDate(dateString);
+        createComment.createComentAndSave(comments);
+        createComment.seveUserCmments(comments, principal.getName());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/newCom");
+
+        return modelAndView;
+    }
+
+
+
     @GetMapping("/manager")
     public String viewManager(Principal principal, Model model){
 
         model.addAttribute("ManagerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
-        //model.addAttribute("SomeComment", managerService.allComments());
         model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
-       // model.addAttribute("ticket", managerService.onleExistsTickets());
-        model.addAttribute("list_of_ticked", userService.getListTicked(principal.getName()));
+        model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
+       // model.addAttribute("ticketsCreatedByManager", tickedService.listOfTickedCurrentUser(userService.getByLogin(principal.getName()).get(0).getLogin()));
 
 
 
         return "manager";
     }
-    @GetMapping("/engineer")
-    public String viewEngineer(Principal principal, Model model){
-
-        model.addAttribute("EngineerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
-        model.addAttribute("AllCommentsOfUsers", managerService.allComments());
-        model.addAttribute("listOfTicked", userService.getByLogin(principal.getName()).get(0).getTicked());
-
-        return "engineer";
-    }
-
-    @RequestMapping("/creation_ticked_view")
-    public ModelAndView create (@ModelAttribute("form_ticket") Ticked ticked, Principal principal, Model model
-            , @RequestParam("MyState") String MyState, @RequestParam("nameOfAssignee") String nameOfAssignee,@RequestParam("nameOfApprover")String nameOfApprover){
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/manager");
-
-        //устанавливаем статус тикета
-        State state = State.valueOf(MyState);
-        ticked.setState(state);
 
 
-        //устанавливаем LoginOfCreater
-        ticked.setLoginOfcreater(userService.getByLogin(principal.getName()).get(0).getLogin());
-
-        //устанавливаем провоприемника и одобрителя в билете
-        ticked.setAssignee(userService.getByLogin(nameOfAssignee).get(0).getLogin());
-        ticked.setApprover(userService.getByLogin(nameOfApprover).get(0).getLogin());
-        ticked.setRollOfCreater(userService.getByLogin(principal.getName()).get(0).getAuthority());
-
-        //сохранить созданный тикет в БД
-        managerService.createTickced(ticked);
-        managerService.seveManagerTicked(ticked, principal.getName());
-
-        //добваить созданный тикет создавшему его ползователю
-        User user = userService.getByLogin(principal.getName()).get(0);
-        user.getTicked().add(tickedService.geTickedById(ticked.getId()));
-
-        createComment.updateUsersComment(user);
-
-        model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
-
-
-
-        model.addAttribute("list_of_ticked", userService.getListTicked(principal.getName()));
-        return modelAndView;
-    }
 
 }

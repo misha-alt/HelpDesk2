@@ -17,11 +17,8 @@
 
 <a th:href="@{/create_ticket}">Create Ticket</a>
 <br/>
-<a>All ticked</a>
 
-<!--<div th:each="specific_tickets:${ticket}">
-    <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
-</div>-->
+
 
 <a>List of ticked</a>
 <p th:text= "${list_of_ticked}"></p>
@@ -30,11 +27,22 @@
 <a>Ticked created by Manager</a>
 
 <div th:each="managerTicked:${tickedCreatedByManag}">
-    <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()"></a>
+    <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()}"></a>
 </div>
 
+<br/>
 
+<a>the tickets which have him as an Approver in statuses Approved, Declined, Cancelled, In Progress, Done </a>
+<br/>
+<div th:each="lis:${list2}">
+    <a th:text="${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}"></a>
+</div>
+<a>tickets created by the manager</a>
+<br/>
 
+<!--<div th:each="ticketsCreat:${ticketsCreatedByManager}">
+    <a th:text="${ticketsCreat.getApprover()} +' '+${ticketsCreat.getState()} +' '+${ticketsCreat.getDescription()}"></a>
+</div>-->
 
 
 

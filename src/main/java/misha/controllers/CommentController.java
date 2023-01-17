@@ -25,37 +25,18 @@ import java.util.Date;
 
 public class CommentController {
 
-   private CreateComment createComment;
+    private CreateComment createComment;
     private UserService userService;
     private DateClass dateClass;
     private ManagerService managerService;
+
     @Autowired
     public CommentController(CreateComment createComment, UserService userService, DateClass dateClass, ManagerService managerService) {
-        this.createComment= createComment;
+        this.createComment = createComment;
         this.userService = userService;
-        this.dateClass= dateClass;
+        this.dateClass = dateClass;
         this.managerService = managerService;
     }
-
-
-    @RequestMapping("/login")
-    public String login(Principal principal, Model model) {
-            return "login";
-
-    }
-
-
-@RequestMapping("/newCom")
-    public String newComent(Model model, Principal principal){
-        model.addAttribute("comment", new Comments());
-        model.addAttribute("userName", userService.getByLogin(principal.getName()));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = dateFormat.format(new Date());
-        model.addAttribute("myDate", dateString);
-        model.addAttribute("userComment", userService.getByLogin(principal.getName()).get(0).getComments());
-        return "users";
-    }
-
 
     @GetMapping("/makeTest")
     public String newTest (Principal principal, Model model){
@@ -63,22 +44,7 @@ public class CommentController {
         model.addAttribute("onleUserWithComment", managerService.onleUsersWithComments());
         return "test";
     }
-
-
-        @RequestMapping("/ert")
-        public ModelAndView upDate(Model model,@ModelAttribute("comment") Comments comments, Principal principal){
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String dateString = dateFormat.format(new Date());
-           comments.setDate(dateString);
-            createComment.createComentAndSave(comments);
-            createComment.seveUserCmments(comments, principal.getName());
-           ModelAndView modelAndView = new ModelAndView();
-           modelAndView.setViewName("redirect:/newCom");
-
-        return modelAndView;
-        }
 }
-
 
     /*@RequestMapping("/newCom")
     public String newComent(Model model, Principal principal){
