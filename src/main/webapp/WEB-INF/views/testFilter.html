@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Person</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+</head>
+<body>
+
+
+
+
+<form  th:action="@{/goToFilterGET}"  th:method="GET">
+
+    <input type="text" name="UrgencyState" id="description"/>
+
+    <input type="submit" value="Create"/>
+</form>
+
+
+
+
+
+</body>
+</html>
