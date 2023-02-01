@@ -17,6 +17,10 @@
 
 
 
+    <br/>
+    <label for="desireddate">Enter DesireDate</label>
+    <input type="date" name="calendar" th:field="*{desireddate}" id="desireddate"/>
+
         <br/>
         <select name="MyState">
 
@@ -30,6 +34,18 @@
 
         </select>
 
+    <br/>
+<!--выбор степени срочности-->
+            <select name="UrgencyState">
+
+                <option value="CRITICAL">CRITICAL</option>
+                <option value="HIGHT">HIGHT</option>
+                <option value="AVEREGE">AVEREGE</option>
+                <option value="LOW">LOW</option>
+
+             </select>
+
+        <br/>
     <!--выбор правоприемника-->
         <br/>
         <select name="nameOfAssignee">

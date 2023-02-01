@@ -1,15 +1,12 @@
 package misha.test;
 
-import misha.domain.DateClass;
-import misha.domain.State;
-import misha.domain.Ticked;
+import com.google.common.collect.TreeMultiset;
+import misha.domain.*;
 
 import java.lang.reflect.Array;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static misha.domain.State.NEW;
 
@@ -26,7 +23,7 @@ public class Tests {
         System.out.println(testDate.onleUsersWithComments().toString());*/
 
 
-        Student student1 = new Student("Dick",45);
+       /* Student student1 = new Student("Dick",45);
         Student student2 = new Student("Stan",28);
         Student student3 = new Student("Mike",32);
         Student student4 = new Student("Jon",23);
@@ -43,7 +40,7 @@ public class Tests {
         Arrays.sort(myArray);
         for (Object myObject : myArray) {
             System.out.println(myObject);
-        }
+        }*/
 
        /* String st = "NEW";
         State state = State.valueOf(st);
@@ -51,14 +48,33 @@ public class Tests {
         System.out.println( state.getCat());*/
 
 
-       for(State sateAll:State.values()){
+      /* for(State sateAll:State.values()){
            System.out.println(sateAll);
-       }
+       }*/
+        Ticked ticked = new Ticked();
+        SomeEnum someEnum = SomeEnum.valueOf("HIGHT");
+        System.out.println(someEnum.getCat());
 
+       /* Set<Urgency> set = new TreeSet<>(Comparator.comparing(Urgency::toString));
+        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]
+        System.out.println(set); // [1, 2, 3, 4]
+*/
+
+        ObjectTest objectTest2 = new ObjectTest("Two", "2");
+        ObjectTest objectTest1 = new ObjectTest("One", "1");
+        ObjectTest objectTest3 = new ObjectTest("Three", "3");
+        Set<ObjectTest> obgCol = new TreeSet<>();
+
+        obgCol.add(objectTest2);
+        obgCol.add(objectTest1);
+        obgCol.add(objectTest3);
+        List<ObjectTest> arr = new ArrayList<>(obgCol);
+
+
+        TreeSet<ObjectTest> multiset = new TreeSet<>(new EnumComparatorTest());
+        multiset.addAll(arr);
+
+        System.out.println( Arrays.toString(multiset.toArray()));
 
     }
-
-
-
-
 }

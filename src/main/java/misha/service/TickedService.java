@@ -1,9 +1,8 @@
 package misha.service;
 
-import misha.domain.Comments;
-import misha.domain.State;
-import misha.domain.Ticked;
-import misha.domain.User;
+import com.google.common.collect.TreeMultiset;
+import misha.domain.*;
+import misha.test.SomeEnum;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TickedService {
@@ -40,12 +39,19 @@ public class TickedService {
         return (Ticked) query.list().get(0);
     }
 
+    public List<Ticked> getTickedByUrgency(Urgency urgency){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.urgency =:urgency");
+        query.setParameter("urgency", urgency);
+       List list= query.list();
+       return list;
+    }
+
         public List<Ticked> getTicketByStatus(String state){
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.state = :state");
         List list = query.list();
         return list;
         }
-    //все билеты созданный Менеджером и билетв созданные рабочим в статуск "NEW"
+    //все билеты созданный Менеджером и билетs созданные рабочим в статуск "NEW"
     public List<Ticked> listOfTickedCurrentUser(String login){
 
         Query query = sessionFactory.getCurrentSession().createQuery
@@ -73,10 +79,12 @@ public class TickedService {
         return query.list();
     }
 
-    public void creationTiket (Ticked ticked, String MyState,
+    public void creationTiket (Ticked ticked, String MyState, String UrgencyState,
                                String nameOfAssignee, String nameOfApprover, Principal principal){
         State state = State.valueOf(MyState);
         ticked.setState(state);
+       Urgency urgency = Urgency.valueOf(UrgencyState);
+       ticked.setUrgency(urgency);
 
         //устанавливаем LoginOfCreater
         ticked.setLoginOfcreater(userService.getByLogin(principal.getName()).get(0).getLogin());
@@ -98,4 +106,47 @@ public class TickedService {
 
     }
 
+    public  TreeSet<Ticked> sortedlistOfTicked(List<Ticked> list){
+
+      //  Set<Ticked> st = userService.getByLogin(login).get(0).getTicked();
+
+      // List <Ticked> arr = new ArrayList<>(list);
+       TreeSet<Ticked> multiset = new TreeSet<>(new EnumComparator());
+       multiset.addAll(list);
+
+       return multiset;
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*Set<Ticked> set = new TreeSet<>(Comparator.comparing(Ticked::toString));
+        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]*/
+// [1, 2, 3, 4]
+      /*  Object[] tr = {};
+       tr = st.toArray(new Object[st.size()]);
+     */
+       /* Set<Urgency> set = new TreeSet<>(Comparator.comparing(Urgency::toString));
+        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]
+        // [1, 2, 3, 4]*/
+       /* Set<Urgency> set = new TreeSet<>(Comparator.comparing(Urgency::toString));
+        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]
+        System.out.println(set); // [1, 2, 3, 4]*/

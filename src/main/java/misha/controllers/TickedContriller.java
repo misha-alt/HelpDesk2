@@ -62,15 +62,20 @@ public class TickedContriller {
 
     @RequestMapping("/creation_ticked_view")
     public ModelAndView create (@ModelAttribute("form_ticket") Ticked ticked, Principal principal, Model model
-            , @RequestParam("MyState") String MyState, @RequestParam("nameOfAssignee") String nameOfAssignee,@RequestParam("nameOfApprover")String nameOfApprover){
+            ,@RequestParam("MyState") String MyState, @RequestParam("nameOfAssignee") String nameOfAssignee,@RequestParam("nameOfApprover")String nameOfApprover
+            ,@RequestParam("UrgencyState")String UrgencyState){
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/manager");
-        tickedService.creationTiket(ticked, MyState, nameOfAssignee, nameOfApprover, principal);
+        tickedService.creationTiket(ticked, MyState, UrgencyState, nameOfAssignee, nameOfApprover, principal);
+
 
         //model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
-        model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
-        model.addAttribute("list_of_ticked", userService.getListTicked(principal.getName()));
+       // model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
+        //model.addAttribute("tickedCreatedByManag", tickedService.sortedlistOfTicked(principal.getName()));
+
+
+
         return modelAndView;
     }
 

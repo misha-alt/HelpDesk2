@@ -28,6 +28,8 @@ rollOfCreater varchar(255),
 name varchar(255),
 description varchar(255),
 state varchar(255),
+urgency varchar(255),
+desireddate varchar(255),
 primary key (id)
 );
 

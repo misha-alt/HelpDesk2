@@ -1,9 +1,6 @@
 package misha.controllers;
 
-import misha.domain.Comments;
-import misha.domain.State;
-import misha.domain.Ticked;
-import misha.domain.User;
+import misha.domain.*;
 import misha.service.CreateComment;
 import misha.service.ManagerService;
 import misha.service.TickedService;
@@ -82,12 +79,29 @@ public class UsersControllers {
 
         model.addAttribute("ManagerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
         model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
-        model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
-       // model.addAttribute("ticketsCreatedByManager", tickedService.listOfTickedCurrentUser(userService.getByLogin(principal.getName()).get(0).getLogin()));
-
+      // model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
+        model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
+        model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
 
 
         return "manager";
+    }
+
+
+    @GetMapping("/goToFilter")
+    public String forTestFilter(Model model){
+
+        return "testFilter";
+    }
+
+
+    @GetMapping("/goToFilterGET")
+    public String forTestFilterRedirect(Model model, @RequestParam(value ="UrgencyState", required = false) Urgency urgency, Principal principal){
+
+         model.addAttribute("keyUrgFilter", tickedService.getTickedByUrgency(urgency));
+         model.addAttribute("userTicked", userService.getByLogin(principal.getName()).get(0).getTicked());
+
+        return "testFilter2";
     }
 
 

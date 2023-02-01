@@ -2,10 +2,11 @@ package misha.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "TICKED")
-public class Ticked implements Serializable {
+public class Ticked   {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable =  false)
@@ -27,6 +28,13 @@ public class Ticked implements Serializable {
     @Column( nullable = false)
     @Enumerated(EnumType.STRING)
     private State state;
+
+    @Column( nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Urgency urgency;
+
+    @Column( nullable = false)
+    private String desireddate;
 
     public Ticked() {
 
@@ -96,6 +104,25 @@ public class Ticked implements Serializable {
         this.loginOfcreater = loginOfcreater;
     }
 
+    public Urgency getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(Urgency urgency) {
+        this.urgency = urgency;
+    }
+
+    public String getDesireddate() {
+        return desireddate;
+    }
+
+    public void setDesireddate(String desireddate) {
+        this.desireddate = desireddate;
+    }
+
+
+
+
     @Override
     public String toString() {
         return "Ticked{" +
@@ -107,6 +134,8 @@ public class Ticked implements Serializable {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", state=" + state.getCat() +
+                ", urgency=" + urgency.getCatt() +
+                ", date='" + desireddate + '\'' +
                 '}';
     }
 }
