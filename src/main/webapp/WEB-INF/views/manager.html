@@ -32,6 +32,25 @@
     <a th:text="${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}"></a>
 </div>
 
+<a>tsort by selected criteria</a>
+
+<form  th:action="@{/manager}"  th:method="GET">
+
+    <select name="var">
+
+        <option value="one">one</option>
+        <option value="two">two</option>
+        <option value="three">three</option>
+
+    </select>
+
+    <input type="submit" value="Create"/>
+</form>
+
+
+
+
+
 <a>search by urgency attribute</a>
 
 <a th:href="@{/goToFilter}">Press here for go to filter</a>

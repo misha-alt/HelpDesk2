@@ -75,12 +75,14 @@ public class UsersControllers {
 
 
     @GetMapping("/manager")
-    public String viewManager(Principal principal, Model model){
+    public String viewManager(Principal principal, Model model, @RequestParam(value = "var", required = false)String var){
 
         model.addAttribute("ManagerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
         model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
       // model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
-        model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
+      //model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
+
+       model.addAttribute("list2", tickedService.methodForSort(var, principal));
         model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
 
 
@@ -103,7 +105,5 @@ public class UsersControllers {
 
         return "testFilter2";
     }
-
-
 
 }

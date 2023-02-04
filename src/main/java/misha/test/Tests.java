@@ -60,7 +60,7 @@ public class Tests {
         System.out.println(set); // [1, 2, 3, 4]
 */
 
-        ObjectTest objectTest2 = new ObjectTest("Two", "2");
+    /*    ObjectTest objectTest2 = new ObjectTest("Two", "2");
         ObjectTest objectTest1 = new ObjectTest("One", "1");
         ObjectTest objectTest3 = new ObjectTest("Three", "3");
         Set<ObjectTest> obgCol = new TreeSet<>();
@@ -74,7 +74,13 @@ public class Tests {
         TreeSet<ObjectTest> multiset = new TreeSet<>(new EnumComparatorTest());
         multiset.addAll(arr);
 
-        System.out.println( Arrays.toString(multiset.toArray()));
+        System.out.println( Arrays.toString(multiset.toArray()));*/
+
+        TestReturn testReturn = new TestReturn();
+        System.out.println(testReturn.somrMeth("three"));
+
+
 
     }
+
 }

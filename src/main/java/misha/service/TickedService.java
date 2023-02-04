@@ -22,13 +22,15 @@ public class TickedService {
     private ManagerService managerService;
 
 
+
     @Autowired
     public TickedService(SessionFactory sessionFactory, UserService
-            userService, CreateComment createComment, ManagerService managerService) {
+            userService, CreateComment createComment, ManagerService managerService ) {
         this.sessionFactory = sessionFactory;
         this.userService =userService;
         this.createComment = createComment;
         this.managerService = managerService;
+
 
     }
 
@@ -108,16 +110,51 @@ public class TickedService {
 
     public  TreeSet<Ticked> sortedlistOfTicked(List<Ticked> list){
 
-      //  Set<Ticked> st = userService.getByLogin(login).get(0).getTicked();
-
-      // List <Ticked> arr = new ArrayList<>(list);
        TreeSet<Ticked> multiset = new TreeSet<>(new EnumComparator());
        multiset.addAll(list);
 
        return multiset;
 
     }
+
+
+    public TreeSet<Ticked> sortedListById (List<Ticked> list){
+
+        TreeSet<Ticked> multiset = new TreeSet<>(new TicketIdComparator());
+        multiset.addAll(list);
+
+        return multiset;
+
+
+    }
+   public TreeSet<Ticked> methodForSort(String var, Principal principal){
+        if (var =="one"){
+            //сортировка по срочности
+         return sortedlistOfTicked( managerAsAppruverAndStateDeclin( userService
+                  .getByLogin(principal.getName()).get(0).getLogin()));
+        }
+        if (var =="two"){
+            //сортировка по Id
+          return sortedListById( managerAsAppruverAndStateDeclin( userService
+                    .getByLogin(principal.getName()).get(0).getLogin()));
+        }
+    return null;
+   }
+
 }
+
+
+   /* public  TreeSet<Ticked> sortedlistOfTicked(List<Ticked> list){
+
+        //  Set<Ticked> st = userService.getByLogin(login).get(0).getTicked();
+
+        // List <Ticked> arr = new ArrayList<>(list);
+        TreeSet<Ticked> multiset = new TreeSet<>(new EnumComparator());
+        multiset.addAll(list);
+
+        return multiset;
+
+    }*/
 
 
 
