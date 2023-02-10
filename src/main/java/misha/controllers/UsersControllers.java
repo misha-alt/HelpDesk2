@@ -75,25 +75,27 @@ public class UsersControllers {
 
 
     @GetMapping("/manager")
-    public String viewManager(Principal principal, Model model, @RequestParam(value = "var", required = false)String var){
+    public String viewManager(Principal principal, Model model, @RequestParam(defaultValue = "one")String var){
 
         model.addAttribute("ManagerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
         model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
       // model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
-      //model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
+     // model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
 
-       model.addAttribute("list2", tickedService.methodForSort(var, principal));
-        model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
-
+      model.addAttribute("list2", tickedService.methodForSort(var, principal));
+      model.addAttribute("var", var);
+      model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
 
         return "manager";
     }
 
 
     @GetMapping("/goToFilter")
-    public String forTestFilter(Model model){
+    public String forTestFilter(Model model, Principal principal, @RequestParam(defaultValue = "var", required = false)String var){
 
-        return "testFilter";
+        model.addAttribute("list2", tickedService.methodForSort(var, principal));
+
+        return "redirect:/manager";
     }
 
 

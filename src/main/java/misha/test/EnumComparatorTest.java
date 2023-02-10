@@ -8,7 +8,11 @@ public class EnumComparatorTest  implements Comparator<ObjectTest> {
 
     @Override
     public int compare(ObjectTest o1, ObjectTest o2) {
-        return o1.getSrt1().compareTo(o2.getSrt1());
+        return o1.getSomeEnum().getCat().compareTo(o2.getSomeEnum().getCat());
     }
 }
 
+    /*@Override
+    public int compare(ObjectTest o1, ObjectTest o2) {
+        return o1.getSrt1().compareTo(o2.getSrt1());
+    }*/

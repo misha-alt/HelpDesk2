@@ -134,7 +134,7 @@ public class Ticked   {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", state=" + state.getCat() +
-                ", urgency=" + urgency.getCatt() +
+                ", urgency=" + urgency +
                 ", date='" + desireddate + '\'' +
                 '}';
     }

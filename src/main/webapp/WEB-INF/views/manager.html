@@ -27,12 +27,15 @@
 <br/>
 
 <a>the tickets which have him as an Approver in statuses Approved, Declined, Cancelled, In Progress, Done </a>
+
+<br/>
+<p th:text="${var}"></p>
 <br/>
 <div th:each="lis:${list2}">
-    <a th:text="${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}"></a>
+    <a th:text="${lis.getId()} +' '+${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}+' '+${lis.getUrgency()}"></a>
 </div>
 
-<a>tsort by selected criteria</a>
+<a>sort by selected criteria</a>
 
 <form  th:action="@{/manager}"  th:method="GET">
 

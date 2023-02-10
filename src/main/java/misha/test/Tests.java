@@ -76,8 +76,45 @@ public class Tests {
 
         System.out.println( Arrays.toString(multiset.toArray()));*/
 
-        TestReturn testReturn = new TestReturn();
-        System.out.println(testReturn.somrMeth("three"));
+       /* TestReturn testReturn = new TestReturn();
+        System.out.println(testReturn.somrMeth("three"));*/
+
+
+     /*  SomeEnum someEnum1 = SomeEnum.valueOf("HIGHT");
+        SomeEnum someEnum2 = SomeEnum.valueOf("CRITICAL");
+        SomeEnum someEnum3 = SomeEnum.valueOf("LOW");
+
+       ObjectTest objectTest1 = new ObjectTest(someEnum1);
+        ObjectTest objectTest2 = new ObjectTest(someEnum2);
+        ObjectTest objectTest3 = new ObjectTest(someEnum3);
+       List<ObjectTest> list = new ArrayList<>();
+       list.add(objectTest1);
+       list.add(objectTest2);
+       list.add(objectTest3);*/
+
+
+     TestObj testObj = new TestObj();
+
+        System.out.println(testObj.metTestObj().toString()+" "+"first");
+
+        EnumComparatorTest enumComparatorTest = new EnumComparatorTest();
+        List list = new LinkedList(testObj.metTestObj());
+         //ArrayList arrayList = new ArrayList(testObj.metTestObj());
+        list.sort(enumComparatorTest);
+        System.out.println(list+"second");
+
+
+
+
+       TreeSet<ObjectTest> treeSet = new TreeSet(new EnumComparatorTest());
+       treeSet.addAll(testObj.metTestObj());
+
+
+
+
+       for(ObjectTest num : treeSet){
+           System.out.println(num.getSomeEnum());
+       }
 
 
 

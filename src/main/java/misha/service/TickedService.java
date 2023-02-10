@@ -53,7 +53,7 @@ public class TickedService {
         List list = query.list();
         return list;
         }
-    //все билеты созданный Менеджером и билетs созданные рабочим в статуск "NEW"
+    //все билеты созданный юзером
     public List<Ticked> listOfTickedCurrentUser(String login){
 
         Query query = sessionFactory.getCurrentSession().createQuery
@@ -108,50 +108,53 @@ public class TickedService {
 
     }
 
-    public  TreeSet<Ticked> sortedlistOfTicked(List<Ticked> list){
-
-       TreeSet<Ticked> multiset = new TreeSet<>(new EnumComparator());
-       multiset.addAll(list);
-
-       return multiset;
-
-    }
+    public  List<Ticked> sortedlistOfTicked(List<Ticked> list){
 
 
-    public TreeSet<Ticked> sortedListById (List<Ticked> list){
+     EnumComparator enumComparator = new EnumComparator();
 
-        TreeSet<Ticked> multiset = new TreeSet<>(new TicketIdComparator());
-        multiset.addAll(list);
-
-        return multiset;
-
+     list.sort(enumComparator);
+     return list;
 
     }
-   public TreeSet<Ticked> methodForSort(String var, Principal principal){
-        if (var =="one"){
-            //сортировка по срочности
-         return sortedlistOfTicked( managerAsAppruverAndStateDeclin( userService
-                  .getByLogin(principal.getName()).get(0).getLogin()));
-        }
-        if (var =="two"){
-            //сортировка по Id
-          return sortedListById( managerAsAppruverAndStateDeclin( userService
-                    .getByLogin(principal.getName()).get(0).getLogin()));
-        }
-    return null;
-   }
 
+
+    public ArrayList<Ticked> sortedListById (List<Ticked> list){
+
+        TicketIdComparator ticketIdComparator = new TicketIdComparator();
+
+        ArrayList arrayList = new ArrayList(list);
+        arrayList.sort(ticketIdComparator);
+        return arrayList;
+
+    }
+     public  List<Ticked> methodForSort(String var, Principal principal) {
+
+
+
+             if (var == "one") {
+                 //сортировка по срочности
+                 return sortedlistOfTicked(managerAsAppruverAndStateDeclin(userService
+                         .getByLogin(principal.getName()).get(0).getLogin()));
+
+
+//сортировка по Id
+             }  else return sortedListById(managerAsAppruverAndStateDeclin(userService
+                     .getByLogin(principal.getName()).get(0).getLogin()));
+
+
+
+
+
+     }
 }
 
 
    /* public  TreeSet<Ticked> sortedlistOfTicked(List<Ticked> list){
-
         //  Set<Ticked> st = userService.getByLogin(login).get(0).getTicked();
-
         // List <Ticked> arr = new ArrayList<>(list);
         TreeSet<Ticked> multiset = new TreeSet<>(new EnumComparator());
         multiset.addAll(list);
-
         return multiset;
 
     }*/

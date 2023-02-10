@@ -15,10 +15,5 @@ public enum SomeEnum {
         return cat;
     }
 
-    @Override
-    public String toString() {
-        return "SomeEnum{" +
-                "cat='" + cat + '\'' +
-                '}';
-    }
+
 }
