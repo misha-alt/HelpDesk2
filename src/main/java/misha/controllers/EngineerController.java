@@ -1,10 +1,7 @@
 package misha.controllers;
 
 
-import misha.service.CreateComment;
-import misha.service.ManagerService;
-import misha.service.TickedService;
-import misha.service.UserService;
+import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,20 +18,23 @@ public class EngineerController {
     private UserService userService;
     private TickedService tickedService;
     private CreateComment createComment;
+    private EngineerService engineerService;
 
     @Autowired
-    public EngineerController(CreateComment createComment, ManagerService managerService, UserService userService, TickedService tickedService) {
+    public EngineerController(CreateComment createComment, EngineerService engineerService, ManagerService managerService, UserService userService, TickedService tickedService) {
         this.managerService = managerService;
         this.userService = userService;
         this.tickedService = tickedService;
         this.createComment = createComment;
+        this.engineerService = engineerService;
     }
     @GetMapping("/engineer")
     public String viewEngineer(Principal principal, Model model){
 
         model.addAttribute("EngineerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
-        model.addAttribute("AllCommentsOfUsers", managerService.allComments());
-        model.addAttribute("listOfTicked", userService.getByLogin(principal.getName()).get(0).getTicked());
+        model.addAttribute("listOfTicked", engineerService
+                .ticketsCreatedByAllEmployeesAndManagersInStatusApproved(userService
+                .getByLogin(principal.getName()).get(0).getLogin()));
 
         return "engineer";
     }

@@ -5,13 +5,15 @@ import misha.domain.*;
 
 import java.lang.reflect.Array;
 import java.sql.SQLOutput;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
 import static misha.domain.State.NEW;
 
 public class Tests {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
        /* TestDate testDate = new TestDate();
         testDate.setVisible(true);*/
 
@@ -51,9 +53,9 @@ public class Tests {
       /* for(State sateAll:State.values()){
            System.out.println(sateAll);
        }*/
-        Ticked ticked = new Ticked();
+        /*Ticked ticked = new Ticked();
         SomeEnum someEnum = SomeEnum.valueOf("HIGHT");
-        System.out.println(someEnum.getCat());
+        System.out.println(someEnum.getCat());*/
 
        /* Set<Urgency> set = new TreeSet<>(Comparator.comparing(Urgency::toString));
         set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]
@@ -93,7 +95,7 @@ public class Tests {
        list.add(objectTest3);*/
 
 
-     TestObj testObj = new TestObj();
+     /*TestObj testObj = new TestObj();
 
         System.out.println(testObj.metTestObj().toString()+" "+"first");
 
@@ -118,6 +120,58 @@ public class Tests {
 
 
 
+        TestReturn testReturn = new TestReturn();
+
+        System.out.println(testReturn.somrMeth("etrt"));
+
+
+        String s = "12/12/2012";
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            simpleDateFormat.parse(s);
+        }catch (Exception w){}
+*/
+
+        //Date date = new SimpleDateFormat("dd/MM/YYY").parse(s);
+        /*  format.applyPattern("dd.MM.yyyy");*/
+
+
+       /* StringDataSort stringDataSort1 = new StringDataSort("23/12/2021");
+        StringDataSort stringDataSort2 = new StringDataSort("14/07/2021");
+        StringDataSort stringDataSort3 = new StringDataSort("09/01/2018");
+
+        List list = new ArrayList();
+        list.add(stringDataSort1);
+        list.add(stringDataSort2);
+        list.add(stringDataSort3);
+
+
+        System.out.println(list);
+
+
+
+        List list1 = new ArrayList();
+
+
+        for(int i=0 ;i<list.size();i++){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            simpleDateFormat.applyPattern("dd/MM/yyyy");
+            System.out.println( simpleDateFormat.parse(list.get(i).toString()));
+            list1.add( simpleDateFormat.parse(list.get(i).toString()));
+
+
+        }
+
+
+
+        System.out.println(list1);
+        Collections.sort(list1);
+        System.out.println(list1 );*/
+
+
+       TestObjString testObjString = new TestObjString("dfg");
+       TestReturn testReturn = new TestReturn();
+        System.out.println(testReturn.somrMeth(testObjString.getS()));
     }
 
 }

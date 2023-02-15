@@ -75,37 +75,46 @@ public class UsersControllers {
 
 
     @GetMapping("/manager")
-    public String viewManager(Principal principal, Model model, @RequestParam(defaultValue = "one")String var){
+    public String viewManager(Principal principal, Model model, @RequestParam(value = "var", defaultValue = "one") String var){
 
         model.addAttribute("ManagerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
         model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
-      // model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
+      //model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
      // model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
+        model.addAttribute("list2", tickedService.methodForSort(var, principal));
 
-      model.addAttribute("list2", tickedService.methodForSort(var, principal));
-      model.addAttribute("var", var);
+
+
+     model.addAttribute("var", userService.getByLogin(principal.getName()).get(0).getLogin());
       model.addAttribute("tickedCreatedByManag", userService.getByLogin(principal.getName()).get(0).getTicked());
 
         return "manager";
     }
 
+    //сортирует по срочности
+    @GetMapping("/sotrByUrgense")
+    public String forTestFilter(Model model, Principal principal ){
 
-    @GetMapping("/goToFilter")
-    public String forTestFilter(Model model, Principal principal, @RequestParam(defaultValue = "var", required = false)String var){
+        model.addAttribute("list2", tickedService.sortedlistOfTicked(principal));
 
-        model.addAttribute("list2", tickedService.methodForSort(var, principal));
-
-        return "redirect:/manager";
+        return "testFilter";
     }
 
+//сортирует по ID
+    @GetMapping("/sortById")
+    public String forTestFilterRedirect(Model model, Principal principal){
 
-    @GetMapping("/goToFilterGET")
-    public String forTestFilterRedirect(Model model, @RequestParam(value ="UrgencyState", required = false) Urgency urgency, Principal principal){
-
-         model.addAttribute("keyUrgFilter", tickedService.getTickedByUrgency(urgency));
-         model.addAttribute("userTicked", userService.getByLogin(principal.getName()).get(0).getTicked());
+        model.addAttribute("list2", tickedService.sortedListById(principal));
 
         return "testFilter2";
+    }
+
+    @GetMapping("/sortByDate")
+    public String sortByDate(Model model, Principal principal){
+
+        model.addAttribute("list2", tickedService.sortedByDate(principal));
+
+        return "testFilter3";
     }
 
 }

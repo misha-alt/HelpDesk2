@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -108,8 +110,27 @@ public class TickedService {
 
     }
 
-    public  List<Ticked> sortedlistOfTicked(List<Ticked> list){
+       public  List<Ticked> methodForSort(String var, Principal principal) {
 
+
+
+
+
+         if (var.equals("one")){
+           return   sortedlistOfTicked(principal);
+         }
+         if(var.equals("two")){
+            return sortedListById(principal);
+         }
+
+    return  null;
+
+     }
+
+    public  List<Ticked> sortedlistOfTicked(Principal principal){
+
+     List list =managerAsAppruverAndStateDeclin(userService
+                .getByLogin(principal.getName()).get(0).getLogin());
 
      EnumComparator enumComparator = new EnumComparator();
 
@@ -118,35 +139,65 @@ public class TickedService {
 
     }
 
-
-    public ArrayList<Ticked> sortedListById (List<Ticked> list){
+    public List<Ticked> sortedListById (Principal principal){
 
         TicketIdComparator ticketIdComparator = new TicketIdComparator();
 
-        ArrayList arrayList = new ArrayList(list);
-        arrayList.sort(ticketIdComparator);
-        return arrayList;
+        List list =managerAsAppruverAndStateDeclin(userService
+                .getByLogin(principal.getName()).get(0).getLogin());
 
+        list.sort(ticketIdComparator);
+        return list;
     }
-     public  List<Ticked> methodForSort(String var, Principal principal) {
+
+    public List<Ticked> sortedByDate(Principal principal)  {
+
+        List list =managerAsAppruverAndStateDeclin(userService
+                .getByLogin(principal.getName()).get(0).getLogin());
+
+        List list1 = new ArrayList();
+
+
+        for(int i=0 ;i<list.size();i++){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            simpleDateFormat.applyPattern("dd/MM/yyyy");
+            try {
+              simpleDateFormat.parse(list.get(i).toString());
+                list1.add( simpleDateFormat.parse(list.get(i).toString()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+        Collections.sort(list1);
+        return list1;
+    }
+
+    /* public  List<Ticked> methodForSort(String var, Principal principal) {
+
+
+          String s = userService.getByLogin(principal.getName()).get(0).getLogin();
+
+
+           if (s== userService.getByLogin(principal.getName()).get(0).getLogin()){
+              return sortedlistOfTicked(managerAsAppruverAndStateDeclin(userService
+                       .getByLogin(principal.getName()).get(0).getLogin()));
+                   }
+           else if(s != userService.getByLogin(principal.getName()).get(0).getLogin()){
+               return sortedListById(managerAsAppruverAndStateDeclin(userService
+                       .getByLogin(principal.getName()).get(0).getLogin()));
+           }
+
+           else return  sortedListById(managerAsAppruverAndStateDeclin(userService
+                 .getByLogin(principal.getName()).get(0).getLogin()));
 
 
 
-             if (var == "one") {
-                 //сортировка по срочности
-                 return sortedlistOfTicked(managerAsAppruverAndStateDeclin(userService
-                         .getByLogin(principal.getName()).get(0).getLogin()));
 
-
-//сортировка по Id
-             }  else return sortedListById(managerAsAppruverAndStateDeclin(userService
-                     .getByLogin(principal.getName()).get(0).getLogin()));
+     }*/
 
 
 
-
-
-     }
 }
 
 
@@ -158,24 +209,6 @@ public class TickedService {
         return multiset;
 
     }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   /*Set<Ticked> set = new TreeSet<>(Comparator.comparing(Ticked::toString));

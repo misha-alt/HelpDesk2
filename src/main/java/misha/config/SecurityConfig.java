@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/makeTest");
 
+        //https://www.youtube.com/watch?v=Mb8nlh4m0HM
     }
 
     @Override

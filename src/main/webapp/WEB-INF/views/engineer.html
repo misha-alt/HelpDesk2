@@ -11,6 +11,15 @@
 
 <a th:href="@{/create_ticket}">Create Ticket</a>
 
+
+<a>List of ticked </a>
+
+    <br/>
+<div th:each="lOT:${listOfTicked}">
+    <a th:text="${lOT.getId()} +' '+${lOT.getLoginOfcreater()} + ' '+${lOT.getState()}+' '+${lOT.getUrgency()}"></a>
+</div>
+<br/>
+
 <a th:href="@{/logout}">Press here if you want logout</a>
 
 </body>

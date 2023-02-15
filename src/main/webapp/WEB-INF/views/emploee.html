@@ -1,0 +1,31 @@
+!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<p th:text="${EmploeeName}"></p>
+
+
+<a th:href="@{/create_ticket}">Create Ticket</a>
+
+
+
+<a>All Ticked created by You</a>
+
+<br/>
+<div th:each="aToE:${allTickedOfEmplee}">
+    <a th:text="${aToE.getId()} +' '+${aToE.getLoginOfcreater()} + ' '+${aToE.getState()}+' '+${aToE.getUrgency()}"></a>
+</div>
+<br/>
+
+
+
+
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+
+</body>
+</html>
