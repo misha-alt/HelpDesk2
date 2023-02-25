@@ -36,6 +36,20 @@
 </div>
 
 
+<br/>
+<a>Filter by criteria</a>
+
+<br/>
+<form  th:action="@{/manager}" th:object="${obj}" th:method="GET">
+ <p><input type="text" name="ob" autocomplete="on"></p>
+    <input type="submit" value="Create"/>
+</form>
+<br/>
+
+<div th:each="viewOB:${ob}">
+    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}"></a>
+</div>
+
 <!--
 <br/>
 <a th:href="@{/sotrByUrgense}">sort by urgency</a>
@@ -45,7 +59,7 @@
 <a th:href="@{/sortByDate}">sort by date</a>
 -->
 
-
+<a>Sorted</a>
 
 <br/>
 <form  th:action="@{/manager}" th:method="GET">

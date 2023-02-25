@@ -75,14 +75,14 @@ public class UsersControllers {
 
 
     @GetMapping("/manager")
-    public String viewManager(Principal principal, Model model, @RequestParam(value = "var", defaultValue = "one") String var){
+    public String viewManager(Principal principal, Model model, @RequestParam(value = "var", defaultValue = "one") String var, @RequestParam(value = "ob", defaultValue = "NEW") Object ob){
 
         model.addAttribute("ManagerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
         model.addAttribute("onleUsersWithComm", managerService.onleUsersWithComments());
       //model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));
      // model.addAttribute("list2",tickedService.sortedlistOfTicked( tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin())));
         model.addAttribute("list2", tickedService.methodForSort(var, principal));
-
+        model.addAttribute("ob", tickedService.filteredListByCriteria(ob));
 
 
      model.addAttribute("var", userService.getByLogin(principal.getName()).get(0).getLogin());

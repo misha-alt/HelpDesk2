@@ -34,14 +34,13 @@ public class TestControllerSQL {
 
     }
 
-    @RequestMapping("/testSQL")
-    public ModelAndView create (Principal principal, Model model){
+    @RequestMapping("/testCont")
+    public ModelAndView create (Principal principal, Model model,@RequestParam(value = "ob", defaultValue = "NEW") Object ob){
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("testSQL");
+        modelAndView.setViewName("testFilter");
 
-        model.addAttribute("sqlTest", tickedService.listOfTickedCurrentUser(principal.getName()).get(0).getLoginOfcreater());
-
+        model.addAttribute("ob", tickedService.filteredListByCriteria(ob));
 
 
         return modelAndView;

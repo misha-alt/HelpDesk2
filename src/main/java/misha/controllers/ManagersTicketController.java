@@ -30,6 +30,13 @@ public class ManagersTicketController {
 
 
 
+   /* @RequestMapping("/manager")
+    public String ticket (Principal principal, Model model, Object ob){
+
+       model.addAttribute("ob", ob);
+
+        return "manager";
+    }*/
 
 
   /*  @RequestMapping("/create_ticket")

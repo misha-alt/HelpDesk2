@@ -23,8 +23,6 @@ public class TickedService {
     private CreateComment createComment;
     private ManagerService managerService;
 
-
-
     @Autowired
     public TickedService(SessionFactory sessionFactory, UserService
             userService, CreateComment createComment, ManagerService managerService ) {
@@ -33,9 +31,7 @@ public class TickedService {
         this.createComment = createComment;
         this.managerService = managerService;
 
-
     }
-
 
     public Ticked geTickedById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.id = :id");
@@ -63,8 +59,6 @@ public class TickedService {
         query.setParameter("login", login);
         return query.list();
 
-
-
     }
     // билеты в статусах  DECLINED, APPROVED, CANCELED, INPROGRESS,DONE  и в которых менеждер как утверждающй
     public List<Ticked> managerAsAppruverAndStateDeclin(String approver){
@@ -78,7 +72,6 @@ public class TickedService {
                                         "or t.state = 'NEW' and t.rollOfCreater = 'ROLE_USER'" +
                                         "or t.loginOfcreater = :approver");
         query.setParameter("approver", approver);
-
 
         return query.list();
     }
@@ -111,10 +104,6 @@ public class TickedService {
     }
 
        public  List<Ticked> methodForSort(String var, Principal principal) {
-
-
-
-
 
          if (var.equals("one")){
            return   sortedlistOfTicked(principal);
@@ -157,7 +146,6 @@ public class TickedService {
 
         List list1 = new ArrayList();
 
-
         for(int i=0 ;i<list.size();i++){
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             simpleDateFormat.applyPattern("dd/MM/yyyy");
@@ -173,7 +161,50 @@ public class TickedService {
         return list1;
     }
 
+    public List<Ticked> filteredListByCriteria(Object someCreteria) {
+
+
+
+        if (!someCreteria.equals(null)) {
+            Query query = sessionFactory.getCurrentSession().createQuery(
+                    "from Ticked t where t.state = 'APPROVED' and :someCreteria = 'APPROVED'"+
+                    "or  t.state = 'CANCELED' and :someCreteria = 'CANCELED'" +
+                    "or t.state = 'NEW' and :someCreteria = 'NEW'" +
+                            "or t.desireddate = :someCreteria");
+            query.setParameter("someCreteria", someCreteria);
+
+            return query.list();
+        }
+       return null;
+    }
+
     /* public  List<Ticked> methodForSort(String var, Principal principal) {
+
+ DRAFT("DRAFT"),
+    NEW("NEW"),
+    APPROVED("APPROVED"),
+    DECLINED("DECLINED"),
+    INPROGRESS("INPROGRESS"),
+    DONE("DONE"),
+    CANCELED("CANCELED");
+
+
+
+      "or t.state = 'APPROVED' and :someCreteria = 'APPROVED'" +
+                            "or t.state = 'DECLINED' and :someCreteria = 'DECLINED'" +
+                            "or t.state = 'INPROGRESS' and :someCreteria = 'INPROGRESS'" +
+                            "or t.state = 'DONE' and :someCreteria = 'DONE'" +
+                            "or t.state = 'CANCELED' and :someCreteria = 'CANCELED'"
+
+"or t.urgency = :someCreteria" +
+
+t.state = 'NEW' and :someCreteria = 'NEW'
+
+"from Ticked t where t.name = :someCreteria" +
+                        "or t.desireddate = :someCreteria" +
+                        "or t.urgency = :someCreteria" +
+                        "or t.state = :someCreteria"
+
 
 
           String s = userService.getByLogin(principal.getName()).get(0).getLogin();

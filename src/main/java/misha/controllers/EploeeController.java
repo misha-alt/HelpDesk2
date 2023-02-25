@@ -24,14 +24,14 @@ public class EploeeController {
         this.empioyeeService = empioyeeService;
     }
 
-    @GetMapping("/engineer")
+    @GetMapping("/emploeeContr")
     public String viewEngineer(Principal principal, Model model){
 
       model.addAttribute("EmploeeName", userService.getByLogin(principal.getName()).get(0).getFirst_name());
       model.addAttribute("allTickedOfEmplee", empioyeeService.allTiscedCreatedByEmployee(userService.getByLogin(principal.getName()).get(0).getLogin()));
 
 
-        return "engineer";
+        return "emploee";
     }
 
 }
