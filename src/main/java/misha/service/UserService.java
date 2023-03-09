@@ -65,8 +65,35 @@ public class UserService {
 
 
 
+    public void createUser(User user) {
 
+        if (selectPassForChec(user.getPassword()).isEmpty()){
+            if (getByLogin(user.getLogin()).isEmpty()){
+                if (selectEmailForChec(user.getEmail()).isEmpty()){
+                    Session session = sessionFactory.getCurrentSession();
+                    session.save(user);
+                }
+            }
 
+        }
+    }
+
+        public List selectPassForChec(String password){
+        Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.password = :password");
+        query.setParameter("password", password);
+        return query.list();
+        }
+
+        /*public List selectLoginForChec(String login){
+            Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.login = :login");
+            query.setParameter("login", login);
+            return query.list();
+        }*/
+        public List selectEmailForChec(String email){
+            Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.email = :email");
+            query.setParameter("email", email);
+            return query.list();
+        }
 
 
 }

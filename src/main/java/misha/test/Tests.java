@@ -169,9 +169,9 @@ public class Tests {
         System.out.println(list1 );*/
 
 
-       TestObjString testObjString = new TestObjString("dfg");
+       /*TestObjString testObjString = new TestObjString("dfg");
        TestReturn testReturn = new TestReturn();
-        System.out.println(testReturn.somrMeth(testObjString.getS()));
+        System.out.println(testReturn.somrMeth(testObjString.getS()));*/
     }
 
 }

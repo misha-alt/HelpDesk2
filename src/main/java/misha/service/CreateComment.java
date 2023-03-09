@@ -59,6 +59,7 @@ public class CreateComment {
         public void createComentAndSave(Comments comments){
             Session session = sessionFactory.getCurrentSession();
             session.save(comments);
+
         }
 
 

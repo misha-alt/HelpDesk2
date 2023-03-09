@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+</head>
+<body>
+
+<br/>
+<form  th:action="@{/regForm2}" th:object="${user}" th:method="POST">
+
+    <label for="first_name">Enter first_name</label>
+    <input type="text"  th:field="*{first_name}" id="first_name"/>
+    <div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">error</div>
+    <br/>
+    <label for="last_name">Enter last_name</label>
+    <input type="text"  th:field="*{last_name}" id="last_name"/>
+    <div th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}">error</div>
+    <br/>
+    <label for="login">Enter login</label>
+    <input type="text"  th:field="*{login}" id="login"/>
+
+    <br/>
+    <label for="password">Enter password</label>
+    <input type="text"  th:field="*{password}" id="password"/>
+    <br/>
+    <label for="authority">Enter authority</label>
+    <input type="text"  th:field="*{authority}" id="authority"/>
+    <br/>
+    <label for="email">Enter email</label>
+    <input type="text"  th:field="*{email}" id="email"/>
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</div>
+
+
+    <br/>
+    <input type="submit" value="Create user"/>
+
+</form>
+<br/>
+
+
+
+
+</body>
+</html>

@@ -1,6 +1,12 @@
 package misha.domain;
 
+
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -8,19 +14,40 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable =  false)
     private int id;
+
+
     @Column( nullable = false)
+    @NotNull(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String first_name;
+
+
     @Column( nullable = false)
+    @NotNull(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String last_name;
+
+
     @Column(nullable = false)
     private String login;
+
+
     @Column(nullable = false)
     private String password;
+
+
     @Column(nullable = false)
     private String authority;
+
+    @NotNull(message = "email should not be empty")
+    @Email(message = "email should de valid")
+    @Column(nullable = false)
+    private String email;
+
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private Set<Comments> comments;
@@ -93,6 +120,14 @@ public class User {
         this.authority = authority;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     /*Getters and Setters Ticket lists*/
 
 
@@ -117,6 +152,7 @@ public class User {
                 ", authority='" + authority + '\'' +
                 ", comments=" + comments +
                 ", ticked=" + ticked +
+                ", email=" + email +
                 '}';
     }
 }
