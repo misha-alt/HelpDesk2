@@ -106,10 +106,16 @@ public class TickedService {
        public  List<Ticked> methodForSort(String var, Principal principal) {
 
          if (var.equals("one")){
+             //sorted ticket by urgency
            return   sortedlistOfTicked(principal);
          }
          if(var.equals("two")){
+             //sorted ticket by Id
             return sortedListById(principal);
+         }
+         if (var.equals("three")){
+             //sorted ticket by date
+             return sortedByDate(principal);
          }
 
     return  null;
@@ -140,30 +146,16 @@ public class TickedService {
     }
 
     public List<Ticked> sortedByDate(Principal principal)  {
-
         List list =managerAsAppruverAndStateDeclin(userService
                 .getByLogin(principal.getName()).get(0).getLogin());
 
-        List list1 = new ArrayList();
 
-        for(int i=0 ;i<list.size();i++){
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-            simpleDateFormat.applyPattern("dd/MM/yyyy");
-            try {
-              simpleDateFormat.parse(list.get(i).toString());
-                list1.add( simpleDateFormat.parse(list.get(i).toString()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-        }
-        Collections.sort(list1);
-        return list1;
+        DataComp dataComp = new DataComp();
+        list.sort(dataComp);
+        return list;
     }
 
     public List<Ticked> filteredListByCriteria(Object someCreteria) {
-
-
 
         if (!someCreteria.equals(null)) {
             Query query = sessionFactory.getCurrentSession().createQuery(

@@ -27,7 +27,7 @@ public class Ticked   {
 
     @Column( nullable = false)
     @Enumerated(EnumType.STRING)
-    private State state;
+    public State state;
 
     @Column( nullable = false)
     @Enumerated(EnumType.STRING)
@@ -138,4 +138,6 @@ public class Ticked   {
                 ", date='" + desireddate + '\'' +
                 '}';
     }
+
+
 }

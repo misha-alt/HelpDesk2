@@ -2,11 +2,10 @@ package misha.domain;
 
 
 
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 import java.util.Set;
 
 @Entity
@@ -19,15 +18,17 @@ public class User {
     private int id;
 
 
-    @Column( nullable = false)
-    @NotNull(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
+    @Column(nullable = false)
+/*
+    @Min(value = 2, message = "Age should be greater than or equal to 2")
+    @Max(value = 30,message ="Age shouldn't be greater than or equal to 30")
+    @NotEmpty*/
     private String first_name;
 
 
-    @Column( nullable = false)
-    @NotNull(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
+    @Column(nullable = false)
+
+
     private String last_name;
 
 
@@ -42,8 +43,7 @@ public class User {
     @Column(nullable = false)
     private String authority;
 
-    @NotNull(message = "email should not be empty")
-    @Email(message = "email should de valid")
+
     @Column(nullable = false)
     private String email;
 

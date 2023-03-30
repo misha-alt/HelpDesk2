@@ -37,10 +37,28 @@ public class UsersControllers {
     }
 
 
-    @RequestMapping("/login")
+ /*   @RequestMapping("/login")
     public String login(Principal principal, Model model) {
+
         return "login";
 
+    }
+    @RequestMapping("/login2")
+    public String loginMeth(Principal principal, @RequestParam("password") String password, @RequestParam("email") String email) {
+
+        if (userService.selectPassForChec(password).isEmpty()|| userService.selectEmailForChec(email).isEmpty()){
+            return "login";
+        }
+        return  "redirect:/makeTest";
+
+
+    }
+*/
+    @RequestMapping("/logout")
+    public String logout(){
+
+
+        return "redirect:/makeTest";
     }
 
 

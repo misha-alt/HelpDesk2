@@ -13,7 +13,7 @@ public enum State {
     DONE("DONE"),
     CANCELED("CANCELED");
 
-    private final String cat;
+    public   String cat;
 
     State(String cat) {
         this.cat = cat;

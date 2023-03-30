@@ -2,7 +2,10 @@ package misha.controllers;
 
 
 
+
+import misha.Valdator.MyValidator;
 import misha.domain.User;
+import misha.service.FormValidationMeth;
 import misha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +26,15 @@ import java.security.Principal;
 public class RegistrationUserController {
 
 private UserService userService;
+private FormValidationMeth formValidationMeth;
     @Autowired
-    public RegistrationUserController(UserService userService) {
+    public RegistrationUserController(UserService userService, FormValidationMeth formValidationMeth) {
         this.userService = userService;
+        this.formValidationMeth = formValidationMeth;
     }
 
     @RequestMapping("/regForm")
-    public String regUser(Model model, Principal principal){
+    public String regUser(Model model){
 
 
         model.addAttribute("user", new User());
@@ -39,12 +44,15 @@ private UserService userService;
 
 
     @RequestMapping("/regForm2")
-    public String regUser2(Model model, @ModelAttribute("user" )@Valid User user, BindingResult bindingResult, Principal principal){
-        if(bindingResult.hasErrors())
-            return "regForm";
-
+    public String regUser2(User user, BindingResult result, Model model,  Principal principal){
+       new MyValidator().validate(user,result);
+        if (result.hasErrors()){
+            model.addAttribute("user", user);
+            return "registration";
+        }
         userService.createUser(user);
         return "redirect:/makeTest";
+
     }
 
 }

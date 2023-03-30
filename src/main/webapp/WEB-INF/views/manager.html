@@ -21,7 +21,7 @@
 <a>Ticked created by Manager</a>
 
 <div th:each="managerTicked:${tickedCreatedByManag}">
-    <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()}+' '+${managerTicked.getDesireddate()}+' '+${managerTicked.getUrgency()}"></a>
+    <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()}+' '+${managerTicked.getDesireddate()}+' '+${managerTicked.getUrgency()}+' '+${managerTicked.getDesireddate()}"></a>
 </div>
 
 <br/>
@@ -32,12 +32,20 @@
 <p th:text="${var}"></p>
 <br/>
 <div th:each="lis:${list2}">
-    <a th:text="${lis.getId()} +' '+${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}+' '+${lis.getUrgency()}"></a>
+    <a th:text="${lis.getId()} +' '+${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}+' '+${lis.getUrgency()}+' '+${lis.getDesireddate()}"></a>
 </div>
-
-
+<!--document.getElementById('dfg').innerHTML = 'Hello JavaScript';-->
 <br/>
-<a>Filter by criteria</a>
+<script>
+    function myFunc(){
+    var forScript = document.getElementById('forScript').value;
+    if (forScript=='one'){
+    document.getElementById('dfg').innerHTML = 'Hello JavaScript';
+    }
+    }
+</script>
+<p id="dfg">Filter by criteria</p>
+
 
 <br/>
 <form  th:action="@{/manager}" th:object="${obj}" th:method="GET">
@@ -47,7 +55,7 @@
 <br/>
 
 <div th:each="viewOB:${ob}">
-    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}"></a>
+    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}+' '+${viewOB.getDesireddate()}"></a>
 </div>
 
 <!--
@@ -63,22 +71,25 @@
 
 <br/>
 <form  th:action="@{/manager}" th:method="GET">
-<select name="var">
+<select name="var" id="forScript">
 
-    <option value="one">one</option>
-    <option value="two">two</option>
+    <option value="one">sorted by urgency</option>
+    <option value="two">sorted by Id</option>
+    <option value="three">sorted by date</option>
 
 </select>
-    <input type="submit" value="Create"/>
+    <input type="submit" onclick="myFunc()" value="Create"/>
 </form>
 <br/>
 
 
 
 
+
+
 <a>search by urgency attribute</a>
 
-<a th:href="@{/goToFilter}">Press here for go to filter</a>
+
 
 <a th:href="@{/logout}">Press here if you want logout</a>
 

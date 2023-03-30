@@ -57,8 +57,8 @@
 <div class="box">
     <p class="msg">Welcome to Online Shop</p>
 
-    <form method="post" action="login">
-        <input type="text" placeholder="Username" name="customer" required>
+    <form th:action="@{/login2}" th:method="POST">
+        <input type="text" placeholder="email" name="email" required>
         <br>
         <input type="password" placeholder="Password" name="password" required>
         <br>

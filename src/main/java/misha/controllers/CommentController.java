@@ -41,7 +41,17 @@ public class CommentController {
     @GetMapping("/makeTest")
     public String newTest (Principal principal, Model model){
 
+
+        String st1 = "email";
+        String st2 = "password";
+        if ( userService.selectPassForChec(st2).isEmpty()|| userService.selectEmailForChec(st1).isEmpty()){
+           model.addAttribute("testObject", "All correct");
+        }
+
+
+
         model.addAttribute("onleUserWithComment", managerService.onleUsersWithComments());
+
         return "test";
     }
 }

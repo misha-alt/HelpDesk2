@@ -18,10 +18,12 @@ public class UserService {
 
 
     private SessionFactory sessionFactory;
+    private FormValidationMeth formValidationMeth;
 
     @Autowired
-    public UserService(SessionFactory sessionFactory) {
+    public UserService(SessionFactory sessionFactory, FormValidationMeth formValidationMeth) {
         this.sessionFactory = sessionFactory;
+        this.formValidationMeth= formValidationMeth;
     }
 
     public List<User> getUser (){
@@ -66,6 +68,8 @@ public class UserService {
 
 
     public void createUser(User user) {
+        //проверяем нет ли таких же пароля логна и email в базе
+
 
         if (selectPassForChec(user.getPassword()).isEmpty()){
             if (getByLogin(user.getLogin()).isEmpty()){
@@ -94,6 +98,13 @@ public class UserService {
             query.setParameter("email", email);
             return query.list();
         }
+
+        /*public User findUserByEmail(String email){
+            Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.email = :email");
+            query.setParameter("email", email);
+            User user = query;
+            return query.
+        }*/
 
 
 }

@@ -36,8 +36,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/manager").hasRole("MANAGER")
                 .and().formLogin()
+               // .loginPage("/login")
+                .permitAll()
+                .passwordParameter("password")
+                .usernameParameter("login")
+
                 .and().logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/makeTest");
+                .logoutSuccessUrl("/makeTest")
+                .and()
+                .csrf().disable();
 
         //https://www.youtube.com/watch?v=Mb8nlh4m0HM
     }
