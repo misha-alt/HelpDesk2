@@ -4,6 +4,7 @@ package misha.controllers;
 
 
 import misha.Valdator.MyValidator;
+import misha.dao.UserDAO;
 import misha.domain.User;
 import misha.service.FormValidationMeth;
 import misha.service.UserService;
@@ -25,12 +26,10 @@ import java.security.Principal;
 @Transactional
 public class RegistrationUserController {
 
-private UserService userService;
-private FormValidationMeth formValidationMeth;
+private UserDAO userDAO;
     @Autowired
-    public RegistrationUserController(UserService userService, FormValidationMeth formValidationMeth) {
-        this.userService = userService;
-        this.formValidationMeth = formValidationMeth;
+    public RegistrationUserController(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     @RequestMapping("/regForm")
@@ -50,7 +49,7 @@ private FormValidationMeth formValidationMeth;
             model.addAttribute("user", user);
             return "registration";
         }
-        userService.createUser(user);
+        userDAO.createUser(user);
         return "redirect:/makeTest";
 
     }

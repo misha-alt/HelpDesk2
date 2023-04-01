@@ -1,6 +1,8 @@
 package misha.controllers;
 
 
+import misha.dao.ManagerDAO;
+import misha.dao.UserDAO;
 import misha.domain.Ticked;
 import misha.domain.User;
 import misha.service.ManagerService;
@@ -19,18 +21,14 @@ import java.security.Principal;
 public class ManagersTicketController {
 
 
-    private ManagerService managerService;
-    private UserService userService;
+    private ManagerDAO managerDAO;
+    private UserDAO userDAO;
     @Autowired
-    public ManagersTicketController(ManagerService managerService, UserService userService) {
-        this.managerService = managerService;
-        this.userService = userService;
+    public ManagersTicketController(ManagerDAO managerDAO, UserDAO userDAO) {
+        this.managerDAO = managerDAO;
+        this.userDAO = userDAO;
     }
-
-
-
-
-   /* @RequestMapping("/manager")
+    /* @RequestMapping("/manager")
     public String ticket (Principal principal, Model model, Object ob){
 
        model.addAttribute("ob", ob);

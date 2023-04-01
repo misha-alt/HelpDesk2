@@ -1,5 +1,6 @@
 package misha.service;
 
+import misha.dao.EngineerDAO;
 import misha.domain.Ticked;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EngineerService {
+public class EngineerService implements EngineerDAO {
 
     private SessionFactory sessionFactory;
     private UserService userService;
@@ -24,7 +25,7 @@ public class EngineerService {
     }
 
 
-
+    @Override
     public List<Ticked> ticketsCreatedByAllEmployeesAndManagersInStatusApproved(String loginOfcreater){
 
         Query query = sessionFactory.getCurrentSession().createQuery

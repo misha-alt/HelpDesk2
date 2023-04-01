@@ -1,6 +1,7 @@
 package misha.service;
 
 import com.google.common.collect.TreeMultiset;
+import misha.dao.TickedDAO;
 import misha.domain.*;
 import misha.test.SomeEnum;
 import org.hibernate.Session;
@@ -15,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class TickedService {
+public class TickedService implements TickedDAO {
 
 
     private SessionFactory sessionFactory;
@@ -32,26 +33,27 @@ public class TickedService {
         this.managerService = managerService;
 
     }
-
+    @Override
     public Ticked geTickedById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.id = :id");
         query.setParameter("id", id);
         return (Ticked) query.list().get(0);
     }
-
+    @Override
     public List<Ticked> getTickedByUrgency(Urgency urgency){
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.urgency =:urgency");
         query.setParameter("urgency", urgency);
        List list= query.list();
        return list;
     }
-
+        @Override
         public List<Ticked> getTicketByStatus(String state){
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.state = :state");
         List list = query.list();
         return list;
         }
     //все билеты созданный юзером
+    @Override
     public List<Ticked> listOfTickedCurrentUser(String login){
 
         Query query = sessionFactory.getCurrentSession().createQuery
@@ -61,6 +63,7 @@ public class TickedService {
 
     }
     // билеты в статусах  DECLINED, APPROVED, CANCELED, INPROGRESS,DONE  и в которых менеждер как утверждающй
+    @Override
     public List<Ticked> managerAsAppruverAndStateDeclin(String approver){
 
         Query query = sessionFactory.getCurrentSession().createQuery
@@ -75,7 +78,7 @@ public class TickedService {
 
         return query.list();
     }
-
+    @Override
     public void creationTiket (Ticked ticked, String MyState, String UrgencyState,
                                String nameOfAssignee, String nameOfApprover, Principal principal){
         State state = State.valueOf(MyState);
@@ -102,7 +105,7 @@ public class TickedService {
         createComment.updateUsersComment(user);
 
     }
-
+        @Override
        public  List<Ticked> methodForSort(String var, Principal principal) {
 
          if (var.equals("one")){
@@ -121,7 +124,7 @@ public class TickedService {
     return  null;
 
      }
-
+    @Override
     public  List<Ticked> sortedlistOfTicked(Principal principal){
 
      List list =managerAsAppruverAndStateDeclin(userService
@@ -133,7 +136,7 @@ public class TickedService {
      return list;
 
     }
-
+    @Override
     public List<Ticked> sortedListById (Principal principal){
 
         TicketIdComparator ticketIdComparator = new TicketIdComparator();
@@ -144,7 +147,7 @@ public class TickedService {
         list.sort(ticketIdComparator);
         return list;
     }
-
+    @Override
     public List<Ticked> sortedByDate(Principal principal)  {
         List list =managerAsAppruverAndStateDeclin(userService
                 .getByLogin(principal.getName()).get(0).getLogin());
@@ -154,7 +157,7 @@ public class TickedService {
         list.sort(dataComp);
         return list;
     }
-
+    @Override
     public List<Ticked> filteredListByCriteria(Object someCreteria) {
 
         if (!someCreteria.equals(null)) {
@@ -170,79 +173,9 @@ public class TickedService {
        return null;
     }
 
-    /* public  List<Ticked> methodForSort(String var, Principal principal) {
-
- DRAFT("DRAFT"),
-    NEW("NEW"),
-    APPROVED("APPROVED"),
-    DECLINED("DECLINED"),
-    INPROGRESS("INPROGRESS"),
-    DONE("DONE"),
-    CANCELED("CANCELED");
-
-
-
-      "or t.state = 'APPROVED' and :someCreteria = 'APPROVED'" +
-                            "or t.state = 'DECLINED' and :someCreteria = 'DECLINED'" +
-                            "or t.state = 'INPROGRESS' and :someCreteria = 'INPROGRESS'" +
-                            "or t.state = 'DONE' and :someCreteria = 'DONE'" +
-                            "or t.state = 'CANCELED' and :someCreteria = 'CANCELED'"
-
-"or t.urgency = :someCreteria" +
-
-t.state = 'NEW' and :someCreteria = 'NEW'
-
-"from Ticked t where t.name = :someCreteria" +
-                        "or t.desireddate = :someCreteria" +
-                        "or t.urgency = :someCreteria" +
-                        "or t.state = :someCreteria"
-
-
-
-          String s = userService.getByLogin(principal.getName()).get(0).getLogin();
-
-
-           if (s== userService.getByLogin(principal.getName()).get(0).getLogin()){
-              return sortedlistOfTicked(managerAsAppruverAndStateDeclin(userService
-                       .getByLogin(principal.getName()).get(0).getLogin()));
-                   }
-           else if(s != userService.getByLogin(principal.getName()).get(0).getLogin()){
-               return sortedListById(managerAsAppruverAndStateDeclin(userService
-                       .getByLogin(principal.getName()).get(0).getLogin()));
-           }
-
-           else return  sortedListById(managerAsAppruverAndStateDeclin(userService
-                 .getByLogin(principal.getName()).get(0).getLogin()));
-
-
-
-
-     }*/
 
 
 
 }
 
 
-   /* public  TreeSet<Ticked> sortedlistOfTicked(List<Ticked> list){
-        //  Set<Ticked> st = userService.getByLogin(login).get(0).getTicked();
-        // List <Ticked> arr = new ArrayList<>(list);
-        TreeSet<Ticked> multiset = new TreeSet<>(new EnumComparator());
-        multiset.addAll(list);
-        return multiset;
-
-    }*/
-
-
-  /*Set<Ticked> set = new TreeSet<>(Comparator.comparing(Ticked::toString));
-        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]*/
-// [1, 2, 3, 4]
-      /*  Object[] tr = {};
-       tr = st.toArray(new Object[st.size()]);
-     */
-       /* Set<Urgency> set = new TreeSet<>(Comparator.comparing(Urgency::toString));
-        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]
-        // [1, 2, 3, 4]*/
-       /* Set<Urgency> set = new TreeSet<>(Comparator.comparing(Urgency::toString));
-        set.addAll(Arrays.asList(ticked.getUrgency())); // [4, 1, 2, 3]
-        System.out.println(set); // [1, 2, 3, 4]*/

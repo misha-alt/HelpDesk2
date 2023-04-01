@@ -1,5 +1,9 @@
 package misha.controllers;
 
+import misha.dao.CreateCommDAO;
+import misha.dao.ManagerDAO;
+import misha.dao.TickedDAO;
+import misha.dao.UserDAO;
 import misha.domain.State;
 import misha.domain.Ticked;
 import misha.domain.User;
@@ -22,18 +26,16 @@ import java.security.Principal;
 @Transactional
 public class TickedContriller {
 
-    private ManagerService managerService;
-    private UserService userService;
-    private TickedService tickedService;
-    private CreateComment createComment;
-
+    private ManagerDAO managerDAO;
+    private UserDAO userDAO;
+    private TickedDAO tickedDAO;
+    private CreateCommDAO createCommDAO;
     @Autowired
-    public TickedContriller(CreateComment createComment, ManagerService managerService, UserService userService, TickedService tickedService) {
-        this.managerService = managerService;
-        this.userService = userService;
-        this.tickedService = tickedService;
-        this.createComment = createComment;
-
+    public TickedContriller(ManagerDAO managerDAO, UserDAO userDAO, TickedDAO tickedDAO, CreateCommDAO createCommDAO) {
+        this.managerDAO = managerDAO;
+        this.userDAO = userDAO;
+        this.tickedDAO = tickedDAO;
+        this.createCommDAO = createCommDAO;
     }
 
     @RequestMapping("/ticked")
@@ -42,9 +44,9 @@ public class TickedContriller {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/manager");
 
-        User user = userService.getByLogin(name).get(0);
-        user.getTicked().add(tickedService.geTickedById(id));
-        createComment.updateUsersComment(user);
+        User user = userDAO.getByLogin(name).get(0);
+        user.getTicked().add(tickedDAO.geTickedById(id));
+        createCommDAO.updateUsersComment(user);
 
         return modelAndView;
     }
@@ -53,9 +55,9 @@ public class TickedContriller {
     public String ticket (Principal principal, Model model){
         //model.addAttribute("choose_an_engineer", managerService.allEngineers());
         model.addAttribute("form_ticket", new Ticked());
-        model.addAttribute("ticket", managerService.onleExistsTickets());
-        model.addAttribute("assignee", userService.getUser());
-        model.addAttribute("approver", userService.getUser());
+        model.addAttribute("ticket", managerDAO.onleExistsTickets());
+        model.addAttribute("assignee", userDAO.getUser());
+        model.addAttribute("approver", userDAO.getUser());
 
         return "create_ticket";
     }
@@ -67,7 +69,7 @@ public class TickedContriller {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/manager");
-        tickedService.creationTiket(ticked, MyState, UrgencyState, nameOfAssignee, nameOfApprover, principal);
+        tickedDAO.creationTiket(ticked, MyState, UrgencyState, nameOfAssignee, nameOfApprover, principal);
 
 
         //model.addAttribute("list2",tickedService.managerAsAppruverAndStateDeclin( userService.getByLogin(principal.getName()).get(0).getLogin()));

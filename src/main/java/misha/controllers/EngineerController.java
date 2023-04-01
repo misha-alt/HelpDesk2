@@ -1,6 +1,7 @@
 package misha.controllers;
 
 
+import misha.dao.*;
 import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,26 +15,26 @@ import java.security.Principal;
 @Transactional
 public class EngineerController {
 
-    private ManagerService managerService;
-    private UserService userService;
-    private TickedService tickedService;
-    private CreateComment createComment;
-    private EngineerService engineerService;
-
+    private ManagerDAO managerDAO;
+    private UserDAO userDAO;
+    private TickedDAO tickedDAO;
+    private CreateCommDAO createCommDAO;
+    private EngineerDAO engineerDAO;
     @Autowired
-    public EngineerController(CreateComment createComment, EngineerService engineerService, ManagerService managerService, UserService userService, TickedService tickedService) {
-        this.managerService = managerService;
-        this.userService = userService;
-        this.tickedService = tickedService;
-        this.createComment = createComment;
-        this.engineerService = engineerService;
+    public EngineerController(ManagerDAO managerDAO, UserDAO userDAO, TickedDAO tickedDAO, CreateCommDAO createCommDAO, EngineerDAO engineerDAO) {
+        this.managerDAO = managerDAO;
+        this.userDAO = userDAO;
+        this.tickedDAO = tickedDAO;
+        this.createCommDAO = createCommDAO;
+        this.engineerDAO = engineerDAO;
     }
+
     @GetMapping("/engineer")
     public String viewEngineer(Principal principal, Model model){
 
-        model.addAttribute("EngineerName",userService.getByLogin(principal.getName()).get(0).getFirst_name());
-        model.addAttribute("listOfTicked", engineerService
-                .ticketsCreatedByAllEmployeesAndManagersInStatusApproved(userService
+        model.addAttribute("EngineerName",userDAO.getByLogin(principal.getName()).get(0).getFirst_name());
+        model.addAttribute("listOfTicked", engineerDAO
+                .ticketsCreatedByAllEmployeesAndManagersInStatusApproved(userDAO
                 .getByLogin(principal.getName()).get(0).getLogin()));
 
         return "engineer";

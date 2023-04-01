@@ -1,5 +1,6 @@
 package misha.service;
 
+import misha.dao.ManagerDAO;
 import misha.domain.Comments;
 import misha.domain.Ticked;
 import misha.domain.User;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class ManagerService {
+public class ManagerService implements ManagerDAO {
 
     private SessionFactory sessionFactory;
     private UserService userService;
@@ -28,11 +29,11 @@ public class ManagerService {
         this.userService =userService;
         this.createComment = createComment;
     }
-
+    @Override
     public List<User> allComments(){
         return sessionFactory.getCurrentSession().createQuery("from User").list();
     }
-
+    @Override
     public List<User>  onleUsersWithComments(){
         List list1 = new ArrayList();
         List list = allComments();
@@ -50,16 +51,17 @@ public class ManagerService {
         }
         return list1;
     }
-
+    @Override
     public List<User> allEngineers(){
         return sessionFactory.getCurrentSession()
                 .createQuery("from User where authority='ROLE_ENGINEER'").list();
     }
-
+    @Override
     public List<User> allTicket(){
         return sessionFactory.
                 getCurrentSession().createQuery("from Ticked").list();
     }
+    @Override
     public List<Ticked>  onleExistsTickets(){
         List list = new ArrayList();
         List lisrOfTicked = allTicket();
@@ -75,25 +77,24 @@ public class ManagerService {
         }
         return list;
     }
-
+    @Override
     public void seveManagerTicked (Ticked ticked, String name){
         createTickced(ticked);
         User user = userService.getByLogin(name).get(0);
         user.getTicked().add( getTickedById(ticked.getId()));
         createComment.updateUsersComment(user);
     }
-
+    @Override
     public void createTickced (Ticked ticked){
         Session session = sessionFactory.getCurrentSession();
         session.save(ticked);
     }
-
+    @Override
     public Ticked getTickedById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked p where p.id = :id");
         query.setParameter("id", id);
         return (Ticked) query.list().get(0);
     }
 
-   /* SELECT Dept, Name, Job
-    FROM Staff WHERE Dept=38*/
+
 }

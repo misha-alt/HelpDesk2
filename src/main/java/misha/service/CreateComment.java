@@ -1,6 +1,7 @@
 package misha.service;
 
 
+import misha.dao.CreateCommDAO;
 import misha.domain.Comments;
 
 import misha.domain.Ticked;
@@ -17,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Repository
-public class CreateComment {
+public class CreateComment implements CreateCommDAO {
 
     private SessionFactory sessionFactory;
     private UserService userService;
@@ -26,12 +27,12 @@ public class CreateComment {
         this.sessionFactory = sessionFactory;
         this.userService = userService;
     }
-
+    @Override
     public String madeComment (){
         LocalDate date = LocalDate.now();
         return date.toString();
     }
-
+    @Override
     public void updateUsersComment (User user){
         Session session = sessionFactory.getCurrentSession();
         session.update(user);
@@ -39,13 +40,13 @@ public class CreateComment {
 
 
 
-
+    @Override
     public void upDateComments(Comments comments){
         sessionFactory.getCurrentSession().update(comments);
     }
 
 
-
+        @Override
         public void seveUserCmments (Comments comments, String name){
 
             createComentAndSave(comments);
@@ -55,7 +56,7 @@ public class CreateComment {
         }
 
 
-
+        @Override
         public void createComentAndSave(Comments comments){
             Session session = sessionFactory.getCurrentSession();
             session.save(comments);
@@ -64,7 +65,7 @@ public class CreateComment {
 
 
 
-
+    @Override
     public Comments getById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments p where p.id = :id");
         query.setParameter("id", id);
@@ -73,31 +74,11 @@ public class CreateComment {
 
 
 
-
+    @Override
     public List<Comments> getAll() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments");
         return query.list();
     }
-
-
-
-  /*  public void testsMet(){
-
-        Comments comments = new Comments();
-        comments.setId(1);
-        comments.setComment("first Comment");
-        comments.setDate("2022-12-12");
-        Comments comments2 = new Comments();
-        comments2.setId(2);
-        comments2.setComment("second Comment");
-        comments2.setDate("2022-12-13");
-        User user = userService.getOurUser();
-        user.getComments().add(comments);
-        user.getComments().add(comments2);
-    }*/
-
-
-
 
 
 }

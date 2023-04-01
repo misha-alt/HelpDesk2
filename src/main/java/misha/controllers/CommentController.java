@@ -1,6 +1,9 @@
 package misha.controllers;
 
 
+import misha.dao.CreateCommDAO;
+import misha.dao.ManagerDAO;
+import misha.dao.UserDAO;
 import misha.domain.Comments;
 import misha.domain.DateClass;
 import misha.domain.User;
@@ -25,17 +28,16 @@ import java.util.Date;
 
 public class CommentController {
 
-    private CreateComment createComment;
-    private UserService userService;
+    private CreateCommDAO createCommDAO;
+    private UserDAO userDAO;
     private DateClass dateClass;
-    private ManagerService managerService;
+    private ManagerDAO managerDAO;
 
-    @Autowired
-    public CommentController(CreateComment createComment, UserService userService, DateClass dateClass, ManagerService managerService) {
-        this.createComment = createComment;
-        this.userService = userService;
+    public CommentController(CreateCommDAO createCommDAO, UserDAO userDAO, DateClass dateClass, ManagerDAO managerDAO) {
+        this.createCommDAO = createCommDAO;
+        this.userDAO = userDAO;
         this.dateClass = dateClass;
-        this.managerService = managerService;
+        this.managerDAO = managerDAO;
     }
 
     @GetMapping("/makeTest")
@@ -44,13 +46,13 @@ public class CommentController {
 
         String st1 = "email";
         String st2 = "password";
-        if ( userService.selectPassForChec(st2).isEmpty()|| userService.selectEmailForChec(st1).isEmpty()){
+        if ( userDAO.selectPassForChec(st2).isEmpty()|| userDAO.selectEmailForChec(st1).isEmpty()){
            model.addAttribute("testObject", "All correct");
         }
 
 
 
-        model.addAttribute("onleUserWithComment", managerService.onleUsersWithComments());
+        model.addAttribute("onleUserWithComment", managerDAO.onleUsersWithComments());
 
         return "test";
     }

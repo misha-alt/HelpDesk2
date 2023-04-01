@@ -1,5 +1,7 @@
 package misha.controllers;
 
+import misha.dao.EmployeeDAO;
+import misha.dao.UserDAO;
 import misha.service.EmpioyeeService;
 import misha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +17,19 @@ import java.security.Principal;
 public class EploeeController {
 
 
-    private UserService userService;
-    private EmpioyeeService empioyeeService;
-
+    private UserDAO userDAO;
+    private EmployeeDAO employeeDAO;
     @Autowired
-    public EploeeController(UserService userService, EmpioyeeService empioyeeService) {
-        this.userService = userService;
-        this.empioyeeService = empioyeeService;
+    public EploeeController(UserDAO userDAO, EmployeeDAO employeeDAO) {
+        this.userDAO = userDAO;
+        this.employeeDAO = employeeDAO;
     }
 
     @GetMapping("/emploeeContr")
     public String viewEngineer(Principal principal, Model model){
 
-      model.addAttribute("EmploeeName", userService.getByLogin(principal.getName()).get(0).getFirst_name());
-      model.addAttribute("allTickedOfEmplee", empioyeeService.allTiscedCreatedByEmployee(userService.getByLogin(principal.getName()).get(0).getLogin()));
+      model.addAttribute("EmploeeName", userDAO.getByLogin(principal.getName()).get(0).getFirst_name());
+      model.addAttribute("allTickedOfEmplee", employeeDAO.allTiscedCreatedByEmployee(userDAO.getByLogin(principal.getName()).get(0).getLogin()));
 
 
         return "emploee";
