@@ -10,6 +10,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +35,10 @@ public class UserService implements UserDAO {
     }
 
 
-    @Override
+    /*@Override
     public Object getOurCom(String name){
         return getByLogin(name).get(0).getComments();
-    }
+    }*/
 
 
     @Override
@@ -69,20 +71,23 @@ public class UserService implements UserDAO {
 
     @Override
     public void createUser(User user) {
-        //проверяем нет ли таких же пароля логна и email в базе
+
+      Session session = sessionFactory.getCurrentSession();
+      session.save(user);
+     }
 
 
-        if (selectPassForChec(user.getPassword()).isEmpty()){
-            if (getByLogin(user.getLogin()).isEmpty()){
-                if (selectEmailForChec(user.getEmail()).isEmpty()){
-                    Session session = sessionFactory.getCurrentSession();
-                    session.save(user);
-                }
-            }
-
-        }
+    @Override
+    public void updateUser(User  user) {
+        sessionFactory.getCurrentSession().update(user);
     }
-        @Override
+
+    @Override
+    public void saveOrUpdate(User user) {
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    }
+
+    @Override
         public List selectPassForChec(String password){
         Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.password = :password");
         query.setParameter("password", password);
@@ -91,11 +96,38 @@ public class UserService implements UserDAO {
 
 
         @Override
-        public List selectEmailForChec(String email){
+        public List<User> selectEmailForChec(String email){
             Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.email = :email");
             query.setParameter("email", email);
-            return query.list();
+            List <User>  user =  query.list();
+            return user;
         }
 
+        @Override
+        public List<User> findUserByName(String login) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.login = :login");
+        query.setParameter("login", login);
+       List user =query.list();
+        return user;
+    }
+
+    @Override
+
+    public User findByEmail(String email) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.email = :email");
+        query.setParameter("email", email);
+        List <User>  list =  query.list();
+        User user = list.get(0);
+        return user;
+    }
+
+    @Override
+    public List<Ticked> getMyDraft(String name) {
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :name and t.state = 'DRAFT'");
+        query.setParameter("name", name);
+        List<Ticked> list = query.list();
+        return list;
+    }
 
 }

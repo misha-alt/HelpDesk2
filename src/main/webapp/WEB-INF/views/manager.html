@@ -6,92 +6,53 @@
           media="all">
 </head>
 <body>
-
+<style>
+    html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  text-align: center;
+}
+</style>
+<div class="container">
 <p th:text="${ManagerName}"></p>
-
-<a>Persons with comments</a>
-<div th:each="person:${onleUsersWithComm}">
-    <a  th:text="${person.getComments()} + ' '+${person.getLast_name()}"></a>
-</div>
+<!--<p th:text="${testText}"></p>-->
 
 
-<a th:href="@{/create_ticket}">Create Ticket</a>
 <br/>
 
 <a>Ticked created by Manager</a>
 
-<div th:each="managerTicked:${tickedCreatedByManag}">
+<!--<div th:each="managerTicked:${tickedCreatedByManag}">
     <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()}+' '+${managerTicked.getDesireddate()}+' '+${managerTicked.getUrgency()}+' '+${managerTicked.getDesireddate()}"></a>
+</div>-->
+
+<br/>
+
+<a th:href="@{/create_ticket}">Create Ticket</a>
+
+
+<br/>
+<a th:href="@{/tickedLis}">Go to ticked list</a>
+<br/>
+
+<a th:href="@{/logout}">Press here if you want logout</a>
 </div>
-
-<br/>
-
-<a>the tickets which have him as an Approver in statuses Approved, Declined, Cancelled, In Progress, Done </a>
-
-<br/>
-<p th:text="${var}"></p>
-<br/>
-<div th:each="lis:${list2}">
-    <a th:text="${lis.getId()} +' '+${lis.getLoginOfcreater()} + ' '+${lis.getApprover()} +' '+${lis.getState()}+' '+${lis.getUrgency()}+' '+${lis.getDesireddate()}"></a>
-</div>
-<!--document.getElementById('dfg').innerHTML = 'Hello JavaScript';-->
-<br/>
-<script>
-    function myFunc(){
-    var forScript = document.getElementById('forScript').value;
-    if (forScript=='one'){
-    document.getElementById('dfg').innerHTML = 'Hello JavaScript';
-    }
-    }
-</script>
-<p id="dfg">Filter by criteria</p>
+</body>
+</html>
 
 
-<br/>
+
+<!--<br/>
 <form  th:action="@{/manager}" th:object="${obj}" th:method="GET">
  <p><input type="text" name="ob" autocomplete="on"></p>
     <input type="submit" value="Create"/>
 </form>
-<br/>
+<br/>-->
 
-<div th:each="viewOB:${ob}">
+<!--<div th:each="viewOB:${ob}">
     <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}+' '+${viewOB.getDesireddate()}"></a>
-</div>
-
-<!--
-<br/>
-<a th:href="@{/sotrByUrgense}">sort by urgency</a>
-<br/>
-<a th:href="@{/sortById}">sort by ID</a>
-<br/>
-<a th:href="@{/sortByDate}">sort by date</a>
--->
-
-<a>Sorted</a>
-
-<br/>
-<form  th:action="@{/manager}" th:method="GET">
-<select name="var" id="forScript">
-
-    <option value="one">sorted by urgency</option>
-    <option value="two">sorted by Id</option>
-    <option value="three">sorted by date</option>
-
-</select>
-    <input type="submit" onclick="myFunc()" value="Create"/>
-</form>
-<br/>
-
-
-
-
-
-
-<a>search by urgency attribute</a>
-
-
-
-<a th:href="@{/logout}">Press here if you want logout</a>
-
-</body>
-</html>
+</div>-->

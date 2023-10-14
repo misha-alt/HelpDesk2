@@ -3,72 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" data-th-href="@{/css/style.css}"
-          media="all">
+  <!--  <link rel="stylesheet" data-th-href="@{/CSS/style.CSS}"
+          media="all">-->
     <style>
-		.box {
-			margin-left: 600px;
-			width: 12em;
-			margin-top: 200px;
-			font-size: 40px;
-			align-content: center;
-		}
+		 html, body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-		nav {
-			display: flex;
-			justify-content: flex-end;
-		}
+  .box {
+    width: 12em;
+    font-size: 40px;
+  }
 
-		button {
-			font-size: 19px;
-			height: 40px;
-			width: 10%;
-			border-radius: 10px;
-			outline: none;
-		}
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-		p {
-			text-align: center;
-			margin-left: 150px;
-		}
+  input, select {
+    width: 100%; /* Изменено значение ширины на 100% */
+    height: 60px;
+    font-size: 24px;
+    box-sizing: border-box; /* Добавлено свойство box-sizing */
+    padding: 5px; /* Добавлено отступы вокруг инпутов */
+    margin-bottom: 10px; /* Добавлено отступы между инпутами */
+  }
 
-		input, select {
-			font-size: 19px;
-			width: 700px;
-			margin-top: 20px;
-			border-radius: 15px;
-			height: 40px;
-			align-content: center;
-			border: none;
-			box-shadow: 1px 1px 1px 1px grey;
-			outline: none;
-		}
-
-		#acceptTerms {
-			box-shadow: none;
-			outline: none;
-		}
+  button {
+    width: 100%; /* Изменено значение ширины на 100% */
+    height: 60px;
+    font-size: 24px;
+  }
 	</style>
 
 
 </head>
 <body>
 
-<div class="box">
-    <p class="msg">Welcome to Online Shop</p>
+<form th:action="@{/login}" th:method="POST">
+    <input type="text" placeholder="UserName" name="username" required>
+    <br>
+    <input type="password" placeholder="Password" name="password" required>
+    <br>
+    <input type="submit" value="Enter">
+</form>
 
-    <form th:action="@{/login2}" th:method="POST">
-        <input type="text" placeholder="email" name="email" required>
-        <br>
-        <input type="password" placeholder="Password" name="password" required>
-        <br>
-        <input type="checkbox" id="acceptTerms" name="acceptTerms" required/>
-        <p>I agree with the terms of service</p>
-        <input type="submit" value="Enter">
-    </form>
-</div>
-
-
+<!--<p th:text="${error}"></p>-->
+<p th:text="${errorMessage}"></p>
 
 </body>
+
 </html>
+
+<!--<div class="box">
+    <p class="msg">Welcome to Online Shop</p>
+
+    <form th:action="@{/login}" th:method="POST">
+        <input type="text" placeholder="email" name="email">
+        <br>
+        <input type="password" placeholder="Password" name="password">
+        <br>
+
+        <input type="submit" value="Enter">
+    </form>
+</div>-->

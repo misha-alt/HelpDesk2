@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -13,17 +13,17 @@
 <br/>
 
 
-<a>All Ticked created by You</a>
+
+
 
 <br/>
-<div th:each="aToE:${allTickedOfEmplee}">
-    <a th:text="${aToE.getId()} +' '+${aToE.getLoginOfcreater()} + ' '+${aToE.getState()}+' '+${aToE.getUrgency()}"></a>
-</div>
+
+<a th:href="@{/create_ticket}">Create Ticket</a>
+
+
 <br/>
-
-
-
-
+<a th:href="@{/tickedLis}">Go to ticked list</a>
+<br/>
 
 <a th:href="@{/logout}">Press here if you want logout</a>
 

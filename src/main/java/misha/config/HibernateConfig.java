@@ -12,6 +12,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.sql.DataSource;
 
@@ -21,7 +23,7 @@ import javax.sql.DataSource;
 public class HibernateConfig {
 
     @Autowired
-    private ApplicationContext context;
+   private ApplicationContext context;
 
     @Bean
     public DataSource dataSource (){
@@ -57,5 +59,6 @@ public class HibernateConfig {
         return resourceBundleMessageSource;
 
     }
+
 }
 

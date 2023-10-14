@@ -1,4 +1,6 @@
-package misha.domain;
+package misha.domain.comparator;
+
+import misha.domain.Ticked;
 
 import java.util.Comparator;
 

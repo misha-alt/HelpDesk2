@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!------------table of ticked----------->
+<style>
+  .bordered-table {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  .bordered-table th, .bordered-table td {
+    border: 1px solid black;
+  }
+</style>
+<table class="bordered-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>State</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!--просмотреть билет-->
+    <tr th:each="lis:${list2}">
+        <td>
+            <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
+                <button type="submit" th:text="${lis.getId()}"></button>
+            </form>
+        </td>
+        <td>
+            <a th:text="${lis.getName()}"></a>
+        </td>
+        <td>
+            <a th:text="${lis.getState()}"></a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+<br/>
+<script>
+    function myFunc(){
+    var forScript = document.getElementById('forScript').value;
+    if (forScript=='one'){
+    document.getElementById('dfg').innerHTML = 'Hello JavaScript';
+    }
+    }
+</script>
+<!---------______________-->
+
+<!--<p id="dfg">Filter by criteria</p>-->
+
+<!--<br/>
+<form  th:action="@{/tickedLis}" th:object="${obj}" th:method="GET">
+    <p><input type="text" name="ob" autocomplete="on"></p>
+    <input type="submit" value="Create"/>
+</form>
+<br/>-->
+
+<!--<div th:each="viewOB:${ob}">
+    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}+' '+${viewOB.getDesireddate()}"></a>
+</div>-->
+
+<a>Sorted</a>
+
+<br/>
+<form  th:action="@{/tickedLis}" th:method="GET">
+
+    <select name="var">
+        <option value="urgency">urgency</option>
+        <option value="id">id</option>
+        <option value="date">date</option>
+        <option value="creationDate">date of creation</option>
+        <option value="alphabet">alphabet</option>
+        <option value="state">state</option>
+
+
+        <option value="APPROVED">APPROVED</option>
+        <option value="CANCELED">CANCELED</option>
+
+
+    </select>
+
+    <input type="submit" value="filer"/>
+
+</form>
+<br/>
+
+<a th:href="@{/create_ticket}">Create new ticket</a>
+
+
+</body>
+</html>
+
+<!--
+<select name="var" id="forScript">sorted by Id
+
+    <option value="one">sorted by Id</option>
+    <option value="two">sorted by urgency</option>
+    <option value="three">sorted by date</option>
+
+</select>
+<input type="submit" onclick="myFunc()" value="Create"/>-->

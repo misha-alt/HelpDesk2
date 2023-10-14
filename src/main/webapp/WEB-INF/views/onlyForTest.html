@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<p th:text="${srt}"></p>
+<!--<div th:each="lis:${fromTicked}">
+    <a th:text="${lis.getId()}"></a>
+</div>-->
+
+<style>
+  .historyTable {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  .bordered-table th, .bordered-table td {
+    border: 1px solid black;
+  }
+</style>
+<table class="historyTable">
+
+    <thead>
+<tr>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Attached file</th>
+</tr>
+    </thead>
+    <tbody>
+        <tr th:each="tikHis:${history}">
+            <td>
+                <a th:text="${tikHis.getDateHistory()}"></a>
+            </td>
+            <td>
+                <a th:text="${tikHis.getTicket_description()}"></a>
+            </td>
+
+            <td>
+                <div th:each="com:${tikHis.getMyFiles()}">
+                    <a th:text="${com.getFile_name()}"></a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+</body>
+</html>

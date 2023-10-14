@@ -13,7 +13,7 @@
 
 <p th:text="${myDate}"></p>
 
-<form  th:action="@{/ert}" th:object="${comment}"th:method="POST">
+<form  th:action="@{/ert/{id}(id=${current_ticket.getId()})}" th:object="${comment}"th:method="POST">
 
     <label for="comment">Enter comment</label>
     <input type="text"  th:field="*{comment}" id="comment"/>
@@ -26,14 +26,12 @@
 <a>you comments</a>
 <p th:text="${userComment}"></p>
 
-<a th:href="@{/create_ticket}">Create Ticket</a>
 
 
-<a>Ticked created by User</a>
 
-<div th:each="userTicked:${tickedCreatedBy}">
-    <a th:text="${userTicked.getDescription()} + ' '+${userTicked.getName()} +' '+${userTicked.getState()"></a>
-</div>
+<a>Current ticket</a>
+<p th:text="${current_ticket}"></p>
+
 
 
 

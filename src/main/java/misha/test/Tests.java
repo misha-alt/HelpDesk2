@@ -2,8 +2,11 @@ package misha.test;
 
 import com.google.common.collect.TreeMultiset;
 import misha.domain.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,12 +17,49 @@ import static misha.domain.State.NEW;
 
 public class Tests {
     public static void main(String[] args) throws ParseException {
-       /* TestDate testDate = new TestDate();
+
+
+        /*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10, new SecureRandom());
+        String password = "MyPassword123П";
+        String encodedPassword = encoder.encode(password);
+        System.out.println("Encoded Password: " + encodedPassword);*/
+
+
+
+        /*String hello = "Hello World";
+        byte[] bytes = hello.getBytes();
+        System.out.println(bytes);
+
+
+        String text = new String(bytes,  StandardCharsets.UTF_8);
+        System.out.println(text);*/
+        String s = "NEW";
+        State state = State.valueOf(s);
+        System.out.println(state.getCat());
+
+        State state1 =State.valueOf(state.getCat());
+        System.out.println(state1.getCat());
+        //State state2 ="
+
+
+
+
+        /* TestDate testDate = new TestDate();
         testDate.setVisible(true);*/
 
       /*  DateClass dateClass = new DateClass();
         System.out.println(dateClass.curentDate());
         */
+
+     /* Tests tests = new Tests();
+
+
+        String password = "#1Gg";
+        System.out.println(tests.validatePassword(password)); // true
+
+        String password2 = "!@#$%^&*()_-+=";
+        System.out.println(tests.validatePassword(password2)); // false*/
+
 
   /* TestDate testDate = new TestDate();
         System.out.println(testDate.onleUsersWithComments().toString());*/
@@ -172,6 +212,34 @@ public class Tests {
        /*TestObjString testObjString = new TestObjString("dfg");
        TestReturn testReturn = new TestReturn();
         System.out.println(testReturn.somrMeth(testObjString.getS()));*/
+
+
+      /*  boolean hasUpperCase = false;
+        boolean hasDigits = false;
+        boolean hasUnicode= false;
+        String strPass = "1Db";
+        for (char c : strPass.toCharArray()) {
+
+            if (Character.isUpperCase(c)) {
+                hasUpperCase = true;
+            } else if (Character.isDigit(c)) {
+                hasDigits = true;
+            }else if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.CYRILLIC) {
+                hasUnicode = true;
+
+            }
+        }
+
+        if (!hasUpperCase||!hasDigits||!hasUnicode) {
+            System.out.println(hasUpperCase+" "+hasDigits+" "+hasUnicode);*/
+        }
+
+
+
+
+    public boolean validatePassword(String password) {
+        return password.matches("(?=.*[\\p{Lu}])(?=.*[\\p{L}])"); // проверяем наличие символов Unicode, цифр и букв
     }
+
 
 }

@@ -6,11 +6,12 @@
 </head>
 <body>
 
-<div th:each="viewSQL:${sqlTest}">
-    <a th:text="${viewSQL.getState()} + ' '+${viewSQL.getRollOfCreater()}"></a>
-</div>
+<!--<a th:text="${user}"></a>
 
+<a th:text="${allFiles}"></a>
 
-
+<a th:href="@{/tickedLis}">To ticket list</a>-->
+<a th:text="${allComments}"></a>
+allComments
 </body>
 </html>

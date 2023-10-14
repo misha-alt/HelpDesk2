@@ -69,6 +69,8 @@
       <version>${orika-core.version}</version>
     </dependency>
 
+
+
     <!-- JUnit -->
     <dependency>
       <groupId>junit</groupId>
@@ -133,6 +135,12 @@
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+
+    </dependency>
+
     <!-- ORM -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -190,6 +198,14 @@
     </dependency>
 
 
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.11.0</version>
+      </dependency>
+
+
+
     <!-- <dependency>
        <groupId>javax.el</groupId>
        <artifactId>javax.el-api</artifactId>
@@ -242,11 +258,33 @@
       <artifactId>thymeleaf-spring5</artifactId>
       <version>3.0.11.RELEASE</version>
     </dependency>
-   <!-- <dependency>
-      <groupId>jakarta.validation</groupId>
-      <artifactId>jakarta.validation-api</artifactId>
-      <version>2.0.2</version>
-    </dependency>-->
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-jpa</artifactId>
+          <version>1.8.2.RELEASE</version>
+      </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <!-- <dependency>
+       <groupId>jakarta.validation</groupId>
+       <artifactId>jakarta.validation-api</artifactId>
+       <version>2.0.2</version>
+     </dependency>-->
+
+
+      <!--<dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-mail</artifactId>
+      </dependency>-->
 
     <!-- End external libraries -->
   </dependencies>
@@ -278,6 +316,7 @@
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.source}</target>
+          <debug>true</debug>
         </configuration>
       </plugin>
       <plugin>

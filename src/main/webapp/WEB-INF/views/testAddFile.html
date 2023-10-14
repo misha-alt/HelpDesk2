@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<p th:text="${current_id.getId()}"></p>
+<a th:href="@{/create_ticket}">Create Ticket</a>
+<br/>
+<a>All Ticked created by You</a>
+<br/>
+<p th:text="${nameOfFile}"></p>
+
+<br/>
+
+<form th:action="@{/showFile/{id}(id=${current_id.getId()})}"  th:method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <button type="submit">Upload</button>
+</form>
+<br/>
+<p th:text="${wrongType}"></p>
+
+
+<!--<a th:href="@{/newCom/{id}(id=${lis.getId()})}">add comment</a>-->
+
+
+</body>
+</html>

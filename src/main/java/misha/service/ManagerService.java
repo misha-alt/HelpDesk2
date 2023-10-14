@@ -40,7 +40,7 @@ public class ManagerService implements ManagerDAO {
 
         //Comments comment;
 
-        for(int i = 0;i<list.size();i++){
+      /*  for(int i = 0;i<list.size();i++){
             User user;
             user = (User)list.get(i);
             if (user.getComments().isEmpty()){
@@ -48,7 +48,7 @@ public class ManagerService implements ManagerDAO {
           }else {list1.add(user);
 
             }
-        }
+        }*/
         return list1;
     }
     @Override

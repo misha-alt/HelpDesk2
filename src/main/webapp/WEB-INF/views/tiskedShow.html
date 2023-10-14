@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+<style>
+
+div {
+  margin-bottom: 1.5em;
+}
+
+div {
+  border: 1px solid #000000; /* Задает рамку вокруг каждого блока */
+}
+
+p {
+      font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div>
+    <a>date of creation:</a>
+    <p th:text="${ourTicked.getCreate_date()}"></p>
+
+</div>
+
+
+
+
+
+
+<div>
+    <a>Name of your ticked:</a>
+<p th:text="${ourTicked.getName()}"></p>
+
+</div>
+
+<div>
+    <a>description of your ticket:</a>
+<p th:text="${ourTicked.getDescription()}"></p>
+</div>
+
+    <div>
+        <a>State of your ticket:</a>
+<p th:text="${ourTicked.getState()}"></p>
+    </div>
+
+        <div>
+            <a>Assignee of your ticket:</a>
+<p th:text="${ourTicked.getAssignee()}"></p>
+        </div>
+
+            <div>
+                <a>Approver of your ticket:</a>
+<p th:text="${ourTicked.getApprover()}"></p>
+            </div>
+
+                <div>
+                    <a>Login of your ticket:</a>
+<p th:text="${ourTicked.getLoginOfcreater()}"></p>
+                </div>
+
+                    <div>
+                        <a>Urgency of your ticket:</a>
+<p th:text="${ourTicked.getUrgency()}"></p>
+                    </div>
+
+                        <div>
+                            <a>Category of your ticket:</a>
+<p th:text="${ourTicked.getCategor()}"></p>
+                        </div>
+
+<div>
+    <a>Description:</a>
+    <p th:text="${ourTicked.getDescription()}"></p>
+</div>
+
+<div>
+    <a>Desired resolution date:</a>
+    <p th:text="${ourTicked.getDesireddate()}"></p>
+</div>
+
+<div>
+    <a>Owner:</a>
+    <p th:text="${ourTicked.getLoginOfcreater()}"></p>
+</div>
+
+
+
+<div th:if="${#lists.isEmpty(coments)}">
+    <a>No comments</a>
+</div>
+<div th:if="${not #lists.isEmpty(coments)}">
+    <div th:each="commentList : ${coments}">
+        <a>Your comments:</a>
+        <br/>
+        <a>date of comment:</a><p th:text="${commentList.getDate()}"></p>
+        <br/>
+        <a>login:</a><p th:text="${commentList.getLoginOfCreator()}"></p>
+        <br/>
+       <p th:text="${commentList.getComment()}"></p>
+
+
+
+    </div>
+    <form th:action="@{/comments/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">comment page</button>
+    </form>
+</div>
+
+
+<div th:each="file:${attached_file}">
+    <a>Your file:</a>
+    <br/>
+    <a th:text="${file.getId()} +' '+${file.getFile_name()} " th:href="@{/getFile/{id}(id=${file.getId()})}"></a>
+    <br/>
+    <form th:action="@{/deleteFile/{id}(id=${file.getId()})}" method="POST">
+    <input type="hidden"  name="id2" th:value="${ourTicked.getId()}"/>
+    <input type="submit" value="Delete file"/>
+</form>
+</div>
+
+<!--<form th:action="@{/deleteFile/{id}(id=${file.getId()})}" method="POST">
+    <input type="hidden"  name="id2" value="${ourTicked.getId()}"/>
+    <input type="submit" value="Delete file"/>
+</form>-->
+                   <!--  <div>
+                                        <a>Your file:</a>
+                                    <p th:text="${attached_file}"></p>
+                                        <a th:href="@{/getFile/{id}(id=${ourTicked.getId()})}"></a>
+                                    </div>-->
+
+<br/>
+<a th:href="@{/newCom/{id}(id=${ourTicked.getId()})}">add Comment</a>
+<br/>
+<a th:href="@{/addFile/{id}(id=${ourTicked.getId()})}">add file</a>
+<br/>
+
+<!--<div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_MANAGER')}">
+<a th:href="@{/editForm/{id}(id=${ourTicked.getId()})}">Edit Ticked</a>
+</div>-->
+<a th:href="@{/editForm/{id}(id=${ourTicked.getId()})}">Edit Ticked</a>
+<br/>
+
+<form th:action="@{/only/{id}(id=${ourTicked.getId()})}" th:method="POST">
+    <button type="submit">Ticket history</button>
+</form>
+<br/>
+<!--удаление билета-->
+<form th:action="@{/deleteTicket/{id}(id=${ourTicked.getId()})}" th:method="POST">
+    <button type="submit">Delete Ticket</button>
+</form>
+
+
+
+<div th:if="${loginOfcreater.equals(userLogin) and state.equals('DONE')}">
+    <form th:action="@{/rate/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">Ticket rate</button>
+    </form>
+</div>
+<form th:action="@{/rate/{id}(id=${ourTicked.getId()})}" th:method="POST">
+    <button type="submit">Ticket rate</button>
+</form>
+
+
+
+
+
+</body>
+</html>

@@ -36,28 +36,5 @@ public class TestDate extends JFrame {
         JOptionPane.showMessageDialog(null, num, "Output", JOptionPane.PLAIN_MESSAGE);
         }
     }
-    public List<User> onleUsersWithComments(){
 
-        User user = new User();
-        user.setId(1);
-        user.setFirst_name("First_name");
-        user.setLast_name("Last_name");
-        user.setLogin("login");
-        user.setPassword("password");
-        user.setAuthority("Authority");
-
-        List list1 = new ArrayList();
-        List list = new ArrayList();
-        list.add(user);
-
-        for(int i = 0;i<list.size();i++){
-
-            user = (User)list.get(i);
-            // user.getComments().
-            if (user.getComments()!=null){
-                list1.add(user);
-            }
-        }
-        return list1;
-    }
 }

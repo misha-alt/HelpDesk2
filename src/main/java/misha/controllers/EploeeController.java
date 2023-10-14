@@ -2,6 +2,7 @@ package misha.controllers;
 
 import misha.dao.EmployeeDAO;
 import misha.dao.UserDAO;
+import misha.domain.User;
 import misha.service.EmpioyeeService;
 import misha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class EploeeController {
 
     @GetMapping("/emploeeContr")
     public String viewEngineer(Principal principal, Model model){
-
-      model.addAttribute("EmploeeName", userDAO.getByLogin(principal.getName()).get(0).getFirst_name());
-      model.addAttribute("allTickedOfEmplee", employeeDAO.allTiscedCreatedByEmployee(userDAO.getByLogin(principal.getName()).get(0).getLogin()));
+        User user =  userDAO.findByEmail(principal.getName());
+      model.addAttribute("EmploeeName", user.getFirst_name());
+      model.addAttribute("allTickedOfEmplee", employeeDAO.allTiscedCreatedByEmployee(user.getLogin()));
 
 
         return "emploee";

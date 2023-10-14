@@ -46,7 +46,12 @@ private UserDAO userDAO;
     public String regUser2(User user, BindingResult result, Model model,  Principal principal){
        new MyValidator().validate(user,result);
         if (result.hasErrors()){
+
             model.addAttribute("user", user);
+            return "registration";
+        }else if (!userDAO.getByLogin(user.getLogin()).isEmpty()){
+
+            model.addAttribute("message","username is already in use, please create another one");
             return "registration";
         }
         userDAO.createUser(user);

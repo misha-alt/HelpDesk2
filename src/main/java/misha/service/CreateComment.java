@@ -2,6 +2,7 @@ package misha.service;
 
 
 import misha.dao.CreateCommDAO;
+import misha.dao.UserDAO;
 import misha.domain.Comments;
 
 import misha.domain.Ticked;
@@ -13,6 +14,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,11 +23,11 @@ import java.util.List;
 public class CreateComment implements CreateCommDAO {
 
     private SessionFactory sessionFactory;
-    private UserService userService;
+    private UserDAO userDAO;
     @Autowired
-    public CreateComment(SessionFactory sessionFactory, UserService userService) {
+    public CreateComment(SessionFactory sessionFactory, UserDAO userDAO) {
         this.sessionFactory = sessionFactory;
-        this.userService = userService;
+        this.userDAO = userDAO;
     }
     @Override
     public String madeComment (){
@@ -49,8 +51,9 @@ public class CreateComment implements CreateCommDAO {
         @Override
         public void seveUserCmments (Comments comments, String name){
 
-            createComentAndSave(comments);
-            User user = userService.getByLogin(name).get(0);
+
+            User user = userDAO.getByLogin(name).get(0);
+            //createComentAndSave(comments);
             user.getComments().add( getById(comments.getId()));
             updateUsersComment(user);
         }
@@ -58,6 +61,8 @@ public class CreateComment implements CreateCommDAO {
 
         @Override
         public void createComentAndSave(Comments comments){
+
+
             Session session = sessionFactory.getCurrentSession();
             session.save(comments);
 

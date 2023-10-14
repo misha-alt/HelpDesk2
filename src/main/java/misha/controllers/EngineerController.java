@@ -2,11 +2,13 @@ package misha.controllers;
 
 
 import misha.dao.*;
+import misha.domain.User;
 import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
@@ -29,13 +31,13 @@ public class EngineerController {
         this.engineerDAO = engineerDAO;
     }
 
-    @GetMapping("/engineer")
+    @RequestMapping("/engineer")
     public String viewEngineer(Principal principal, Model model){
-
-        model.addAttribute("EngineerName",userDAO.getByLogin(principal.getName()).get(0).getFirst_name());
+        User user = userDAO.findByEmail(principal.getName());
+        model.addAttribute("EngineerName",user.getFirst_name());
         model.addAttribute("listOfTicked", engineerDAO
-                .ticketsCreatedByAllEmployeesAndManagersInStatusApproved(userDAO
-                .getByLogin(principal.getName()).get(0).getLogin()));
+                .ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin()));
+        model.addAttribute("TestString", "Yes");
 
         return "engineer";
     }

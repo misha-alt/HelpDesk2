@@ -18,10 +18,18 @@ public class Comments {
     @Column(name = "comment_date")
     private String date;
 
+    @Column(name = "loginOfCreator")
+    private String loginOfCreator;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "ticked_id")
+    private Ticked ticked;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
-
 
 
     public Comments (){
@@ -52,13 +60,33 @@ public class Comments {
         this.date = date;
     }
 
+    public Ticked getTicked() {
+        return ticked;
+    }
+
+    public void setTicked(Ticked ticked) {
+        this.ticked = ticked;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getLoginOfCreator() {
+        return loginOfCreator;
+    }
+
+    public void setLoginOfCreator(String loginOfCreator) {
+        this.loginOfCreator = loginOfCreator;
+    }
+
     @Override
     public String toString() {
-        return "Comments{" +
-                "id=" + id +
-                ", comment='" + comment + '\'' +
-                ", date='" + date + '\'' +
-
-                '}';
+        return  '\'' + "comment-'" + comment + '\'' +
+                ", date-'" + date + '\'';
     }
 }

@@ -3,30 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <link rel="stylesheet" data-th-href="@{/css/style.css}"
-          media="all">
+    <link rel="stylesheet" th:href="@{/static/style.css}" />
 </head>
 <body>
 
+<style>
+    /* Стили для родительского элемента */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Стили для дочерних элементов */
+        .links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            margin-bottom: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .logout-link {
+            color: red;
+        }
+</style>
+
+<div class="links">
 <a th:href="@{/manager}">MANAGER</a>
-<br/>
 <br/>
 <a th:href="@{/engineer}">ENGINEER</a>
 <br/>
-<br/>
-<a th:href="@{/newCom}">EMPLOYEE</a>
+<a th:href="@{/emploeeContr}">EMPLOYEE</a>
+</div>
 
-<p th:text="${onleUserWithComment}"></p>
-<br/>
-
-
-<a>Test Method</a>
 <br/>
 
-<p th:text="${testObject}"></p>
+<input type="button" value="Registration" onclick="location.href='http://localhost:8099/regForm'" class="button">
+<br/>
+<a th:href="@{/logout}" class="logout-link">Press here if you want logout</a>
 
-regForm
-<a th:href="@{/regForm}">registration</a>
+
 
 </body>
 </html>

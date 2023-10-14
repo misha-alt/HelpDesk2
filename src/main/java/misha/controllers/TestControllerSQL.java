@@ -2,10 +2,7 @@ package misha.controllers;
 
 
 import misha.domain.User;
-import misha.service.CreateComment;
-import misha.service.ManagerService;
-import misha.service.TickedService;
-import misha.service.UserService;
+import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +21,17 @@ public class TestControllerSQL {
     private UserService userService;
     private TickedService tickedService;
     private CreateComment createComment;
+    private FileService fileService;
+
 
     @Autowired
-    public TestControllerSQL(CreateComment createComment, ManagerService managerService, UserService userService, TickedService tickedService) {
+    public TestControllerSQL(CreateComment createComment, ManagerService managerService,
+                             UserService userService, TickedService tickedService, FileService fileService) {
         this.managerService = managerService;
         this.userService = userService;
         this.tickedService = tickedService;
         this.createComment = createComment;
+        this.fileService = fileService;
 
     }
 
@@ -40,10 +41,22 @@ public class TestControllerSQL {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("testFilter");
 
-        model.addAttribute("ob", tickedService.filteredListByCriteria(ob));
-
+        //model.addAttribute("ob", tickedService.filteredListByCriteria(ob));
 
         return modelAndView;
     }
+    @RequestMapping("/showIn")
+    public String shoeInfoAboutFile(Model model){
+        model.addAttribute("shoeInfoAboutFile", fileService.takeFile().get(0));
+        return "infoAboutFile";
+    }
+
+    @RequestMapping("testSQL")
+    public  String testSQL(Model model){
+
+        model.addAttribute("ticked",tickedService.getAllTicked()) ;
+        return "testSQL";
+    }
+
 
 }

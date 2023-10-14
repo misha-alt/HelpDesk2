@@ -1,10 +1,10 @@
 package misha.domain;
 
 import javax.persistence.*;
-/*@Entity
-@Table(name = "FEEDBACK")*/
+@Entity
+@Table(name = "FEEDBACK")
 public class FeedBack {
-    /*@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable =  false)
     private int id;
@@ -15,11 +15,17 @@ public class FeedBack {
     @Column(name = "date_rate", nullable =  false)
     private String date_rate;
 
-    @Column(name = "text", nullable =  false)
+    @Column(name = "text", nullable =  true)
     private String text;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Users users;
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+    @ManyToOne(/*cascade = CascadeType.ALL,*/ fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticked_id")
+    private Ticked ticked;
 
     public FeedBack() {
 
@@ -55,5 +61,21 @@ public class FeedBack {
 
     public void setText(String text) {
         this.text = text;
-    }*/
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Ticked getTicked() {
+        return ticked;
+    }
+
+    public void setTicked(Ticked ticked) {
+        this.ticked = ticked;
+    }
 }

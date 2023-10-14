@@ -17,44 +17,31 @@ public class User {
     @Column(unique = true, nullable =  false)
     private int id;
 
-
     @Column(nullable = false)
-/*
-    @Min(value = 2, message = "Age should be greater than or equal to 2")
-    @Max(value = 30,message ="Age shouldn't be greater than or equal to 30")
-    @NotEmpty*/
     private String first_name;
 
-
     @Column(nullable = false)
-
-
     private String last_name;
-
 
     @Column(nullable = false)
     private String login;
 
-
     @Column(nullable = false)
     private String password;
-
 
     @Column(nullable = false)
     private String authority;
 
-
     @Column(nullable = false)
     private String email;
 
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Comments> comments;
 
-    /*Lists for Ticket*/
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private Set<FeedBack> feedBacks;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "USER_TICKED",
             joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "ticked_id"))
     private Set<Ticked> ticked;
@@ -104,13 +91,7 @@ public class User {
         this.password = password;
     }
 
-    public Set<Comments> getComments() {
-        return comments;
-    }
 
-    public void setComments(Set<Comments> comments) {
-        this.comments = comments;
-    }
 
     public String getAuthority() {
         return authority;
@@ -128,6 +109,14 @@ public class User {
         this.email = email;
     }
 
+    public Set<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comments> comments) {
+        this.comments = comments;
+    }
+
     /*Getters and Setters Ticket lists*/
 
 
@@ -141,6 +130,14 @@ public class User {
         this.ticked = ticked;
     }
 
+    public Set<FeedBack> getFeedBacks() {
+        return feedBacks;
+    }
+
+    public void setFeedBacks(Set<FeedBack> feedBacks) {
+        this.feedBacks = feedBacks;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -150,7 +147,7 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", authority='" + authority + '\'' +
-                ", comments=" + comments +
+                ", comments='" + comments + '\'' +
                 ", ticked=" + ticked +
                 ", email=" + email +
                 '}';

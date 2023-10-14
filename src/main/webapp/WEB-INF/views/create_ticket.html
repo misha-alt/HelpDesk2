@@ -5,38 +5,85 @@
     <title>Accumulated work</title>
 </head>
 <body>
+<style>
+    html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  text-align: center;
+}
+</style>
+<div class="container">
+<p th:text="${currentDate}"></p>
 
-<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST">
+<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST" >
+
 
     <label for="name">Enter name of problem</label>
     <input type="text" th:field="*{name}" id="name"/>
-
+    <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
     <br/>
+
     <label for="description">Enter description</label>
     <input type="text" th:field="*{description}" id="description"/>
 
 
-
     <br/>
     <label for="desireddate">Enter DesireDate</label>
-    <input type="date" name="calendar"     th:field="*{desireddate}" id="desireddate"/>
+    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate"/>
 
-        <br/>
-        <select name="MyState">
-
-            <option value="DRAFT">DRAFT</option>
-            <option value="NEW">NEW</option>
-            <option value="APPROVED">APPROVED</option>
-            <option value="DECLINED">DECLINED</option>
-            <option value="INPROGRESS">INPROGRESS</option>
-            <option value="DONE">DONE</option>
-            <option value="CANCELED">CANCELED</option>
-
-        </select>
 
     <br/>
+    <!--выбор категории билета-->
+    <label for="cateorySelect">Select category:</label>
+    <select name="cateorySelect" id="cateorySelect">
+
+        <option value="APPLICATIONANDSERVICES">Application & Services</option>
+        <option value="BENEFITSANDPAPERWORC">Benefits & Paper Work</option>
+        <option value="HARDWAREANDSOFTWARE">Hardware & Software</option>
+        <option value="PEOPLEANDMANAGEMENT">People Management</option>
+        <option value="SECURITYANDACCESS">Security & Access</option>
+        <option value="WORKPLACESANDFACILITIES">Workplaces & Facilities</option>
+
+    </select>
+
+        <br/>
+
+    <div th:if="${#request.isUserInRole('ROLE_MANAGER')}">
+        <label for="MyState">only for manager</label>
+        <select name="MyState" id="MyState">
+            <option value="NEW">NEW</option>
+            <option value="DRAFT">DRAFT</option>
+
+
+        </select>
+    </div>
+    <!--если отправляем Assign to Me или CANCELED то становишся правоприемником,
+    если отправляеш пустое поле -нет-->
+    <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+        <label for="engineerSuccessorr">appoint a successorr</label>
+        <select name="engineerSuccessorr" id="engineerSuccessorr">
+            <option value=""></option>
+            <option value="AssignToMe">Assign to Me</option>
+            <option value="CANCELED">CANCELED</option>
+        </select>
+    </div>
+
+    <div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_ENGINEER')}">
+        <label for="MyState">not for manager</label>
+        <select name="MyState" id="MyState2">
+            <option value="NEW">Submit</option>
+            <option value="DRAFT">DRAFT</option>
+            <option value="DECLINED">DECLINE</option>
+        </select>
+    </div>
+
 <!--выбор степени срочности-->
-            <select name="UrgencyState">
+    <label for="UrgencyState">Select urgency</label>
+            <select name="UrgencyState" id="UrgencyState">
 
                 <option value="CRITICAL">CRITICAL</option>
                 <option value="HIGHT">HIGHT</option>
@@ -46,42 +93,25 @@
              </select>
 
         <br/>
-    <!--выбор правоприемника-->
-        <br/>
-        <select name="nameOfAssignee">
-            <option th:each="users:${assignee}"
-                    th:text="${users.getLogin()}"></option>
-        </select>
-        <br/>
 
-    <!--выбор ободрителя-->
+
+
     <br/>
-    <select name="nameOfApprover">
-    <option th:each="users:${approver}"
-            th:text="${users.getLogin()}"></option>
+
+    <select name="var">
+
+        <option value="one">one</option>
+        <option value="two">two</option>
+        <option value="three">three</option>
+
     </select>
-    <br/>
+
 
     <br/>
     <input type="submit" value="Create"/>
 
-    <br/>
-
-        <select name="var">
-
-            <option value="one">one</option>
-            <option value="two">two</option>
-            <option value="three">three</option>
-
-        </select>
-
-
-    </form>
-
-
-
-
 </form >
+
 
 
 <br/>
@@ -91,7 +121,34 @@
 </div>
 
 <a th:href="@{/logout}">Press here if you want logout</a>
-
+<br/>
+<a th:href="@{/newCom}">Create comment</a>
+</div>
 
 </body>
 </html>
+
+
+
+
+<!--
+<form id="form2"  th:action="@{/creation_ticked_view}" th:object="${comment}"th:method="POST">
+
+    <label for="comment">Enter comment</label>
+    <input type="text"  th:field="*{comment}" id="comment"/>
+
+    <br/>
+    <input type="submit" value="Create"/>
+
+
+</form>
+<br/>
+<button onclick="submitForms()">Send forms</button>
+
+
+<script>
+function submitForms() {
+  document.getElementById('form1').submit();
+  document.getElementById('form2').submit();
+}
+</script>-->

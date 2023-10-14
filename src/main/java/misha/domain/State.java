@@ -13,10 +13,14 @@ public enum State {
     DONE("DONE"),
     CANCELED("CANCELED");
 
+
+
     public   String cat;
 
     State(String cat) {
         this.cat = cat;
+    }
+    State() {
     }
 
     public String getCat() {

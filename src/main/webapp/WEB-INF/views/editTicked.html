@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<form  th:action="@{/updateTicked/{id}(id=${form_ticket.getId()})}" th:object="${form_ticket}"th:method="PATCH" >
+
+
+    <input type="hidden" th:name="editor_login" th:value="${editor_login}" />
+    <input type="hidden" th:name="ticked" th:value="${form_ticket}" />
+    <input type="hidden" th:name="loginOfCreator" th:value="${loginOfCreator}" />
+    <!--<input type="hidden" th:each="item : ${setOfHistory}" th:name=setOfHistory th:value="${item.getId()}"/>-->
+    <!--<div>
+        <label for="myFile">Set Field:</label>
+        <input type="text" id="myFile" th:field="*{myFile}" readonly="readonly" />
+    </div>-->
+
+
+
+
+    <br/>
+    <label for="name">Enter name of problem</label>
+    <input type="text" th:field="*{name}" id="name"/>
+
+    <br/>
+
+    <label for="description">Enter description</label>
+    <input type="text" th:field="*{description}" id="description"/>
+
+
+    <br/>
+    <label for="desireddate">Enter DesireDate</label>
+    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate"/>
+
+
+    <br/>
+    <label for="rollOfCreater" style="display:none;">Enter description</label>
+    <input type="text" th:field="*{rollOfCreater}" id="rollOfCreater" style="display:none;"/>
+
+
+    <br/>
+    <!--<label for="state">state not for editing</label>
+    <input type="text" th:field="*{state}" id="state">-->
+   <!-- <div th:if="${#request.isUserInRole('ROLE_MANAGER')and state.equals('DRAFT')}">
+        <label for="state">state</label>
+        <select name="state" id="state2">
+            <option value="NEW">NEW</option>
+            <option value="DRAFT">DRAFT</option>
+            <option value="INPROGRESS">INPROGRESS</option>
+            <option value="DONE">DONE</option>
+            <option value="APPROVED">APPROVED</option>
+        </select>
+    </div>-->
+
+
+<!--для User-->
+    <div th:if="${#request.isUserInRole('ROLE_USER') and state.equals('DRAFT') and state.equals('DECLINED')}">
+        <label for="state3">state</label>
+        <select name="state" id="state3">
+
+            <option value="NEW">NEW</option>
+            <option value="CANCELED">CANCELED</option>
+
+        </select>
+    </div>
+<!--для Manager-->
+    <div th:if="${#request.isUserInRole('ROLE_MANAGER') and loginOfCreator.equals(editor_login) and state.equals('DRAFT') or state.equals('DECLINED')}">
+        <label for="state4">state</label>
+        <select name="state" id="state4">
+
+            <option value="NEW">NEW</option>
+            <option value="CANCELED">CANCELED</option>
+
+        </select>
+    </div>
+
+    <!--для Manager-->
+
+    <div th:if="${rollOfCreater.equals('ROLE_MANAGER') and state.equals('NEW')}">
+        <label for="state5">state</label>
+        <select name="state" id="state5">
+
+            <option value="APPROVED">APPROVED</option>
+            <option value="DECLINED">DECLINED</option>
+            <option value="CANCELED">CANCELED</option>
+
+        </select>
+    </div>
+
+<!--для ENGINEER-->
+
+    <div th:if="${#request.isUserInRole('ROLE_ENGINEER') and state.equals('APPROVED')}">
+        <label for="assignee">state</label>
+       <!-- <input type="text" th:field="*{assignee}" id="assignee"/>-->
+        <select name="assignee" id="assignee">
+            <option value=""></option>
+            <option th:each="assignee : ${setAssignee}" th:value="${assignee.getLogin()}" th:text="${assignee.getLogin()}"></option>
+        </select>
+    </div>
+
+
+
+    <br/>
+    <label for="create_date">Enter description</label>
+    <input type="text" th:field="*{create_date}" id="create_date" readonly>
+
+
+    <br/>
+    <label for="loginOfcreater">Enter description</label>
+    <input type="text" th:field="*{loginOfcreater}" id="loginOfcreater" readonly>
+
+
+    <br/>
+    <label for="urgency">Enter description</label>
+    <input type="text" th:field="*{urgency}" id="urgency" readonly>
+
+
+
+
+
+    <br/>
+    <label for="state">Enter description</label>
+    <input type="text" th:field="*{state}" id="state" style="display:none;">
+
+
+
+    <br/>
+    <label for="approver">Enter description</label>
+    <input type="text" th:field="*{approver}" id="approver" style="display:none;">
+
+    <br/>
+    <!--выбор категории билета-->
+
+
+    <label for="cateorySelect">Select category:</label>
+    <select name="cateorySelect" id="cateorySelect">
+
+        <option value="APPLICATIONANDSERVICES">Application & Services</option>
+        <option value="BENEFITSANDPAPERWORC">Benefits & Paper Work</option>
+        <option value="HARDWAREANDSOFTWARE">Hardware & Software</option>
+        <option value="PEOPLEANDMANAGEMENT">People Management</option>
+        <option value="SECURITYANDACCESS">Security & Access</option>
+        <option value="WORKPLACESANDFACILITIES">Workplaces & Facilities</option>
+
+    </select>
+
+    <!--<div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+        <label for="assignee">state</label>
+        <select name="assignee" id="assignee">
+
+            <option value="setAssignee">Assignee to me</option>
+
+        </select>
+    </div>-->
+  <!--  <label for="assignee">Set assignee</label>
+    <select name="assignee" id="assignee">
+        <option value=""></option>
+        <option th:each="assignee : ${setAssignee}" th:value="${assignee.getLogin()}" th:text="${assignee.getLogin()}"></option>
+    </select>-->
+
+
+
+
+
+
+    <div th:each="file:${attached_file}">
+        <a>Your file:</a>
+        <br/>
+        <a th:text="${file.getId()} +' '+${file.getFile_name()} " th:href="@{/getFile/{id}(id=${file.getId()})}"></a>
+        <br/>
+        <form th:action="@{/deleteFile/{id}(id=${file.getId()})}" method="POST">
+            <input type="hidden"  name="id2" th:value="${ourTicked.getId()}"/>
+            <input type="submit" value="Delete file"/>
+        </form>
+    </div>
+
+    <br/>
+
+    <p th:text="${dateOfCreate}"></p>
+
+    <br/>
+    <input type="submit" value="Create"/>
+
+</form >
+
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+<a th:text="${form_ticket.getCreate_date()}"></a>
+
+
+
+
+</body>
+</html>
