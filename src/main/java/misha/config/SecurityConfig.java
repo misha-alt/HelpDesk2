@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                //.antMatchers("/test").permitAll()
+                .antMatchers("/test").permitAll()
                 .antMatchers("/regForm").permitAll()
                 .antMatchers("/regForm2").permitAll()
                 .antMatchers("/manager").hasRole("MANAGER")
@@ -81,9 +81,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/test") // Set the success login page URL
+                .defaultSuccessUrl("/enterPage") // Set the success login page URL
                 .and().logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/test")
                 .and()
                 .csrf().disable();
         //https://www.youtube.com/watch?v=Mb8nlh4m0HM

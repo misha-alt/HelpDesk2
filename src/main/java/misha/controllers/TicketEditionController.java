@@ -8,7 +8,4 @@ import javax.transaction.Transactional;
 @Transactional
 public class TicketEditionController {
 
-
-
-
 }

@@ -25,6 +25,8 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @Transactional
@@ -37,6 +39,7 @@ public class CommentController {
     private ManagerDAO managerDAO;
     private TickedDAO tickedDAO;
     private FileService fileService;
+    private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
     @Autowired
     public CommentController(CreateCommDAO createCommDAO, UserDAO userDAO, DateClass dateClass, ManagerDAO managerDAO, TickedDAO tickedDAO, FileService fileService) {
         this.createCommDAO = createCommDAO;
@@ -57,6 +60,11 @@ public class CommentController {
 
     @PostMapping("/comments/{id}")
     public String vievComments(Principal principal, Model model, @PathVariable("id") int id) {
+
+        logger.info("Received request with principal: {}", principal);
+        logger.info("Received request with model: {}", model);
+        logger.info("Received request with id: {}", id);
+
         User user = userDAO.findByEmail(principal.getName());
         Ticked ticked = tickedDAO.geTickedById(id);
         model.addAttribute("tickedComm", ticked.getComments());

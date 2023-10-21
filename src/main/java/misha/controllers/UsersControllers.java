@@ -35,10 +35,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @Transactional
-/*@Transactional*/
+
 public class UsersControllers {
 
     private UserDAO userDAO;
@@ -46,6 +48,7 @@ public class UsersControllers {
     private ManagerDAO managerDAO;
     private TickedDAO tickedDAO;
     private UserDetailsServiceImpl userDetailsService;
+    private static final Logger logger = LoggerFactory.getLogger(UsersControllers.class);
    // private ServletContext servletContext;
 
 
@@ -158,8 +161,9 @@ public class UsersControllers {
     }
 
     @GetMapping("/test")
-    public String testContr(Model model, Principal principal){
-
+    public String testContr(HttpServletRequest request, Model model, Principal principal){
+        model.addAttribute("request", request);
+        logger.info("method test worked successfully");
         return "test";
     }
 

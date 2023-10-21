@@ -88,9 +88,6 @@ public class TickedContriller {
 
         model.addAttribute("currentDate", currentDate);
 
-
-
-
         return "create_ticket";
     }
 
@@ -212,7 +209,6 @@ public class TickedContriller {
         //загружаем файл на ПК
         fileService.downloadFileOnPC(id);
 
-
         return "redirect:/tickedLis";
 
     }
@@ -224,7 +220,6 @@ public class TickedContriller {
       // fileService.deleteFile(fileService.getFileById(id));
        return "redirect:/tickedLis";
     }
-
 
 
     @RequestMapping("/testController")
