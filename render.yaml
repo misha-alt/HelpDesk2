@@ -1,0 +1,4 @@
+services:
+  - name: jira1app
+    buildCommand: mvn clean install
+    startCommand: java -jar target/helpDesk-1.0-SNAPSHOT.war

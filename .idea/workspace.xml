@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac5180a0-8a90-4381-af8a-834c366a1b83" name="Default Changelist" comment="helpDes2testSecsses">
-      <change afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/EnterController.java" afterDir="false" />
+    <list default="true" id="ac5180a0-8a90-4381-af8a-834c366a1b83" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/render.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/TicketEditionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/TicketEditionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/emploee.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/emploee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/qwerty.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/qwerty.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,55 +25,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="128" column="29" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/EnterController.java">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="55" column="28" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="28" />
-              <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="2389">
+              <caret line="308" column="24" selection-start-line="308" selection-start-column="24" selection-end-line="308" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java">
+        <entry file="file://$PROJECT_DIR$/render.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+            <state relative-caret-position="51">
+              <caret line="3" column="60" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/TickedService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -144,7 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>security-core</find>
       <find>thymeleaf</find>
       <find>junit</find>
       <find>maven</find>
@@ -174,6 +156,7 @@
       <find>log</find>
       <find>ema</find>
       <find>enterPage</find>
+      <find>maven-plugin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -182,12 +165,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editTicked.html" />
         <option value="$PROJECT_DIR$/src/main/java/misha/dao/FeedbackDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tempered.html" />
         <option value="$PROJECT_DIR$/src/main/java/misha/service/FeedBackService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/rate.html" />
-        <option value="$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/service/HistoryService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/onlyForTest.html" />
         <option value="$PROJECT_DIR$/src/main/java/misha/service/FileService.java" />
@@ -233,6 +214,8 @@
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/EnterController.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" />
+        <option value="$PROJECT_DIR$/render.yaml" />
+        <option value="$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java" />
       </list>
     </option>
   </component>
@@ -287,173 +270,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
               <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-              <item name="comparator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="Valdator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="misha" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
@@ -467,7 +291,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1697875464306" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1697910275270" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -620,7 +444,21 @@
       <option name="project" value="LOCAL" />
       <updated>1697309758855</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="logPage21/10/2023">
+      <created>1697901008367</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697901008367</updated>
+    </task>
+    <task id="LOCAL-00006" summary="logPage21/10/2023_2">
+      <created>1697901109930</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697901109930</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -666,8 +504,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.20272315" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.20574887" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -677,7 +516,7 @@
       <window_info id="Favorites" order="7" sideWeight="0.50121653" side_tool="true" weight="0.24130106" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.20424837" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49546143" weight="0.2630719" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49546143" weight="0.5555556" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -742,26 +581,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="helpDes2" />
     <MESSAGE value="helpDes2testSecsses" />
-    <option name="LAST_COMMIT_MESSAGE" value="helpDes2testSecsses" />
+    <MESSAGE value="logPage21/10/2023" />
+    <MESSAGE value="logPage21/10/2023_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="logPage21/10/2023_2" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/onlyForTest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/infoAboutFile.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/errorMessage_ru.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -864,13 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-640">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/RegistrationUserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-130">
@@ -928,13 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="211" column="17" selection-start-line="211" selection-start-column="17" selection-end-line="211" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1114,8 +928,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
+        <state relative-caret-position="17">
           <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2389">
+          <caret line="308" column="24" selection-start-line="308" selection-start-column="24" selection-end-line="308" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/TickedService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/render.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="60" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="60" />
         </state>
       </provider>
     </entry>

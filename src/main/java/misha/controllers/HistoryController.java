@@ -39,7 +39,7 @@ public class HistoryController {
     public String viewHistory(HttpSession session, Model model, @PathVariable("id")int id){
 
 
-        Set<Tickethistory>  set= tickedDAO.geTickedById(1).getTickethistories();
+        Set<Tickethistory>  set= tickedDAO.geTickedById(id).getTickethistories();
         List<Tickethistory> list = new ArrayList<>(set);
         list.get(0);
 
