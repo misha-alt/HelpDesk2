@@ -9,18 +9,28 @@
 </head>
 <body>
 
+<script>
+ window.addEventListener("popstate", function(event) {
+  event.preventDefault();
 
-<p th:text="${srt}"></p>
-<!--<div th:each="lis:${fromTicked}">
-    <a th:text="${lis.getId()}"></a>
-</div>-->
+
+});
+  </script>
+<!--th:action="@{/only/{id}(id=${ourTicked.getId()})}" th:method="POST"-->
+
+<form id="backForm" th:action="@{/tickedShow/{id}(id=${id})}" method="POST">
+    <button type="submit">
+        <span>&larr; back</span>
+    </button>
+</form>
+
 
 <style>
   .historyTable {
     border-collapse: collapse;
     border: 1px solid black;
   }
-  .bordered-table th, .bordered-table td {
+  .historyTable th, .historyTable td {
     border: 1px solid black;
   }
 </style>
@@ -43,14 +53,19 @@
             </td>
 
             <td>
-                <div th:each="com:${tikHis.getMyFiles()}">
-                    <a th:text="${com.getFile_name()}"></a>
+                <div th:if="${tickedFile!=null&&!tickedFile.isEmpty()}">
+                    <div th:each="com:${tickedFile}">
+                        <a th:text="${com.getFile_name()}"></a>
+                    </div>
+                    <a th:text="${tikHis.getDeletedFilename()}"></a>
                 </div>
             </td>
         </tr>
     </tbody>
 
 </table>
+
+
 
 
 </body>

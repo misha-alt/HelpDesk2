@@ -32,7 +32,6 @@ public class Ticked   {
     @Column( nullable = false)
     private String description;//        description
 
-
     @Column( nullable = false)
     @Enumerated(EnumType.STRING)
     public State state;
@@ -51,8 +50,8 @@ public class Ticked   {
     @JoinColumn(name = "ticked_id")
     private Set<Comments> comments;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ticked_id")
+    @OneToMany(/*cascade = CascadeType.ALL,*/fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private Set<FeedBack> feedBacks;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -61,9 +60,6 @@ public class Ticked   {
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "ticked")
     private Set <User> user;
-
-
-
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ticked_id")

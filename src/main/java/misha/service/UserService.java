@@ -1,7 +1,9 @@
 package misha.service;
 
+import misha.dao.FeedbackDAO;
 import misha.dao.UserDAO;
 import misha.domain.Comments;
+import misha.domain.FeedBack;
 import misha.domain.Ticked;
 import misha.domain.User;
 import org.hibernate.Session;
@@ -22,11 +24,13 @@ public class UserService implements UserDAO {
 
     private SessionFactory sessionFactory;
     private FormValidationMeth formValidationMeth;
+    private FeedbackDAO feedbackDAO;
 
     @Autowired
-    public UserService(SessionFactory sessionFactory, FormValidationMeth formValidationMeth) {
+    public UserService(SessionFactory sessionFactory, FormValidationMeth formValidationMeth, FeedbackDAO feedbackDAO) {
         this.sessionFactory = sessionFactory;
         this.formValidationMeth= formValidationMeth;
+        this.feedbackDAO= feedbackDAO;
     }
     @Override
     public List<User> getUser (){
@@ -85,6 +89,19 @@ public class UserService implements UserDAO {
     @Override
     public void saveOrUpdate(User user) {
         sessionFactory.getCurrentSession().saveOrUpdate(user);
+    }
+
+
+    @Override
+    public void saveUserFeedBack(FeedBack feedBack, String name) {
+        User user = findByEmail(name);
+        user.getFeedBacks().add(feedbackDAO.getAllRate(feedBack.getId()));
+        updateUser(user);
+    }
+
+    @Override
+    public void merg(User user) {
+        sessionFactory.getCurrentSession().merge(user);
     }
 
     @Override

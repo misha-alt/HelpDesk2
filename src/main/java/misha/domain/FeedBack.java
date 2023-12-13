@@ -18,12 +18,11 @@ public class FeedBack {
     @Column(name = "text", nullable =  true)
     private String text;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
 
-    @ManyToOne(/*cascade = CascadeType.ALL,*/ fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticked_id")
     private Ticked ticked;
 

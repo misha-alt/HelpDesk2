@@ -38,7 +38,8 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Comments> comments;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private Set<FeedBack> feedBacks;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

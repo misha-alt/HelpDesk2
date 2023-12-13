@@ -1,5 +1,6 @@
 package misha.dao;
 
+import misha.domain.FeedBack;
 import misha.domain.Ticked;
 import misha.domain.User;
 
@@ -22,6 +23,8 @@ public interface UserDAO {
     public User findByEmail(String email);
     List <Ticked> getMyDraft(String name);
     void saveOrUpdate(User user);
+    void merg(User user);
+    void saveUserFeedBack(FeedBack feedBack, String name);
 
 
 }

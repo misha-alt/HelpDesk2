@@ -2,6 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <style>
 
 div {
@@ -163,9 +166,101 @@ p {
     <button type="submit">Ticket rate</button>
 </form>
 
+<!--<div id="tabs">
+
+<ul>
+    <li><a href="#tab1">History</a></li>
+    <li><a href="#tab2">Rate</a></li>
+    <li><a href="#tab3">Page 3</a></li>
+</ul>
+
+<div id="tab1">
+    <p th:text="${srt}"></p>
+
+
+    <style>
+  .historyTable {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  .historyTable th, .historyTable td {
+    border: 1px solid black;
+  }
+</style>
+    <table class="historyTable">
+
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Attached file</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tikHis:${history}">
+            <td>
+                <a th:text="${tikHis.getDateHistory()}"></a>
+            </td>
+            <td>
+                <a th:text="${tikHis.getTicket_description()}"></a>
+            </td>
+
+            <td>
+                <div th:if="${tickedFile!=null&&!tickedFile.isEmpty()}">
+                    <div th:each="com:${tickedFile}">
+                        <a th:text="${com.getFile_name()}"></a>
+                    </div>
+                    <a th:text="${tikHis.getDeletedFilename()}"></a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
 
 
 
+<div id="tab2">
+<h1>Rate</h1>
 
+
+<p th:text="${existRate}"></p>
+
+
+<div th:if="${existRate == 'make you rate'}">
+    <form th:action="@{/saveRate/{id}(id=${id})}" th:object="${rate}" th:method="POST">
+        <label for="rate">choose number from 1 to 5:</label>
+        <select id="rate" name="rate">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br/>
+
+        <label for="text">Enter description</label>
+        <input type="text" th:field="*{text}" id="text"/>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+
+</div>
+
+    <div id="tab3">
+        <a>some taxt</a>
+    </div>
+
+</div>-->
+
+<script>
+  $(function() {
+    $("#tabs").tabs();
+  });
+</script>
 </body>
 </html>

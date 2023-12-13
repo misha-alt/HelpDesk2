@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.transaction.Transactional;
 import java.security.Principal;
 
+
+//этот контролер возвращает страницу
 @Controller
 @Transactional
 public class EploeeController {

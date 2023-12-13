@@ -117,9 +117,9 @@ public class UsersControllers {
         createCommDAO.createComentAndSave(comments);
         Ticked ticked= tickedDAO.geTickedById(id);
         ticked.getComments().add(createCommDAO.getById(comments.getId()));
-        tickedDAO.updateTcked(ticked);
+        tickedDAO.updateTcked(ticked);//обновляет билет после добовления коментариев
 
-        createCommDAO.seveUserCmments(comments, user.getLogin());
+        createCommDAO.seveUserCmments(comments, user.getLogin());//обновляет пользователя после  добовлени коментариев
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/tickedLis");
 

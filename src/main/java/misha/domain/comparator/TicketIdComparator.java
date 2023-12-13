@@ -10,4 +10,9 @@ public class TicketIdComparator implements Comparator<Ticked> {
     public int compare(Ticked o1, Ticked o2) {
         return o1.getId()-o2.getId();
     }
+
+    @Override
+    public Comparator<Ticked> reversed() {
+        return Comparator.comparingInt(Ticked::getId).reversed();
+    }
 }

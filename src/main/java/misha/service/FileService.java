@@ -103,6 +103,10 @@ public class FileService {
         Set <Tickethistory> set =ticked.getTickethistories();
         for(Tickethistory tickethistory:set){
           if(tickethistory.getMyFiles().contains(myFile)){
+
+              tickethistory.setDeletedFilename(myFile.getFile_name()+" deleted");
+
+
               tickethistory.getMyFiles().remove(myFile);
           }
         }

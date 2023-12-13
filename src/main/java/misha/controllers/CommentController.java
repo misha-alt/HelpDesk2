@@ -65,8 +65,10 @@ public class CommentController {
         logger.info("Received request with model: {}", model);
         logger.info("Received request with id: {}", id);
 
-        User user = userDAO.findByEmail(principal.getName());
-        Ticked ticked = tickedDAO.geTickedById(id);
+
+
+        User user = userDAO.findByEmail(principal.getName());//-достаем пользрвателя по Email, по настройкам principal.getName()- возвращает mail
+        Ticked ticked = tickedDAO.geTickedById(id);//достаем билет по id
         model.addAttribute("tickedComm", ticked.getComments());
         return "comments";
     }

@@ -12,9 +12,9 @@
 
 <div id="tabs">
     <ul>
-        <li><a href="#tab1">Вкладка 1</a></li>
-        <li><a href="#tab2">Вкладка 2</a></li>
-        <li><a href="#tab3">Вкладка 3</a></li>
+        <li><a href="#tab1">Page 1</a></li>
+        <li><a href="#tab2">Page 2</a></li>
+        <li><a href="#tab3">Page 3</a></li>
     </ul>
     <div id="tab1">
         <form  th:action="@{/updateTicked/{id}(id=${form_ticket.getId()})}" th:object="${form_ticket}"th:method="PATCH" >

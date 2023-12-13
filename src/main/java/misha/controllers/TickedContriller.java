@@ -144,7 +144,7 @@ public class TickedContriller {
     }
 
     @PostMapping("/tickedShow/{id}")
-    public String tiskedShow(HttpServletRequest request, @PathVariable("id") int id, Model model, Principal principal){
+    public String tiskedShow(HttpServletRequest request, @PathVariable("id") int id, Model model, Principal principal/**/){
 
                 Ticked ticked = tickedDAO.geTickedById(id);
                 User user = userDAO.findByEmail(principal.getName());
@@ -158,6 +158,8 @@ public class TickedContriller {
         model.addAttribute("state", ticked.getState());
 
             model.addAttribute("userLogin", user.getLogin());
+
+
 
                 return "tiskedShow";
     }

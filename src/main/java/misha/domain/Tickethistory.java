@@ -25,6 +25,10 @@ public class Tickethistory {
     private String ticket_description;
 
 
+    @Column(name = "deletedFilename")
+    private String deletedFilename;
+
+
 
     @ManyToOne(/*cascade = CascadeType.ALL,*/ fetch = FetchType.LAZY)
     @JoinColumn(name = "ticked_id")
@@ -87,6 +91,14 @@ public class Tickethistory {
 
     public void setMyFiles(Set<MyFile> myFiles) {
         this.myFiles = myFiles;
+    }
+
+    public String getDeletedFilename() {
+        return deletedFilename;
+    }
+
+    public void setDeletedFilename(String deletedFilename) {
+        this.deletedFilename = deletedFilename;
     }
 
     @Override

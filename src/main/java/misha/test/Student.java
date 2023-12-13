@@ -1,43 +1,29 @@
 package misha.test;
 
-public class Student  {
+public class Student {
 
-    private int age;
-    private String name;
+    public static void main(String[] args) {
+        int[][] testArray = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 
-    public Student( String name, int age) {
-        this.age = age;
-        this.name = name;
-    }
+        for (int i = 0; i < testArray.length; i++) {
 
-    public int getAge() {
-        return age;
-    }
+            for (int j = 0; j < testArray[i].length; j++) {
+                if (testArray[i][j] ==4) {
+                    if (j+1 <= testArray[i].length - 1) {
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+                        System.out.print(testArray[i][j+1]);
+                    } else {
+                        System.out.println("Index out of bound exeaption");
+                    }
 
-    public String getName() {
-        return name;
-    }
+                }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+            }
 
-  /*  @Override
-    public int compareTo(Student o) {
-        {
-            return this.name.compareTo(o.getName());
         }
-    }*/
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "age=" + age +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
+
+
+

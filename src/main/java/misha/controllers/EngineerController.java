@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-
+//этот контроллер возвращает страницу инженера
 @Controller
 @Transactional
 public class EngineerController {

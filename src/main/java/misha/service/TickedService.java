@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.text.DateFormat;
@@ -180,8 +181,12 @@ public class TickedService implements TickedDAO {
            return   sortedlistOfTicked(principal);
          }
          if(var.equals("id")){
-             //sorted ticket by Id
+             //sorted ticket by Id increase
             return sortedListById(principal);
+         }
+         //sorted ticket by Id decreasing
+         if(var.equals("id decreasing")){
+             return sortedListByIdDecreasing(principal);
          }
          if (var.equals("date")){
              //sorted ticket by date
@@ -248,6 +253,28 @@ public class TickedService implements TickedDAO {
     }
 
 
+    @Override
+    public List<Ticked> sortedListByIdDecreasing(Principal principal) {
+        User user = userDAO.findByEmail(principal.getName());
+        TicketIdComparator ticketIdComparator = new TicketIdComparator();
+        if(user.getAuthority().equals("ROLE_MANAGER")){
+            List list =managerAsAppruverAndStateDeclin(user.getLogin());
+            list.sort(ticketIdComparator.reversed());
+            return list;
+        }
+        if(user.getAuthority().equals("ROLE_ENGINEER")){
+            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+            list.sort(ticketIdComparator.reversed());
+            return list;
+        }
+        if(user.getAuthority().equals("ROLE_USER")){
+            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
+            list.sort(ticketIdComparator.reversed());
+            return list;
+        }
+        List list= userDAO.getByLogin(user.getLogin());
+        return list;
+    }
 
     @Override
     public List<Ticked> sortedByDate(Principal principal)  {

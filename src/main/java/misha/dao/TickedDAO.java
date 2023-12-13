@@ -1,6 +1,7 @@
 package misha.dao;
 
 import misha.domain.*;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
@@ -18,6 +19,7 @@ public interface TickedDAO {
     List<Ticked> methodForSort(String var, Principal principal);
     List<Ticked> sortedlistOfTicked(Principal principal);
     List<Ticked> sortedListById (Principal principal);
+    List<Ticked> sortedListByIdDecreasing (Principal principal);
     List<Ticked> sortedByDate(Principal principal);
     List<Ticked> filteredListByCriteria(String var);
     List<Ticked> sortedByAlphabet(Principal principal);

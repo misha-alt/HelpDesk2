@@ -75,6 +75,7 @@ dateHistory varchar(255),
 nameHistory varchar(255),
 ticket_description varchar(255),
 myFile varchar(255),
+deletedFilename varchar(255),
 ticked_id integer,
 primary key (id)
 );

@@ -11,9 +11,18 @@
 <h1>Rate</h1>
 
 
-<p th:text="${existRate}"></p>
+<form th:action="@{/tickedShow/{id}(id=${id})}" method="POST">
+    <button type="submit">
+        <span>&larr; back</span>
+    </button>
+</form>
+
+<p th:text="${existRate}">your rating for this ticket</p>
 
 
+
+
+<div th:if="${existRate == 'make you rate'}">
 <form th:action="@{/saveRate/{id}(id=${id})}" th:object="${rate}" th:method="POST">
     <label for="rate">choose number from 1 to 5:</label>
     <select id="rate" name="rate">
@@ -32,8 +41,7 @@
     <button type="submit">Submit</button>
 </form>
 
-
-
+</div>
 
 
 </body>

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.transaction.Transactional;
 import java.security.Principal;
 
+
+//этот контроллер перенаправляет на другие эндпоинты в зависимости от роли пользователя
 @Controller
 @Transactional
 public class EnterController {
@@ -20,12 +22,16 @@ public class EnterController {
     @GetMapping("/enterPage")
     public String enterCont(Model model, Principal principal){
         if (userDAO.findByEmail(principal.getName()).getAuthority().equals("ROLE_MANAGER")){
-            model.addAttribute("ManagerName",userDAO.findByEmail(principal.getName()).getLogin());
+            //model.addAttribute("ManagerName",userDAO.findByEmail(principal.getName()).getLogin());
             return "redirect:/manager";
         }
         if(userDAO.findByEmail(principal.getName()).getAuthority().equals("ROLE_ENGINEER")){
             return "redirect:/engineer";
         }
+        if(userDAO.findByEmail(principal.getName()).getAuthority().equals("ROLE_USER")){
+            return "redirect:/emploeeContr";
+        }
+
         return "redirect:/test";
     }
 }
