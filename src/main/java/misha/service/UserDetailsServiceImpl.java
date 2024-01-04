@@ -27,15 +27,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserService userService;
 
 
-    @Autowired
+    //@Autowired
     public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
     @Override
 
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-     //   LOGGER.debug("Loading user by email: {}", email);
+
         User user  = userService.findByEmail(email);
+        LOGGER.info("Loading user by email: {}", email);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

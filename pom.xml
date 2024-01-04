@@ -34,6 +34,7 @@
     <spring.version>5.2.1.RELEASE</spring.version>
     <spring-security.version>5.1.1.RELEASE</spring-security.version>
     <hibernate.version>5.3.7.Final</hibernate.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -223,51 +224,13 @@
 
 
 
-    <!-- <dependency>
-       <groupId>javax.el</groupId>
-       <artifactId>javax.el-api</artifactId>
-       <version>3.0.0</version>
-     </dependency>-->
-
-     <!-- <dependency>
-          <groupId>jakarta.el</groupId>
-          <artifactId>jakarta.el-api</artifactId>
-          <version>5.0.1</version>
-      </dependency>
--->
-
-    <!--<dependency>
-      <groupId>jakarta.el</groupId>
-      <artifactId>jakarta.el-api</artifactId>
-      <version>3.0.2</version>
-    </dependency>
-
-
-    <dependency>
-       <groupId>org.hibernate.validator</groupId>
-       <artifactId>hibernate-validator</artifactId>
-       <version>6.1.6.Final</version>
-     </dependency>-->
-      <!--<dependency>
-          <groupId>org.hibernate.validator</groupId>
-          <artifactId>hibernate-validator</artifactId>
-          <version>7.0.4.Final</version>
-      </dependency>-->
-
-    <!-- https://mvnrepository.com/artifact/org.glassfish/javax.el -->
-  <!--  <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.el</artifactId>
-      <version>3.0.1-b11</version>
-    </dependency>
-
-
-    &lt;!&ndash; https://mvnrepository.com/artifact/javax.validation/validation-api &ndash;&gt;
+      <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
       <dependency>
-          <groupId>javax.validation</groupId>
-          <artifactId>validation-api</artifactId>
-          <version>2.0.1.Final</version>
-      </dependency>-->
+          <groupId>com.sun.mail</groupId>
+          <artifactId>javax.mail</artifactId>
+          <version>1.6.2</version>
+      </dependency>
+
 
 
       <dependency>
@@ -291,17 +254,14 @@
       <artifactId>commons-fileupload</artifactId>
       <version>1.4</version>
     </dependency>
-    <!-- <dependency>
-       <groupId>jakarta.validation</groupId>
-       <artifactId>jakarta.validation-api</artifactId>
-       <version>2.0.2</version>
-     </dependency>-->
 
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>6.1.0</version>
+    </dependency>
 
-      <!--<dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-mail</artifactId>
-      </dependency>-->
 
     <!-- End external libraries -->
   </dependencies>

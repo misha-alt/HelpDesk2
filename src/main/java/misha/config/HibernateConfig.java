@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 
 @Configuration
 @ComponentScan(basePackages = "misha")
@@ -30,11 +31,13 @@ public class HibernateConfig {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder
                 .setType(EmbeddedDatabaseType.H2)
+                //.setScriptEncoding("UTF-8")
                 .addScript("scripts/createTable.sql")
                 .addScript("scripts/fillInTheTables.sql")
-                .setScriptEncoding("UTF-8")
+
                 .continueOnError(true)
                 .ignoreFailedDrops(true)
+
                 .build();
     }
     @Bean

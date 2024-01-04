@@ -88,5 +88,11 @@ public class DraftController {
 
     //-----------------------------------------------
 
+@GetMapping("/getIt")
+    public String getIt(Model model, Principal principal){
 
+        User user = userDAO.findByEmail(principal.getName());
+        model.addAttribute("someKey", user.getPassword());
+        return "temperedTestForEntity";
+}
 }

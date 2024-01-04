@@ -8,14 +8,42 @@
 
 <!------------table of ticked----------->
 <style>
+ .container {
+  display: flex;
+  justify-content: flex-start; /* Изменено */
+  align-items: flex-start; /* Изменено */
+
+  height: 100vh;
+  padding-top: 20px; /* Добавлено */
+}
+
+
   .bordered-table {
     border-collapse: collapse;
     border: 1px solid black;
+    width: 100%;
   }
-  .bordered-table th, .bordered-table td {
+
+  .bordered-table th,
+  .bordered-table td {
     border: 1px solid black;
   }
+
+  .bordered-table tr:nth-child(even) {
+  background-color: #e6f2ff; /* Цвет второй строки - синий */
+}
+
+.bordered-table tr:nth-child(odd) {
+  background-color: white; /* Цвет первой строки - белый */
+}
+.bordered-table th {
+  font-size: 2em;
+  text-align: center; /* Добавлено */
+}
 </style>
+<h1 style="text-align: center;">Tickets</h1>
+<div class="container">
+
 <table class="bordered-table">
     <thead>
     <tr>
@@ -43,6 +71,7 @@
     </tr>
     </tbody>
 </table>
+</div>
 
 
 <br/>

@@ -13,6 +13,3 @@ VALUES(4, 'Alfred', 'Nooble', 'Bam', '1845', 'ROLE_ENGINEER', '4somemail');
 INSERT INTO USER(id, first_name, last_name, login, password, authority,  email)
 VALUES(5, 'Ford', 'Henree', 'Car', '1910', 'ROLE_ENGINEER', '5somemail');
 
-
-
-

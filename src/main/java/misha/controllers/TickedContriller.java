@@ -155,13 +155,11 @@ public class TickedContriller {
             model.addAttribute("request", request);
 
             model.addAttribute("loginOfcreater", ticked.getLoginOfcreater());
-        model.addAttribute("state", ticked.getState());
+            model.addAttribute("state", ticked.getState());
 
             model.addAttribute("userLogin", user.getLogin());
 
-
-
-                return "tiskedShow";
+            return "tiskedShow";
     }
 
     @RequestMapping("/addFile/{id}")

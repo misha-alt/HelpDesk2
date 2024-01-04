@@ -18,7 +18,7 @@ import static misha.domain.State.NEW;
 public class Tests {
     public static void main(String[] args) throws ParseException {
 
-
+        System.out.println("блять");
         /*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10, new SecureRandom());
         String password = "MyPassword123П";
         String encodedPassword = encoder.encode(password);
@@ -33,12 +33,7 @@ public class Tests {
 
         String text = new String(bytes,  StandardCharsets.UTF_8);
         System.out.println(text);*/
-        String s = "NEW";
-        State state = State.valueOf(s);
-        System.out.println(state.getCat());
 
-        State state1 =State.valueOf(state.getCat());
-        System.out.println(state1.getCat());
         //State state2 ="
 
 

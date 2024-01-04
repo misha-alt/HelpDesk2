@@ -89,142 +89,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //https://www.youtube.com/watch?v=Mb8nlh4m0HM
     }
 
-   /* @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(customAuthenticationProvider)
-                .userDetailsService(userDetailsService);
-    }*/
-    @Bean
+
+    /*@Bean
    public DaoAuthenticationProvider daoAuthenticationProvider(){
        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
        return daoAuthenticationProvider;
-   }
+   }*/
 
 
-   /* @Bean
-    public SimpleUrlAuthenticationSuccessHandler successHandler() {
-        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
-        handler.setDefaultTargetUrl("/manager");
-        return handler;
-    }*/
+
 }
 
 
 
 
 
-/* @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }*/
-
-
-// .antMatchers("/emploeeContr").hasAnyRole("USER","ENGINEER","MANAGER")
-//.antMatchers("/engineer").hasAnyRole("ENGINEER","MANAGER")
-//.antMatchers( "/manager").hasRole("MANAGER")
-
-/*private AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
-        return (request, response, authentication) -> {
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-                response.sendRedirect("/manager");
-            } else {
-                response.sendRedirect("/engineer");
-            }
-        };
-    }
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-        provider.setUserDetailsService(userDetailsService());
-        provider.setAuthenticationManager(myAuthenticationManager);
-        return provider;
-    }
-    @Bean
-    public MyAuthenticationManager authenticationManager() {
-        return new MyAuthenticationManager();
-    }*/
-
-
-
-
-
-               /* .antMatchers("/makeTest").permitAll()
-                .antMatchers("/testContr").permitAll()
-                .anyRequest().authenticated()
-                *//*  .antMatchers("/emploeeContr").hasAnyRole("USER","ENGINEER","MANAGER")
-                  .antMatchers("/engineer").hasAnyRole("ENGINEER","MANAGER")
-                  .antMatchers("/manager").hasRole("MANAGER")
-
-  *//*
-                .and().formLogin()
-
-                .loginPage("/login")
-                .successHandler(myAuthenticationSuccessHandler())
-                //.permitAll()
-                .passwordParameter(passwordEncoder.encode("password"))
-                //.usernameParameter("login")
-
-                .and().logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/makeTest")
-                .and()
-                .csrf().disable();
-
-        //https://www.youtube.com/watch?v=Mb8nlh4m0HM
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    private AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
-        return (request, response, authentication) -> {
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-                response.sendRedirect("/manager");
-            } else {
-                response.sendRedirect("/engineer");
-            }
-        };
-    }
-
-}
-          */
-
-/* http.authorizeRequests()
-               // .antMatchers("makeTest").permitAll()
-                .antMatchers("/manager/**").hasRole("MANAGER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/manager")
-                .and()
-                .logout()
-                .permitAll()
-                .and()
-                .csrf().disable();
-
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-}
-
-*/

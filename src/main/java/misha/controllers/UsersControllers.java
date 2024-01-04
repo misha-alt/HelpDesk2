@@ -75,14 +75,14 @@ public class UsersControllers {
 
     }
 
-    @RequestMapping("/login")
+    /*@RequestMapping("/login")
     public String processLogin(@RequestParam("username")String username
             , @RequestParam("password") String password
             , HttpSession session) {
 
         return "redirect:/manager";
 
-    }
+    }*/
 
     @RequestMapping("/logout")
     public String logout(){
@@ -160,7 +160,7 @@ public class UsersControllers {
         return "testFilter3";
     }
 
-    @GetMapping("/test")
+    @GetMapping(value ="/test"/*, produces = "text/html;charset=UTF-8"*/)
     public String testContr(HttpServletRequest request, Model model, Principal principal){
         model.addAttribute("request", request);
         logger.info("method test worked successfully");

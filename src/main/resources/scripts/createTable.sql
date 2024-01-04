@@ -1,4 +1,4 @@
-
+set database collation 'UTF8_GENERAL_CI';
 create table FEEDBACK
 (
 id integer not null,
@@ -79,6 +79,8 @@ deletedFilename varchar(255),
 ticked_id integer,
 primary key (id)
 );
+
+
 
 create sequence hibernate_sequence start with 1 increment by 1;
 
