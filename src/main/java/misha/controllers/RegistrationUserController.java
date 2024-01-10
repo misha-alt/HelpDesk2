@@ -32,6 +32,7 @@ private UserDAO userDAO;
         this.userDAO = userDAO;
     }
 
+    //форма для регистрации пользователя
     @RequestMapping("/regForm")
     public String regUser(Model model){
 
@@ -41,7 +42,7 @@ private UserDAO userDAO;
         return "registration";
     }
 
-
+    //роверяем заполненную форму
     @RequestMapping("/regForm2")
     public String regUser2(User user, BindingResult result, Model model,  Principal principal){
        new MyValidator().validate(user,result);

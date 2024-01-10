@@ -65,7 +65,8 @@ public class TickedContriller {
         modelAndView.setViewName("redirect:/manager");
 
         User user = userDAO.getByLogin(name).get(0);
-        user.getTicked().add(tickedDAO.geTickedById(id));
+        user.getTicked().add(tickedDAO.geTickedById(id));//добовляем билет который достали по id, в set  пользователя
+        //updateUsersComment просто обнояляет пользователя
         createCommDAO.updateUsersComment(user);
 
         return modelAndView;
@@ -116,14 +117,15 @@ public class TickedContriller {
         modelAndView.setViewName("redirect:/tickedLis");
         tickedDAO.creationTiket(ticked, cateorySelect, MyState, UrgencyState, nameOfAssignee, nameOfApprover,  engineerSuccessorr, principal);
 
-
+        //создам объект история билета, заполняем его и сохрняем
         Tickethistory tickethistory= historyDAO.createRecord(ticked);
          historyDAO.saveRecord(tickethistory);
 
+
+         //достаем историю билета из БД, добавляем ее в сет история билета и обновляем билет
          Tickethistory tickethistory1 = historyDAO.getById(tickethistory.getId());
          Ticked ticked1 = tickedDAO.geTickedById(ticked.getId());
             Set<Tickethistory> set = new HashSet<>();
-
             set.add(tickethistory1);
          ticked1.setTickethistories(set);
          tickedDAO.updateTcked(ticked1);
@@ -142,7 +144,7 @@ public class TickedContriller {
 
         return "ticketList";
     }
-
+    //показывает билет
     @PostMapping("/tickedShow/{id}")
     public String tiskedShow(HttpServletRequest request, @PathVariable("id") int id, Model model, Principal principal/**/){
 
@@ -161,7 +163,7 @@ public class TickedContriller {
 
             return "tiskedShow";
     }
-
+    //форма добавления файла
     @RequestMapping("/addFile/{id}")
     public String addFileCintroller(Model model, @PathVariable("id")int id){
            model.addAttribute("current_id", tickedDAO.geTickedById(id));
@@ -169,9 +171,11 @@ public class TickedContriller {
          return "testAddFile";
     }
 
-
+    //сохранение файла, возвращаем представление с названием файла
     @RequestMapping("/showFile/{id}")
     public String saveAndShowFile( @RequestParam("file") MultipartFile file, @PathVariable("id") int id, Model model) throws IOException {
+        //id билета для кнопки back
+        model.addAttribute("id", id);
 
         String fileName = file.getOriginalFilename();
         String extension = "";
@@ -203,7 +207,7 @@ public class TickedContriller {
     }
 
 
-
+    //не используется
     @GetMapping("/getFile/{id}")
     public String creaneFile(Model model, @PathVariable("id") int id) {
         //загружаем файл на ПК
@@ -221,14 +225,14 @@ public class TickedContriller {
        return "redirect:/tickedLis";
     }
 
-
+    //не используется
     @RequestMapping("/testController")
     public String testController (@RequestParam("id2") int id2, Model model){
         model.addAttribute("id2", id2);
         model.addAttribute("ticked", tickedDAO.geTickedById(id2));
         return "infoAboutFile";
     }
-
+    //форма для редактирования билета
     @GetMapping("/editForm/{id}")
     public String editForm(HttpServletRequest request, Principal principal, Model model, @PathVariable("id") int id, HttpSession session) {
        User user = userDAO.findByEmail(principal.getName());

@@ -5,13 +5,17 @@
 
 </head>
 <body>
-
+<form th:action="@{/tickedShow/{id}(id=${id})}" method="POST">
+    <button type="submit">
+        <span>&larr; back</span>
+    </button>
+</form>
 <!--<a th:text="${user}"></a>
 
 <a th:text="${allFiles}"></a>
 
 <a th:href="@{/tickedLis}">To ticket list</a>-->
-<a th:text="${allComments}"></a>
-allComments
+<a th:text="${showOureFile}"></a>
+
 </body>
 </html>

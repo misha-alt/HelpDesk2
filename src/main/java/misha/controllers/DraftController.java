@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.List;
-
+//не используется
 @Controller
 @Transactional
 public class DraftController {

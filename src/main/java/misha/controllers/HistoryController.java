@@ -88,7 +88,7 @@ public class HistoryController {
 
        feedbackDAO.saveRate(feedBack);
 
-       //сохраняем оценку в у билета в сете
+       //сохраняем оценку  билета в сете
 //        int id = (Integer) session.getAttribute("ticket_id");
         Ticked ticked =  tickedDAO.geTickedById(id);
         ticked.getFeedBacks().add(feedBack);

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-
+//не используется
 @Controller
 @Transactional
 public class TestControllerSQL {
