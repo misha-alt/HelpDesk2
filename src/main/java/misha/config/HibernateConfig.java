@@ -31,7 +31,7 @@ public class HibernateConfig {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder
                 .setType(EmbeddedDatabaseType.H2)
-                //.setScriptEncoding("UTF-8")
+                .setScriptEncoding("UTF-8")
                 .addScript("scripts/createTable.sql")
                 .addScript("scripts/fillInTheTables.sql")
 

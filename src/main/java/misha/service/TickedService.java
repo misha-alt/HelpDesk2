@@ -123,7 +123,14 @@ public class TickedService implements TickedDAO {
             ticked.setApprover(user.getLogin());
         }
 
-        ticked.setRollOfCreater(userService.getByLogin(user.getLogin()).get(0).getAuthority());
+        List<RoleOfUser> roleList= new ArrayList<>(user.getAuthority());
+
+        if (!roleList.isEmpty()) {
+            ticked.setRollOfCreater(roleList.get(0).getRole_name());
+        } else {
+            ticked.setRollOfCreater("ROLE_USER");
+
+        }
 
         //устанавливаем дату создания билета
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -172,7 +179,7 @@ public class TickedService implements TickedDAO {
         ticked.setCreate_date(currentDate);
         saveOrUpdate(ticked);
     }
-//методы для сортирови билетов____________________________________________________________________
+//методы для сортировки билетов____________________________________________________________________
     @Override
        public  List<Ticked> methodForSort(String var, Principal principal) {
 
@@ -213,15 +220,22 @@ public class TickedService implements TickedDAO {
     public  List<Ticked> sortedlistOfTicked(Principal principal){
      User user = userDAO.findByEmail(principal.getName());
      EnumComparator enumComparator = new EnumComparator();
-     if(user.getAuthority().equals("ROLE_MANAGER")){
-         List list =managerAsAppruverAndStateDeclin(user.getLogin());
-         list.sort(enumComparator);
-         return list;
-     }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(enumComparator);
-            return list;
+
+
+
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
+                list.sort(enumComparator);
+                return list;
+            }
+        }
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                List list = engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+                list.sort(enumComparator);
+                return list;
+            }
         }
         List list= userDAO.getByLogin(user.getLogin());
         list.sort(enumComparator);
@@ -233,20 +247,27 @@ public class TickedService implements TickedDAO {
     public List<Ticked> sortedListById (Principal principal){
         User user = userDAO.findByEmail(principal.getName());
         TicketIdComparator ticketIdComparator = new TicketIdComparator();
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
+
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")){
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
             list.sort(ticketIdComparator);
             return list;
         }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
+        }
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")){
             List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(ticketIdComparator);
-            return list;
+                list.sort(ticketIdComparator);
+                return list;
+            }
         }
-        if(user.getAuthority().equals("ROLE_USER")){
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")){
             List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(ticketIdComparator);
-            return list;
+                list.sort(ticketIdComparator);
+                return list;
+            }
         }
         List list= userDAO.getByLogin(user.getLogin());
         return list;
@@ -257,20 +278,29 @@ public class TickedService implements TickedDAO {
     public List<Ticked> sortedListByIdDecreasing(Principal principal) {
         User user = userDAO.findByEmail(principal.getName());
         TicketIdComparator ticketIdComparator = new TicketIdComparator();
-        if(user.getAuthority().equals("ROLE_MANAGER")){
+
+
+
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")){
             List list =managerAsAppruverAndStateDeclin(user.getLogin());
             list.sort(ticketIdComparator.reversed());
             return list;
         }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(ticketIdComparator.reversed());
-            return list;
         }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(ticketIdComparator.reversed());
-            return list;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                List list = engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+                list.sort(ticketIdComparator.reversed());
+                return list;
+            }
+        }
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                List list = employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
+                list.sort(ticketIdComparator.reversed());
+                return list;
+            }
         }
         List list= userDAO.getByLogin(user.getLogin());
         return list;
@@ -280,20 +310,29 @@ public class TickedService implements TickedDAO {
     public List<Ticked> sortedByDate(Principal principal)  {
         User user = userDAO.findByEmail(principal.getName());
         DataComp dataComp = new DataComp();
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(dataComp);
-            return list;
+
+
+
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
+                list.sort(dataComp);
+                return list;
+            }
         }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(dataComp);
-            return list;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                List list = engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+                list.sort(dataComp);
+                return list;
+            }
         }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(dataComp);
-            return list;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                List list = employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
+                list.sort(dataComp);
+                return list;
+            }
         }
         List list= userDAO.getByLogin(user.getLogin());
         return list;
@@ -304,23 +343,31 @@ public class TickedService implements TickedDAO {
         User user = userDAO.findByEmail(principal.getName());
         CreateDateCompare createDateCompare = new CreateDateCompare();
 
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(createDateCompare);
-            List subList= list.subList(0,5);
-            return subList;
+
+
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
+                list.sort(createDateCompare);
+                List subList = list.subList(0, 5);
+                return subList;
+            }
         }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(createDateCompare);
-            List subList= list.subList(0,5);
-            return subList;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                List list = engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+                list.sort(createDateCompare);
+                List subList = list.subList(0, 5);
+                return subList;
+            }
         }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(createDateCompare);
-            List subList= list.subList(0,5);
-            return list;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                List list = employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
+                list.sort(createDateCompare);
+                List subList = list.subList(0, 5);
+                return list;
+            }
         }
         List list= userDAO.getByLogin(user.getLogin());
         return list;
@@ -347,23 +394,30 @@ public class TickedService implements TickedDAO {
         User user = userDAO.findByEmail(principal.getName());
         AlphabetComparator alphabetComparator = new AlphabetComparator();
 
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(alphabetComparator);
 
-            return list;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
+                list.sort(alphabetComparator);
+
+                return list;
+            }
         }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(alphabetComparator);
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                List list = engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+                list.sort(alphabetComparator);
 
-            return list;
+                return list;
+            }
         }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(alphabetComparator);
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                List list = employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
+                list.sort(alphabetComparator);
 
-            return list;
+                return list;
+            }
         }
         return null;
 
@@ -374,23 +428,42 @@ public class TickedService implements TickedDAO {
         User user = userDAO.findByEmail(principal.getName());
         StateComparator stateComparator = new StateComparator();
 
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(stateComparator);
-
+        /* ===================================
+         for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")){
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
+            list.sort(ticketIdComparator);
             return list;
+
+            ROLE_ENGINEER
+            ROLE_USER
         }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(stateComparator);
-
-            return list;
         }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(stateComparator);
+        =================================*/
 
-            return list;
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                List list = managerAsAppruverAndStateDeclin(user.getLogin());
+                list.sort(stateComparator);
+
+                return list;
+            }
+        }
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                List list = engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
+                list.sort(stateComparator);
+
+                return list;
+            }
+        }
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                List list = employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
+                list.sort(stateComparator);
+
+                return list;
+            }
         }
         return null;
     }

@@ -159,7 +159,7 @@ public class UsersControllers {
 
         return "testFilter3";
     }
-    //не используется
+
     @GetMapping(value ="/test"/*, produces = "text/html;charset=UTF-8"*/)
     public String testContr(HttpServletRequest request, Model model, Principal principal){
         model.addAttribute("request", request);

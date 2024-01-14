@@ -29,7 +29,7 @@ public class MyValidator implements Validator {
         char[] charArray2 = user.getLast_name().toCharArray();
         char[] charArray3 = user.getEmail().toCharArray();
 
-        String strPass = user.getPassword();
+        String strPass = user.getPassword().getPassword();
         String str = new String(charArray3);
 
 
