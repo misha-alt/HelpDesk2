@@ -91,8 +91,10 @@ public class DraftController {
 @GetMapping("/getIt")
     public String getIt(Model model, Principal principal){
 
-        User user = userDAO.findByEmail(principal.getName());
-        model.addAttribute("someKey", user.getPassword());
+      Ticked ticked = tickedDAO.geTickedById(1);
+      ticked.getName();
+    System.out.println( ticked.getName().getBytes());
+        model.addAttribute("someKey", ticked.getName().getBytes());
         return "temperedTestForEntity";
 }
 }

@@ -428,18 +428,7 @@ public class TickedService implements TickedDAO {
         User user = userDAO.findByEmail(principal.getName());
         StateComparator stateComparator = new StateComparator();
 
-        /* ===================================
-         for(RoleOfUser authority :user.getAuthority()) {
-            if (authority.getRole_name().equals("ROLE_MANAGER")){
-                List list = managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(ticketIdComparator);
-            return list;
 
-            ROLE_ENGINEER
-            ROLE_USER
-        }
-        }
-        =================================*/
 
         for(RoleOfUser authority :user.getAuthority()) {
             if (authority.getRole_name().equals("ROLE_MANAGER")) {
