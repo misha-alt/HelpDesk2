@@ -1,6 +1,8 @@
 package misha.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.*;
@@ -30,6 +32,16 @@ public class DispatcerServlet extends AbstractAnnotationConfigDispatcherServletI
     public void onStartup(ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);
         registerHiddenFieldFilter(aServletContext);
+        //фильтр для форм, что бы данные, введеные на русском, сохранялись корректно
+/*=========================*/
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+
+        FilterRegistration.Dynamic filterRegistration = aServletContext
+                .addFilter("characterEncodingFilter", characterEncodingFilter);
+        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+        /*==========================================*/
         //registerCustomFilter(aServletContext);
     }
 
@@ -41,13 +53,6 @@ public class DispatcerServlet extends AbstractAnnotationConfigDispatcherServletI
 
 
 }
-
-
-
-
-
-
-
 
 
 

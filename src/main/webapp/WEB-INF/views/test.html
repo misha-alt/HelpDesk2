@@ -24,7 +24,6 @@
             background-size: cover;
             background-position: center;*/
         }
-
         /* Стили для дочерних элементов */
         .links {
             display: flex;
@@ -32,11 +31,9 @@
             align-items: center;
             margin-bottom: 20px;
         }
-
         .links a {
             margin-bottom: 10px;
         }
-
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -45,13 +42,10 @@
             border: none;
             cursor: pointer;
         }
-
         .logout-link {
             color: red;
         }
 </style>
-
-
 
 <div class="links">
 
@@ -64,7 +58,6 @@
 <input type="button" value="Registration" onclick="location.href='http://localhost:8099/regForm'" class="button rounded">
 <br/>
 <a th:href="@{/logout}" class="logout-link">Press here if you want logout</a>
-
 
 
 </body>

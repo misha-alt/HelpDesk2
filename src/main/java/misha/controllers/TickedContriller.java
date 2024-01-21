@@ -72,7 +72,7 @@ public class TickedContriller {
         return modelAndView;
     }
 
-    @RequestMapping("/create_ticket")
+    @RequestMapping(value="/create_ticket",produces = "text/html;charset=UTF-8")
     public String ticket (HttpServletRequest request, Principal principal, Model model){
 
         //User user =userDAO.findByEmail(principal.getName());
@@ -92,14 +92,13 @@ public class TickedContriller {
         return "create_ticket";
     }
 
-    @RequestMapping("/creation_ticked_view")
+    @RequestMapping(value="/creation_ticked_view", produces = "text/html;charset=UTF-8")
     public ModelAndView create (HttpSession session,@ModelAttribute("form_ticket") Ticked ticked, BindingResult result, Principal principal, Model model
             , @RequestParam("cateorySelect")String cateorySelect
             , @RequestParam("MyState") String MyState, @RequestParam(value = "nameOfAssignee",required = false) String nameOfAssignee
             , @RequestParam(value = "nameOfApprover",required = false) String nameOfApprover
             , @RequestParam("UrgencyState")String UrgencyState
             , @RequestParam(value = "engineerSuccessorr", defaultValue = "no assignee") String engineerSuccessorr)  {
-
 
         Set<String> validStates = new HashSet<>(Arrays.asList("NEW", "APPROVED", "DECLINE","INPROGRESS","DONE"));
         new ValidatorTickedCreation().validate(ticked,result);
@@ -113,6 +112,11 @@ public class TickedContriller {
         }else if (!tickedDAO.getByName(ticked.getName()).isEmpty()){
             return modelAndView2;
         }
+
+        /*====================================*/
+       String nameOfTickedStr= ticked.getName();
+       session.setAttribute("nameOfTickedStr", nameOfTickedStr);
+        /*====================================*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/tickedLis");
         tickedDAO.creationTiket(ticked, cateorySelect, MyState, UrgencyState, nameOfAssignee, nameOfApprover,  engineerSuccessorr, principal);
@@ -137,10 +141,12 @@ public class TickedContriller {
     }
 
     @RequestMapping("/tickedLis")
-    public String ticketList(Principal principal, Model model, @RequestParam(value = "var", defaultValue = "id") String var){
+    public String ticketList(HttpSession session, Principal principal, Model model, @RequestParam(value = "var", defaultValue = "id") String var){
 
         User user = userDAO.findByEmail(principal.getName());
         model.addAttribute("list2", tickedDAO.methodForSort(var, principal));
+
+
 
         return "ticketList";
     }

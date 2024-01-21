@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" charset="UTF-8">
 <head>
     <meta charset="UTF-8">
     <title>Accumulated work</title>
@@ -19,8 +19,8 @@
 <div class="container">
 <p th:text="${currentDate}"></p>
 
-<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST" >
 
+    <form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST" th:accept-charset="UTF-8">
 
     <label for="name">Enter name of problem</label>
     <input type="text" th:field="*{name}" id="name"/>
@@ -34,7 +34,6 @@
     <br/>
     <label for="desireddate">Enter DesireDate</label>
     <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate"/>
-
 
     <br/>
     <!--выбор категории билета-->

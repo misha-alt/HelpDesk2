@@ -1,7 +1,7 @@
 /*set database collation 'UTF8_GENERAL_CI';*/
 SET CHARSET UTF8;
 INSERT INTO USER(id, first_name, last_name, login, email)
-VALUES(1, 'Misha', 'Yatskevich', 'Pan', '1somemail');
+VALUES(1, 'Миша', 'Yatskevich', 'Pan', '1somemail');
 
 
 

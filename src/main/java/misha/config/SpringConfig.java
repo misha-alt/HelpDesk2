@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 
 @Configuration
@@ -33,6 +34,8 @@ public class SpringConfig implements WebMvcConfigurer {
         resourceTemplateResolver.setApplicationContext(applicationContext);
         resourceTemplateResolver.setPrefix("/WEB-INF/views/");
         resourceTemplateResolver.setSuffix(".html");
+        resourceTemplateResolver.setCharacterEncoding("UTF-8");
+        resourceTemplateResolver.setTemplateMode(TemplateMode.HTML);
         return resourceTemplateResolver;
     }
     @Bean

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 //не используется
@@ -89,12 +90,13 @@ public class DraftController {
     //-----------------------------------------------
 
 @GetMapping("/getIt")
-    public String getIt(Model model, Principal principal){
+    public String getIt(Model model, Principal principal) throws UnsupportedEncodingException {
 
       Ticked ticked = tickedDAO.geTickedById(1);
-      ticked.getName();
-    System.out.println( ticked.getName().getBytes());
-        model.addAttribute("someKey", ticked.getName().getBytes());
+
+    User user = userDAO.findByEmail(principal.getName());
+
+        model.addAttribute("someKey", ticked.getName());
         return "temperedTestForEntity";
 }
 }
