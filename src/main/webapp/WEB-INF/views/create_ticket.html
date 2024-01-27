@@ -6,39 +6,66 @@
 </head>
 <body>
 <style>
-    html, body {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  text-align: center;
-}
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+    }
+
+    .form-field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-label {
+        width: 150px;
+        margin-right: 10px;
+        text-align: right;
+    }
+
+    .form-input {
+        width: 300px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-button {
+        margin-top: 10px;
+    }
+
 </style>
-<div class="container">
+
 <p th:text="${currentDate}"></p>
 
 
     <form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST" th:accept-charset="UTF-8">
+<div class="form-container">
+    <div class="form-field">
+    <label for="name" class="form-label">Enter name of <br/> problem:</label>
+    <input type="text" th:field="*{name}" id="name" class="form-input"/>
+</div>
 
-    <label for="name">Enter name of problem</label>
-    <input type="text" th:field="*{name}" id="name"/>
     <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
-    <br/>
 
-    <label for="description">Enter description</label>
-    <input type="text" th:field="*{description}" id="description"/>
+<div class="form-field">
+    <label for="description" class="form-label">Enter description:</label>
+    <input type="text" th:field="*{description}" id="description" class="form-input"/>
+</div>
+    <div class="form-field">
+    <label for="desireddate" class="form-label">Enter DesireDate:</label>
+    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate" class="form-input"/>
+    </div>
 
 
-    <br/>
-    <label for="desireddate">Enter DesireDate</label>
-    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate"/>
 
-    <br/>
+
+    <div class="form-field">
     <!--выбор категории билета-->
-    <label for="cateorySelect">Select category:</label>
-    <select name="cateorySelect" id="cateorySelect">
+    <label for="cateorySelect" class="form-label">Select category:</label>
+    <select name="cateorySelect" id="cateorySelect" class="form-input">
 
         <option value="APPLICATIONANDSERVICES">Application & Services</option>
         <option value="BENEFITSANDPAPERWORC">Benefits & Paper Work</option>
@@ -48,6 +75,8 @@
         <option value="WORKPLACESANDFACILITIES">Workplaces & Facilities</option>
 
     </select>
+    </div>
+</div>
 
         <br/>
 
@@ -90,10 +119,6 @@
                 <option value="LOW">LOW</option>
 
              </select>
-
-        <br/>
-
-
 
     <br/>
 
