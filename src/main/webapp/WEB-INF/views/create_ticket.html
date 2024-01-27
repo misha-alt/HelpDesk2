@@ -52,7 +52,7 @@
 
 <div class="form-field">
     <label for="description" class="form-label">Enter description:</label>
-    <input type="text" th:field="*{description}" id="description" class="form-input"/>
+    <input type="text" th:field="*{description}" id="description" class="form-input" oninput="autoResize()"/>
 </div>
     <div class="form-field">
     <label for="desireddate" class="form-label">Enter DesireDate:</label>
@@ -148,6 +148,17 @@
 <br/>
 <a th:href="@{/newCom}">Create comment</a>
 </div>
+
+
+
+<script>
+function autoResize() {
+  const input = document.getElementById('description');
+  input.style.width = 'auto'; // Временно сбрасываем ширину на автоматическую
+  input.style.width = Math.max(input.scrollWidth, 300) + 'px'; // Задаем ширину, выбирая максимальное значение между прокручиваемой шириной и 300px
+}
+</script>
+
 
 </body>
 </html>
