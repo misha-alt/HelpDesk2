@@ -6,6 +6,15 @@
 </head>
 <body>
 <style>
+#header {
+  background-color: hsl(200, 50%, 70%);
+  height: 50px;
+}
+.link-container a:not(:last-child)::after {
+  content: "|";
+  margin-left: 10px;
+  color: blue;
+}
     .form-container {
         display: flex;
         flex-direction: column;
@@ -37,6 +46,11 @@
     }
 
 </style>
+
+<div id="header" class="link-container">
+    <a th:href="@{/logout}">Press here if you want logout</a>
+    <a th:href="@{/newCom}">Create comment</a>
+</div>
 
 <p th:text="${currentDate}"></p>
 
@@ -76,9 +90,9 @@
 
     </select>
     </div>
-</div>
 
-        <br/>
+
+       <!-- <br/>-->
 
     <div th:if="${#request.isUserInRole('ROLE_MANAGER')}">
         <label for="MyState">only for manager</label>
@@ -89,6 +103,7 @@
 
         </select>
     </div>
+
     <!--если отправляем Assign to Me или CANCELED то становишся правоприемником,
     если отправляеш пустое поле -нет-->
     <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
@@ -133,7 +148,7 @@
 
     <br/>
     <input type="submit" value="Create"/>
-
+</div>
 </form >
 
 
@@ -144,9 +159,7 @@
     <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
 </div>
 
-<a th:href="@{/logout}">Press here if you want logout</a>
-<br/>
-<a th:href="@{/newCom}">Create comment</a>
+
 </div>
 
 
