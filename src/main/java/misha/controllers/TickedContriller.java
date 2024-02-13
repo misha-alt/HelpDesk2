@@ -89,13 +89,18 @@ public class TickedContriller {
 
         model.addAttribute("currentDate", currentDate);
 
+        User user = userDAO.findByEmail(principal.getName());
+        if(!tickedDAO.selectUserDraft(user.getLogin()).isEmpty()){
+            model.addAttribute("draftExist", "The draft already exists.");
+        }
+
         return "create_ticket";
     }
 
     @RequestMapping(value="/creation_ticked_view", produces = "text/html;charset=UTF-8")
     public ModelAndView create (HttpSession session,@ModelAttribute("form_ticket") Ticked ticked, BindingResult result, Principal principal, Model model
             , @RequestParam("cateorySelect")String cateorySelect
-            , @RequestParam("MyState") String MyState, @RequestParam(value = "nameOfAssignee",required = false) String nameOfAssignee
+            , @RequestParam("state") String state, @RequestParam(value = "nameOfAssignee",required = false) String nameOfAssignee
             , @RequestParam(value = "nameOfApprover",required = false) String nameOfApprover
             , @RequestParam("UrgencyState")String UrgencyState
             , @RequestParam(value = "engineerSuccessorr", defaultValue = "no assignee") String engineerSuccessorr)  {
@@ -105,12 +110,21 @@ public class TickedContriller {
 
         ModelAndView modelAndView2 = new ModelAndView();
         modelAndView2.setViewName("create_ticket");
-        if (result.hasErrors()&&validStates.contains(MyState)){
+        if (result.hasErrors()&&validStates.contains(state)){
             model.addAttribute("form_ticket", ticked);
 
             return modelAndView2;
         }else if (!tickedDAO.getByName(ticked.getName()).isEmpty()){
             return modelAndView2;
+        }
+
+        //проверяем если пользователь хочет создать черновик, а у пользователя он уже есть
+        User user = userDAO.findByEmail(principal.getName());
+        if(!tickedDAO.selectUserDraft(user.getLogin()).isEmpty()&&ticked.getState().getCat().equals("DRAFT")){
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/create_ticket");
+            return modelAndView;
         }
 
         /*====================================*/
@@ -119,7 +133,7 @@ public class TickedContriller {
         /*====================================*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/tickedLis");
-        tickedDAO.creationTiket(ticked, cateorySelect, MyState, UrgencyState, nameOfAssignee, nameOfApprover,  engineerSuccessorr, principal);
+        tickedDAO.creationTiket(ticked, cateorySelect, state, UrgencyState, nameOfAssignee, nameOfApprover,  engineerSuccessorr, principal);
 
         //создам объект история билета, заполняем его и сохрняем
         Tickethistory tickethistory= historyDAO.createRecord(ticked);
@@ -142,14 +156,54 @@ public class TickedContriller {
 
     @RequestMapping("/tickedLis")
     public String ticketList(HttpSession session, Principal principal, Model model, @RequestParam(value = "var", defaultValue = "id") String var){
-
+        /*список билетов пользователя===================*/
         User user = userDAO.findByEmail(principal.getName());
         model.addAttribute("list2", tickedDAO.methodForSort(var, principal));
 
 
 
+        /*вкладка черновиик=====================*/
+        List list = tickedDAO.getMyDraft(user.getLogin());
+        if (list.isEmpty()){
+            model.addAttribute("draftList_message", "no drafts");
+        }else{
+            model.addAttribute("draftList",list);
+        }
+
+        /*вкладка в работе=============================*/
+
+        List listInProg =  tickedDAO.getTickedInProgress();
+        if (listInProg.isEmpty()){
+            model.addAttribute("no_in_progress", "no in progress");
+        }else{
+            model.addAttribute("in_progress",listInProg);
+        }
+
+
+        /*вкладка сделано========================*/
+        List listDone =  tickedDAO.getTickedInProgress();
+        if (listDone.isEmpty()){
+            model.addAttribute("no_done", "no one done");
+        }else{
+            model.addAttribute("done",listDone);
+        }
+
+
+
+
+
+
+       /* for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                model.addAttribute("newTicked", tickedDAO.getTickedNew());
+                *//*model.addAttribute("inPogressTicked", tickedDAO.getTickedInProgress());
+                model.addAttribute("doneTicked", tickedDAO.getTickedDone());*//*
+            }else{model.addAttribute("mark", "you are noy engineer"); }
+        }*/
+
         return "ticketList";
     }
+
     //показывает билет
     @PostMapping("/tickedShow/{id}")
     public String tiskedShow(HttpServletRequest request, @PathVariable("id") int id, Model model, Principal principal/**/){

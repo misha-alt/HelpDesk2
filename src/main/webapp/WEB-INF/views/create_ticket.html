@@ -35,21 +35,28 @@
     }
 
     .form-input {
-        width: 300px;
+        width: 500px;
         padding: 5px;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
-
+#description {
+        height: 100px;
+    }
     .form-button {
         margin-top: 10px;
     }
 
 </style>
+ <!--показываем черновик пользователя-->
+<div th:if="${draftExist}">
+    <p th:text="${draftExist}"></p>
+</div>
 
 <div id="header" class="link-container">
     <a th:href="@{/logout}">Press here if you want logout</a>
     <a th:href="@{/newCom}">Create comment</a>
+    <a th:href="@{/tickedLis}">Go to ticked list</a>
 </div>
 
 <p th:text="${currentDate}"></p>
@@ -60,20 +67,19 @@
     <div class="form-field">
     <label for="name" class="form-label">Enter name of <br/> problem:</label>
     <input type="text" th:field="*{name}" id="name" class="form-input"/>
-</div>
 
-    <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+        <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+    </div>
+
 
 <div class="form-field">
     <label for="description" class="form-label">Enter description:</label>
-    <input type="text" th:field="*{description}" id="description" class="form-input" oninput="autoResize()"/>
+    <textarea type="text" th:field="*{description}" id="description" class="form-input" oninput="autoResizeText()"></textarea>
 </div>
     <div class="form-field">
     <label for="desireddate" class="form-label">Enter DesireDate:</label>
     <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate" class="form-input"/>
     </div>
-
-
 
 
     <div class="form-field">
@@ -92,21 +98,19 @@
     </div>
 
 
-       <!-- <br/>-->
-
-    <div th:if="${#request.isUserInRole('ROLE_MANAGER')}">
-        <label for="MyState">only for manager</label>
-        <select name="MyState" id="MyState">
+    <div th:if="${#request.isUserInRole('ROLE_USER')}">
+        <label for="state">only for manager</label>
+        <select name="state" th:field="*{state}"  id="state">
             <option value="NEW">NEW</option>
             <option value="DRAFT">DRAFT</option>
 
-
         </select>
+        <p th:if="${#fields.hasErrors('state')}" th:each="err : ${#fields.errors('state')}" th:text="${err}"></p>
     </div>
 
     <!--если отправляем Assign to Me или CANCELED то становишся правоприемником,
     если отправляеш пустое поле -нет-->
-    <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+  <!--  <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
         <label for="engineerSuccessorr">appoint a successorr</label>
         <select name="engineerSuccessorr" id="engineerSuccessorr">
             <option value=""></option>
@@ -115,14 +119,14 @@
         </select>
     </div>
 
-    <div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_ENGINEER')}">
-        <label for="MyState">not for manager</label>
-        <select name="MyState" id="MyState2">
+    <div th:if="${#request.isUserInRole('ROLE_USER')}">
+        <label for="state">not for manager</label>
+        <select name="state" id="state2">
             <option value="NEW">Submit</option>
             <option value="DRAFT">DRAFT</option>
             <option value="DECLINED">DECLINE</option>
         </select>
-    </div>
+    </div>-->
 
 <!--выбор степени срочности-->
     <label for="UrgencyState">Select urgency</label>
@@ -170,6 +174,22 @@ function autoResize() {
   input.style.width = 'auto'; // Временно сбрасываем ширину на автоматическую
   input.style.width = Math.max(input.scrollWidth, 300) + 'px'; // Задаем ширину, выбирая максимальное значение между прокручиваемой шириной и 300px
 }
+
+ function autoResizeText(textarea) {
+    textarea.style.height = "auto"; // Сброс высоты до авто
+    textarea.style.height = (textarea.scrollHeight) + "px";
+  }
+
+</script>
+
+<script>
+    function autoResizeHeight() {
+    const input = document.getElementById('description');
+    element.style.height = "auto"; // Сброс высоты до авто
+
+    // Установка высоты элемента равной высоте содержимого
+    element.style.height = (element.scrollHeight + 2) + "px";
+    }
 </script>
 
 

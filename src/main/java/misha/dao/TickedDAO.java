@@ -13,8 +13,9 @@ public interface TickedDAO {
     List<Ticked> getTickedByUrgency(Urgency urgency);
     List<Ticked> getTicketByStatus(String state);
     List<Ticked> listOfTickedCurrentUser(String login);
+    List<Ticked> selectUserDraft(String login);
     List<Ticked> managerAsAppruverAndStateDeclin(String approver);
-    void creationTiket (Ticked ticked, String cateorySelect, String MyState, String UrgencyState,
+    void creationTiket (Ticked ticked, String cateorySelect, String state, String UrgencyState,
                         String nameOfAssignee, String nameOfApprover,String engineerSuccessorr, Principal principal);
     List<Ticked> methodForSort(String var, Principal principal);
     List<Ticked> sortedlistOfTicked(Principal principal);
@@ -35,6 +36,11 @@ public interface TickedDAO {
     void saveMergeTicked (Ticked ticked);
 
     List<Ticked> getAllTicked();
+    List <Ticked> getMyDraft(String name);
+
+    List<Ticked>getTickedNew();
+    List<Ticked>getTickedInProgress();
+    List<Ticked>getTickedDone();
 
 
 

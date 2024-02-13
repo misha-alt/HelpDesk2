@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <title>Title</title>
 </head>
 <body>
+
 
 
 <br/>
@@ -45,6 +49,20 @@
 }
 </style>
 <h1 style="text-align: center;">Tickets</h1>
+
+<div id="tabs">
+    <ul>
+        <!--th:if="${#request.isUserInRole('ROLE_USER')}"-->
+        <li><a href="#tab1">NEW</a></li>
+        <li><a href="#tab2">Draft</a></li>
+
+        <li><a href="#tab3">IN PROGRESS</a></li>
+        <li><a href="#tab4">DONE</a></li>
+
+    </ul>
+    <div id="tab1">
+
+
 <div class="container">
 
 <table class="bordered-table">
@@ -53,6 +71,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>State</th>
+        <th>Assign to me</th>
 
     </tr>
     </thead>
@@ -70,6 +89,11 @@
         <td>
             <a th:text="${lis.getState()}"></a>
         </td>
+        <td>
+            <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+                <button type="submit" th:href="@{/som}" th:text="ASSIGN TO ME"></button>
+            </div>
+        </td>
 
     </tr>
     </tbody>
@@ -86,20 +110,6 @@
     }
     }
 </script>
-<!---------______________-->
-
-<!--<p id="dfg">Filter by criteria</p>-->
-
-<!--<br/>
-<form  th:action="@{/tickedLis}" th:object="${obj}" th:method="GET">
-    <p><input type="text" name="ob" autocomplete="on"></p>
-    <input type="submit" value="Create"/>
-</form>
-<br/>-->
-
-<!--<div th:each="viewOB:${ob}">
-    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}+' '+${viewOB.getDesireddate()}"></a>
-</div>-->
 
 <a>Sorted</a>
 
@@ -126,6 +136,46 @@
 <br/>
 
 <a th:href="@{/create_ticket}">Create new ticket</a>
+
+    </div>
+
+    <div id="tab2">
+        <div th:each="ticked:${draftList}">
+            <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
+            <a th:href="@{/editForm/{id}(id=${ticked.getId()})}">edit draft</a>
+        </div>
+        <a th:text="${draftList_message}"></a>
+    </div>
+
+
+    <!--IN PROGRESS-->
+    <div id="tab3">
+        <div th:each="doneList:${in_progress}">
+            <a th:text="${doneList.getName()}"></a>
+        </div>
+        <a th:text="${no_in_progress}"></a>
+
+    </div>
+    <!--DENE-->
+    <div id="tab4">
+        <div th:each="done:${done}">
+            <a th:text="${done.getName()}"></a>
+        </div>
+        <a th:text="${no_done}"></a>
+
+    </div>
+
+</div>
+
+<script>
+  $(function() {
+    $("#tabs").tabs();
+  });
+</script>
+
+
+
+
 
 
 </body>

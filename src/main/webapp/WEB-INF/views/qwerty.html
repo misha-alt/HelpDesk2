@@ -74,8 +74,8 @@
             <!--для Manager-->
             <div th:if="${#request.isUserInRole('ROLE_MANAGER') and loginOfCreator.equals(editor_login) and state.equals('DRAFT') or state.equals('DECLINED')}">
                 <label for="state4">state</label>
-                <select name="state" id="state4">
-
+                <select name="state" th:field="*{state}" id="state4">
+                    <option value="DRAFT">DRAFT</option>
                     <option value="NEW">NEW</option>
                     <option value="CANCELED">CANCELED</option>
 

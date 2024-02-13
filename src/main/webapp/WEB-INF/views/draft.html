@@ -10,17 +10,18 @@
 <body>
 
 
-<!--<a th:text="${myFile}"></a>-->
 
-<div th:each="ticked:${showUser}">
+<!--"draftList_message"
+draftList-->
+
+
+<div th:each="ticked:${draftList}">
     <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
 </div>
-<!--<a th:text="${showUser}"></a>-->
+
 <br/>
-<a th:text="${showTicked}"></a>
-<!--<div th:each="user:${showUser}">
-    <a th:text="${user.getId()} +' '+${user.getLogin()}"></a>
-</div>-->
+<a th:text="${draftList_message}"></a>
+
 
 
 

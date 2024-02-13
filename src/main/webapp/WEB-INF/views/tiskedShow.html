@@ -9,11 +9,12 @@
 
 div {
   margin-bottom: 1.5em;
+  border: 1px solid #000000; /* Задает рамку вокруг каждого блока */
+  border-radius: 10px; /* радиус округления углов */
+    padding: 10px; /* отступы внутри div */
 }
 
-div {
-  border: 1px solid #000000; /* Задает рамку вокруг каждого блока */
-}
+
 
 p {
       font-weight: bold;
@@ -23,71 +24,62 @@ p {
 <body>
 
 
-
-<div>
     <a>date of creation:</a>
+<div class ="rounded-div">
     <p th:text="${ourTicked.getCreate_date()}"></p>
-
 </div>
 
-
-
-
-
-
-<div>
     <a>Name of your ticked:</a>
-<p th:text="${ourTicked.getName()}"></p>
-
-</div>
-
-<div style="width: 100%; word-wrap: break-word;">
-    <a>description of your ticket:</a>
-<p th:text="${ourTicked.getDescription()}"></p>
-</div>
-
-    <div>
-        <a>State of your ticket:</a>
-<p th:text="${ourTicked.getState()}"></p>
-    </div>
-
-        <div>
-            <a>Assignee of your ticket:</a>
-<p th:text="${ourTicked.getAssignee()}"></p>
-        </div>
-
-            <div>
-                <a>Approver of your ticket:</a>
-<p th:text="${ourTicked.getApprover()}"></p>
-            </div>
-
-                <div>
-                    <a>Login of your ticket:</a>
-<p th:text="${ourTicked.getLoginOfcreater()}"></p>
-                </div>
-
-                    <div>
-                        <a>Urgency of your ticket:</a>
-<p th:text="${ourTicked.getUrgency()}"></p>
-                    </div>
-
-                        <div>
-                            <a>Category of your ticket:</a>
-<p th:text="${ourTicked.getCategor()}"></p>
-                        </div>
-
 <div>
-    <a>Description:</a>
+    <p th:text="${ourTicked.getName()}"></p>
+</div>
+
+    <a>description of your ticket:</a>
+<div style="word-wrap: break-word;">
     <p th:text="${ourTicked.getDescription()}"></p>
 </div>
 
+    <a>State of your ticket:</a>
 <div>
-    <a>Desired resolution date:</a>
-    <p th:text="${ourTicked.getDesireddate()}"></p>
+    <p th:text="${ourTicked.getState()}"></p>
 </div>
 
+    <a>Assignee of your ticket:</a>
 <div>
+    <p th:text="${ourTicked.getAssignee()}"></p>
+</div>
+
+    <a>Approver of your ticket:</a>
+<div>
+    <p th:text="${ourTicked.getApprover()}"></p>
+</div>
+
+    <a>Login of creater:</a>
+<div>
+    <p th:text="${ourTicked.getLoginOfcreater()}"></p>
+</div>
+
+    <a>Urgency of your ticket:</a>
+<div>
+    <p th:text="${ourTicked.getUrgency()}"></p>
+</div>
+
+    <a>Category of your ticket:</a>
+<div>
+    <p th:text="${ourTicked.getCategor()}"></p>
+</div>
+
+    <a>Description:</a>
+<div>
+    <p th:text="${ourTicked.getDescription()}"></p>
+</div>
+
+    <a>Desired resolution date:</a>
+<div>
+    <p th:text="${ourTicked.getDesireddate()}"></p>
+</div>
     <a>Owner:</a>
+<div>
     <p th:text="${ourTicked.getLoginOfcreater()}"></p>
 </div>
 
@@ -164,100 +156,20 @@ p {
         <button type="submit">Ticket rate</button>
     </form>
 </div>
+
+    <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+        <form th:action="@{/appoint/{id}(id=${ourTicked.getId()})}" th:method="POST">
+            <button type="submit">appoint</button>
+        </form>
+    </div>
+
+<!--<div th:if="${#request.isUserInRole('ROLE_USER')}">
 <form th:action="@{/rate/{id}(id=${ourTicked.getId()})}" th:method="POST">
     <button type="submit">Ticket rate</button>
 </form>
-
-<!--<div id="tabs">
-
-<ul>
-    <li><a href="#tab1">History</a></li>
-    <li><a href="#tab2">Rate</a></li>
-    <li><a href="#tab3">Page 3</a></li>
-</ul>
-
-<div id="tab1">
-    <p th:text="${srt}"></p>
-
-
-    <style>
-  .historyTable {
-    border-collapse: collapse;
-    border: 1px solid black;
-  }
-  .historyTable th, .historyTable td {
-    border: 1px solid black;
-  }
-</style>
-    <table class="historyTable">
-
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Attached file</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="tikHis:${history}">
-            <td>
-                <a th:text="${tikHis.getDateHistory()}"></a>
-            </td>
-            <td>
-                <a th:text="${tikHis.getTicket_description()}"></a>
-            </td>
-
-            <td>
-                <div th:if="${tickedFile!=null&&!tickedFile.isEmpty()}">
-                    <div th:each="com:${tickedFile}">
-                        <a th:text="${com.getFile_name()}"></a>
-                    </div>
-                    <a th:text="${tikHis.getDeletedFilename()}"></a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>
-
-
-
-<div id="tab2">
-<h1>Rate</h1>
-
-
-<p th:text="${existRate}"></p>
-
-
-<div th:if="${existRate == 'make you rate'}">
-    <form th:action="@{/saveRate/{id}(id=${id})}" th:object="${rate}" th:method="POST">
-        <label for="rate">choose number from 1 to 5:</label>
-        <select id="rate" name="rate">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <br/>
-
-        <label for="text">Enter description</label>
-        <input type="text" th:field="*{text}" id="text"/>
-
-        <button type="submit">Submit</button>
-    </form>
-
-</div>
-
-</div>
-
-    <div id="tab3">
-        <a>some taxt</a>
-    </div>
-
 </div>-->
+
+
 
 <script>
   $(function() {

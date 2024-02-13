@@ -138,13 +138,6 @@ public class UserService implements UserDAO {
         return user;
     }
 
-    @Override
-    public List<Ticked> getMyDraft(String name) {
 
-        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :name and t.state = 'DRAFT'");
-        query.setParameter("name", name);
-        List<Ticked> list = query.list();
-        return list;
-    }
 
 }

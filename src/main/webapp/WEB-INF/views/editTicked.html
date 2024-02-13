@@ -70,7 +70,7 @@
     <div th:if="${#request.isUserInRole('ROLE_MANAGER') and loginOfCreator.equals(editor_login) and state.equals('DRAFT') or state.equals('DECLINED')}">
         <label for="state4">state</label>
         <select name="state" id="state4">
-
+            <option value="DRAFT">DRAFT</option>
             <option value="NEW">NEW</option>
             <option value="CANCELED">CANCELED</option>
 
@@ -102,7 +102,6 @@
     </div>
 
 
-
     <br/>
     <label for="create_date">Enter description</label>
     <input type="text" th:field="*{create_date}" id="create_date" readonly>
@@ -116,9 +115,6 @@
     <br/>
     <label for="urgency">Enter description</label>
     <input type="text" th:field="*{urgency}" id="urgency" readonly>
-
-
-
 
 
     <br/>
@@ -161,11 +157,6 @@
         <option th:each="assignee : ${setAssignee}" th:value="${assignee.getLogin()}" th:text="${assignee.getLogin()}"></option>
     </select>-->
 
-
-
-
-
-
     <div th:each="file:${attached_file}">
         <a>Your file:</a>
         <br/>
@@ -185,7 +176,6 @@
     <input type="submit" value="Create"/>
 
 </form >
-
 
 <a th:href="@{/logout}">Press here if you want logout</a>
 <a th:text="${form_ticket.getCreate_date()}"></a>

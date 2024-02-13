@@ -28,20 +28,6 @@ public class ManagersTicketController {
         this.managerDAO = managerDAO;
         this.userDAO = userDAO;
     }
-    /* @RequestMapping("/manager")
-    public String ticket (Principal principal, Model model, Object ob){
 
-       model.addAttribute("ob", ob);
-
-        return "manager";
-    }*/
-
-
-  /*  @RequestMapping("/create_ticket")
-    public String createTicket (Principal principal, Model model){
-        model.addAttribute("choose_an_engineer", managerService.allEngineers());
-        model.addAttribute("ticket", new Ticket ());
-        return "create_ticket";
-    }*/
 
 }

@@ -47,17 +47,6 @@ public class EnterController {
             }
         }
 
-       /* if (userDAO.findByEmail(principal.getName()).getAuthority().contains("ROLE_MANAGER")){
-            //model.addAttribute("ManagerName",userDAO.findByEmail(principal.getName()).getLogin());
-            return "redirect:/manager";
-        }
-        if(userDAO.findByEmail(principal.getName()).getAuthority().contains("ROLE_ENGINEER")){
-            return "redirect:/engineer";
-        }
-        if(userDAO.findByEmail(principal.getName()).getAuthority().contains("ROLE_USER")){
-            return "redirect:/emploeeContr";
-        }*/
-
         return "redirect:/test";
     }
 }

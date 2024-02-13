@@ -71,7 +71,14 @@ public class TickedService implements TickedDAO {
         return query.list();
 
     }
-    // билеты в статусах  DECLINED, APPROVED, CANCELED, INPROGRESS,DONE  и в которых менеждер как утверждающй
+    @Override
+    public  List<Ticked> selectUserDraft(String login){
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from Ticked t where t.loginOfcreater = :login and t.state = 'DRAFT'");
+        query.setParameter("login", login);
+        return query.list();
+    }
+    // билеты в статусах  DECLINED, APPROVED, CANCELED, INPROGRESS, DONE  и в которых менеждер как утверждающй
     @Override
     public List<Ticked> managerAsAppruverAndStateDeclin(String approver){
         CopareById copareById = new CopareById();
@@ -95,14 +102,14 @@ public class TickedService implements TickedDAO {
         return query.list();
     }
     @Override
-    public void creationTiket (Ticked ticked, String cateorySelect, String MyState, String UrgencyState,
+    public void creationTiket (Ticked ticked, String cateorySelect, String state, String UrgencyState,
                                String nameOfAssignee, String nameOfApprover,String engineerSuccessorr, Principal principal){
 
        //присваеваем переменые пришедшие в метод полям объекта ticked
         Categor categor = Categor.valueOf(cateorySelect);
-        State state = State.valueOf(MyState);
+        State myState = State.valueOf(state);
         ticked.setCategor(categor);
-        ticked.setState(state);
+        ticked.setState(myState);
         Urgency urgency = Urgency.valueOf(UrgencyState);
         ticked.setUrgency(urgency);
 
@@ -119,7 +126,7 @@ public class TickedService implements TickedDAO {
         //устанавливаем одобрителя в билете
 
         List<String> listOfstateForAprover = Arrays.asList("APPROVED", "DECLINED", "DONE");
-        if (listOfstateForAprover.contains(MyState)){
+        if (listOfstateForAprover.contains(state)){
             ticked.setApprover(user.getLogin());
         }
 
@@ -465,6 +472,14 @@ public class TickedService implements TickedDAO {
         List ticked = query.list();
         return ticked;
     }
+    @Override
+    public List<Ticked> getMyDraft(String name) {
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :name and t.state = 'DRAFT'");
+        query.setParameter("name", name);
+        List<Ticked> list = query.list();
+        return list;
+    }
 
     @Override
     public void saveTicked(Ticked ticked) {
@@ -510,9 +525,24 @@ public class TickedService implements TickedDAO {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from Ticked");
 
-
         return query.list();
     }
+    @Override
+    public List<Ticked> getTickedNew(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='NEW'");
+        return query.list();
+    }
+    @Override
+     public  List<Ticked> getTickedInProgress(){
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='INPROGRESS'");
+         return query.list();
+     }
+    @Override
+    public  List<Ticked> getTickedDone(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
+        return query.list();
+    }
+
 }
 
 
