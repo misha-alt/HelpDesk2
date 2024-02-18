@@ -71,7 +71,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>State</th>
-        <th>Assign to me</th>
+       <!-- <th>Assign to me</th>-->
 
     </tr>
     </thead>
@@ -89,11 +89,11 @@
         <td>
             <a th:text="${lis.getState()}"></a>
         </td>
-        <td>
+        <!--<td>
             <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
                 <button type="submit" th:href="@{/som}" th:text="ASSIGN TO ME"></button>
             </div>
-        </td>
+        </td>-->
 
     </tr>
     </tbody>
@@ -126,6 +126,8 @@
         <option value="state">state</option>
         <option value="APPROVED">APPROVED</option>
         <option value="CANCELED">CANCELED</option>
+        <option value="createByYou">create by you</option>
+
 
 
     </select>
@@ -150,10 +152,39 @@
 
     <!--IN PROGRESS-->
     <div id="tab3">
-        <div th:each="doneList:${in_progress}">
-            <a th:text="${doneList.getName()}"></a>
+        <div class="container">
+
+            <table class="bordered-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Engineer name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--просмотреть билет-->
+                <tr th:each="listtt:${in_progress}">
+                    <td>
+                        <form th:action="@{/tickedShow/{id}(id=${listtt.getId()})}" method="POST">
+                            <button type="submit" th:text="${listtt.getId()}"></button>
+                        </form>
+                    </td>
+                    <td>
+                        <a th:text="${listtt.getName()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${listtt.getState()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${listtt.getAssignee()}"></a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <a th:text="${no_in_progress}"></a>
 
     </div>
     <!--DENE-->

@@ -23,6 +23,10 @@ public class Ticked   {
     @Column(name = "approver")
     private String approver;
 
+    @Column(name="approving")
+    @Enumerated(EnumType.STRING)
+    private Approving approving;
+
     @Column(nullable = false)
     private String rollOfCreater;
     @Column (nullable = false)
@@ -115,6 +119,14 @@ public class Ticked   {
 
     public void setApprover(String approver) {
         this.approver = approver;
+    }
+
+    public Approving getApproving() {
+        return approving;
+    }
+
+    public void setApproving(Approving approving) {
+        this.approving = approving;
     }
 
     public String getRollOfCreater() {

@@ -39,6 +39,7 @@ public class TickedService implements TickedDAO {
         this.engineerDAO = engineerDAO;
         this.employeeDAO = employeeDAO;
         this.historyDAO = historyDAO;
+
     }
 
 
@@ -217,6 +218,11 @@ public class TickedService implements TickedDAO {
             //sorted ticket by alphabet
             return sortedByState(principal);
         }
+        if (var.equals("createByYou")){
+            //sorted ticket by alphabet
+            return sortedByLoinOfCreater(principal);
+        }
+
          filteredListByCriteria(var);
 
     return  null;
@@ -464,6 +470,22 @@ public class TickedService implements TickedDAO {
         return null;
     }
 
+    @Override
+    public List<Ticked> sortedByLoinOfCreater(Principal principal){
+        AlphabetComparator alphabetComparator = new AlphabetComparator();
+        User user = userDAO.findByEmail(principal.getName());
+        for(RoleOfUser authority :user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                List list = listOfTickedCurrentUser(user.getLogin());
+                list.sort(alphabetComparator);
+
+                return list;
+            }
+        }
+
+        return  null;
+    }
+
     //________________________________________________________________________________________
     @Override
     public List <Ticked> getByName(String name) {
@@ -537,11 +559,24 @@ public class TickedService implements TickedDAO {
          Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='INPROGRESS'");
          return query.list();
      }
+     @Override
+     public  List<Ticked> getTickedInProgressAndApproving(){
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.approving ='YES'");
+         return query.list();
+     }
+
     @Override
     public  List<Ticked> getTickedDone(){
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
         return query.list();
     }
+   /* @Override
+    public  List<Ticked> getTickedApproving(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
+        return query.list();
+    }*/
+
+
 
 }
 

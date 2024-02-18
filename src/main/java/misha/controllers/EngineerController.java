@@ -2,21 +2,19 @@ package misha.controllers;
 
 
 import misha.dao.*;
+import misha.domain.Approving;
 import misha.domain.State;
 import misha.domain.Ticked;
 import misha.domain.User;
-import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-import java.util.List;
 
 //этот контроллер возвращает страницу инженера
 @Controller
@@ -43,7 +41,7 @@ public class EngineerController {
         model.addAttribute("EngineerName",user.getFirst_name());
         model.addAttribute("listOfTicked", engineerDAO
                 .ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin()));
-        model.addAttribute("TestString", "Yes");
+
 
         return "engineer";
     }
@@ -54,6 +52,7 @@ public class EngineerController {
 
         model.addAttribute("newTicked", tickedDAO.getTickedNew());
         model.addAttribute("inPogressTicked", tickedDAO.getTickedInProgress());
+        model.addAttribute("inPogressApprovingTicked", tickedDAO.getTickedInProgressAndApproving());
         model.addAttribute("doneTicked", tickedDAO.getTickedDone());
         return "tickedListOfEngineer";
     }
@@ -66,6 +65,16 @@ public class EngineerController {
         tickedDAO.updateTcked(ticked);
         return "redirect:/tiskedListOfEngeneer";
 
+    }
+
+    @RequestMapping("/approving/{id}")
+    public String approvingTicket(Principal principal, @PathVariable("id") int id){
+        Ticked ticked = tickedDAO.geTickedById(id);
+        ticked.setApproving(Approving.YES);
+        tickedDAO.updateTcked(ticked);
+
+
+        return "redirect:/tiskedListOfEngeneer";
     }
 
 }

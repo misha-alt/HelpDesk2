@@ -6,13 +6,11 @@
 </head>
 <body>
 
-<p th:text="${EngineerName}"></p>
+<p >
+    <span>Приветствую, </span>
+    <span th:text="${EngineerName}"></span>
+</p>
 <br/>
-<p th:text="${TestString}"></p>
-<br/>
-
-
-
 
 <a th:href="@{/create_ticket}">Create Ticket</a>
 <br/>

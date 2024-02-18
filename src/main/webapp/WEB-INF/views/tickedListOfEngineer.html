@@ -51,11 +51,13 @@
 <div id="tabs">
     <ul>
         <!--th:if="${#request.isUserInRole('ROLE_USER')}"-->
-        <li><a href="#tab1">NEW</a></li>
+        <li><a href="#tab1">NEW <span th:text="${newTicked.size()}"></span></a></li>
         <li><a href="#tab2">IN PROGRESS</a></li>
-        <li><a href="#tab3">DONE</a></li>
+        <li><a href="#tab3">APPROVING</a></li>
+        <li><a href="#tab4">DONE</a></li>
 
     </ul>
+    <!--NEW-->
     <div id="tab1">
 
 
@@ -67,7 +69,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>State</th>
-                    <th>Assign to me</th>
+                    <!--<th>Assign to me</th>-->
 
                 </tr>
                 </thead>
@@ -134,23 +136,65 @@
         <a th:href="@{/create_ticket}">Create new ticket</a>
 
     </div>
-
+<!--IN PROGRESS-->
     <div id="tab2">
-        <div th:each="ticked:${inPogressTicked}">
+
+        <div class="container">
+
+            <table class="bordered-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>State</th>
+                    <!--<th>Assign to me</th>-->
+
+                </tr>
+                </thead>
+                <tbody>
+                <!--просмотреть билет-->
+                <tr th:each="lis:${inPogressTicked}">
+                    <td>
+                        <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
+                            <button type="submit" th:text="${lis.getId()}"></button>
+                        </form>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getName()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getState()}"></a>
+                    </td>
+                    <!--<td>
+                        <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+                            <button type="submit" th:href="@{/som}">ASSIGN TO ME</button>
+                        </div>
+                    </td>-->
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--APPROVING-->
+    <div id="tab3">
+
+
+
+        <div th:each="ticked:${inPogressApprovingTicked}">
             <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
 
         </div>
-        <a th:text="${draftList_message}"></a>
-    </div>
-    <!--test tab-->
-    <div id="tab3">
 
+
+
+    </div>
+    <!--DONE-->
+    <div id="tab4">
         <div th:each="ticked:${doneTicked}">
             <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
 
         </div>
-
-
     </div>
 
 </div>

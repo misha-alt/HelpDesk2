@@ -127,7 +127,6 @@ p {
                                     <p th:text="${attached_file}"></p>
                                         <a th:href="@{/getFile/{id}(id=${ourTicked.getId()})}"></a>
                                     </div>-->
-
 <br/>
 <a th:href="@{/newCom/{id}(id=${ourTicked.getId()})}">add Comment</a>
 <br/>
@@ -137,18 +136,20 @@ p {
 <!--<div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_MANAGER')}">
 <a th:href="@{/editForm/{id}(id=${ourTicked.getId()})}">Edit Ticked</a>
 </div>-->
+<div th:if="${#request.isUserInRole('ROLE_USER')}">
 <a th:href="@{/editForm/{id}(id=${ourTicked.getId()})}">Edit Ticked</a>
 <br/>
-
+</div>
 <form th:action="@{/only/{id}(id=${ourTicked.getId()})}" th:method="POST">
     <button type="submit">Ticket history</button>
 </form>
 <br/>
 <!--удаление билета-->
+<div th:if="${#request.isUserInRole('ROLE_USER')}">
 <form th:action="@{/deleteTicket/{id}(id=${ourTicked.getId()})}" th:method="POST">
     <button type="submit">Delete Ticket</button>
 </form>
-
+</div>
 
 
 <div th:if="${loginOfcreater.equals(userLogin) and state.equals('DONE')}">
@@ -157,19 +158,17 @@ p {
     </form>
 </div>
 
-    <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+    <div th:if="${#request.isUserInRole('ROLE_ENGINEER') and  ourTicked.getAssignee() == null}">
         <form th:action="@{/appoint/{id}(id=${ourTicked.getId()})}" th:method="POST">
             <button type="submit">appoint</button>
         </form>
     </div>
 
-<!--<div th:if="${#request.isUserInRole('ROLE_USER')}">
-<form th:action="@{/rate/{id}(id=${ourTicked.getId()})}" th:method="POST">
-    <button type="submit">Ticket rate</button>
-</form>
-</div>-->
-
-
+    <div th:if="${#request.isUserInRole('ROLE_ENGINEER') and  ourTicked.getAssignee() != null}">
+        <form th:action="@{/approving/{id}(id=${ourTicked.getId()})}" th:method="POST">
+            <button type="submit">approving</button>
+        </form>
+    </div>
 
 <script>
   $(function() {

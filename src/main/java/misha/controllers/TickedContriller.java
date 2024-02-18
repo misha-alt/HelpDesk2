@@ -162,7 +162,7 @@ public class TickedContriller {
 
 
 
-        /*вкладка черновиик=====================*/
+        /*вкладка черновиик для пользователя=====================*/
         List list = tickedDAO.getMyDraft(user.getLogin());
         if (list.isEmpty()){
             model.addAttribute("draftList_message", "no drafts");
@@ -170,7 +170,7 @@ public class TickedContriller {
             model.addAttribute("draftList",list);
         }
 
-        /*вкладка в работе=============================*/
+        /*вкладка в работе для пользователя=============================*/
 
         List listInProg =  tickedDAO.getTickedInProgress();
         if (listInProg.isEmpty()){
@@ -180,8 +180,8 @@ public class TickedContriller {
         }
 
 
-        /*вкладка сделано========================*/
-        List listDone =  tickedDAO.getTickedInProgress();
+        /*вкладка сделано для пользователя========================*/
+        List listDone =  tickedDAO.getTickedDone();
         if (listDone.isEmpty()){
             model.addAttribute("no_done", "no one done");
         }else{
@@ -220,6 +220,8 @@ public class TickedContriller {
             model.addAttribute("state", ticked.getState());
 
             model.addAttribute("userLogin", user.getLogin());
+
+
 
             return "tiskedShow";
     }
