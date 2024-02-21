@@ -52,9 +52,8 @@
     <ul>
         <!--th:if="${#request.isUserInRole('ROLE_USER')}"-->
         <li><a href="#tab1">NEW <span th:text="${newTicked.size()}"></span></a></li>
-        <li><a href="#tab2">IN PROGRESS</a></li>
-        <li><a href="#tab3">APPROVING</a></li>
-        <li><a href="#tab4">DONE</a></li>
+        <li><a href="#tab2">IN PROGRESS <span th:text="${inPogressTicked.size()}"></span></a></li>
+        <li><a href="#tab4">DONE <span th:text="${doneTicked.size()}"></span></a></li>
 
     </ul>
     <!--NEW-->
@@ -147,7 +146,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>State</th>
-                    <!--<th>Assign to me</th>-->
+                    <th>For approval</th>
 
                 </tr>
                 </thead>
@@ -165,11 +164,11 @@
                     <td>
                         <a th:text="${lis.getState()}"></a>
                     </td>
-                    <!--<td>
-                        <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
-                            <button type="submit" th:href="@{/som}">ASSIGN TO ME</button>
+                    <td>
+                        <div th:if="${lis.getApproving() != null}">
+                           <a>for approval</a>
                         </div>
-                    </td>-->
+                    </td>
 
                 </tr>
                 </tbody>
@@ -177,7 +176,7 @@
         </div>
     </div>
     <!--APPROVING-->
-    <div id="tab3">
+    <!--<div id="tab3">
 
 
 
@@ -188,7 +187,7 @@
 
 
 
-    </div>
+    </div>-->
     <!--DONE-->
     <div id="tab4">
         <div th:each="ticked:${doneTicked}">

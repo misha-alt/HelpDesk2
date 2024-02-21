@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.List;
 
 //этот контроллер возвращает страницу инженера
 @Controller
@@ -50,12 +51,19 @@ public class EngineerController {
     public String tiskedListOfEngeneer(Principal principal, Model model,@RequestParam(value = "var", defaultValue = "id") String var){
         User user = userDAO.findByEmail(principal.getName());
 
-        model.addAttribute("newTicked", tickedDAO.getTickedNew());
-        model.addAttribute("inPogressTicked", tickedDAO.getTickedInProgress());
-        model.addAttribute("inPogressApprovingTicked", tickedDAO.getTickedInProgressAndApproving());
-        model.addAttribute("doneTicked", tickedDAO.getTickedDone());
+
+       List list = tickedDAO.getTickedNew();
+        model.addAttribute("newTicked", tickedDAO.methodForSort(var, list, principal));
+
+       List<Ticked> list1= tickedDAO.getTickedInProgress(userDAO.findByEmail(principal.getName()).getLogin());
+        model.addAttribute("inPogressTicked", tickedDAO.methodForSort(var, list1, principal));
+
+        List list2 = tickedDAO.getTickedDone();
+        model.addAttribute("doneTicked", tickedDAO.methodForSort(var, list2, principal));
         return "tickedListOfEngineer";
     }
+
+
         @RequestMapping("/appoint/{id}")
     public String assignControier(Principal principal, @PathVariable("id") int id){
         Ticked ticked = tickedDAO.geTickedById(id);

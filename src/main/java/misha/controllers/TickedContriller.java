@@ -158,21 +158,22 @@ public class TickedContriller {
     public String ticketList(HttpSession session, Principal principal, Model model, @RequestParam(value = "var", defaultValue = "id") String var){
         /*список билетов пользователя===================*/
         User user = userDAO.findByEmail(principal.getName());
-        model.addAttribute("list2", tickedDAO.methodForSort(var, principal));
+      List <Ticked> list=  tickedDAO.getUserTickedNew(user.getLogin());
+        model.addAttribute("list2", tickedDAO.methodForSort(var, list, principal));
 
 
 
         /*вкладка черновиик для пользователя=====================*/
-        List list = tickedDAO.getMyDraft(user.getLogin());
+        List listDraft = tickedDAO.getMyDraft(user.getLogin());
         if (list.isEmpty()){
             model.addAttribute("draftList_message", "no drafts");
         }else{
-            model.addAttribute("draftList",list);
+            model.addAttribute("draftList",listDraft);
         }
 
         /*вкладка в работе для пользователя=============================*/
 
-        List listInProg =  tickedDAO.getTickedInProgress();
+       /* List listInProg =  tickedDAO.getTickedInProgressForUser(userDAO.findByEmail(principal.getName()).getLogin());
         if (listInProg.isEmpty()){
             model.addAttribute("no_in_progress", "no in progress");
         }else{
@@ -180,26 +181,14 @@ public class TickedContriller {
         }
 
 
-        /*вкладка сделано для пользователя========================*/
+        *//*вкладка сделано для пользователя========================*//*
         List listDone =  tickedDAO.getTickedDone();
         if (listDone.isEmpty()){
             model.addAttribute("no_done", "no one done");
         }else{
             model.addAttribute("done",listDone);
         }
-
-
-
-
-
-
-       /* for (RoleOfUser authority : user.getAuthority()) {
-            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
-                model.addAttribute("newTicked", tickedDAO.getTickedNew());
-                *//*model.addAttribute("inPogressTicked", tickedDAO.getTickedInProgress());
-                model.addAttribute("doneTicked", tickedDAO.getTickedDone());*//*
-            }else{model.addAttribute("mark", "you are noy engineer"); }
-        }*/
+        */
 
         return "ticketList";
     }

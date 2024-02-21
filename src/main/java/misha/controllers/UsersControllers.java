@@ -138,7 +138,7 @@ public class UsersControllers {
     @GetMapping("/sotrByUrgense")
     public String forTestFilter(Model model, Principal principal ){
 
-        model.addAttribute("list2", tickedDAO.sortedlistOfTicked(principal));
+        //model.addAttribute("list2", tickedDAO.sortedlistOfTicked(principal));
 
         return "testFilter";
     }
@@ -147,7 +147,7 @@ public class UsersControllers {
     @GetMapping("/sortById")
     public String forTestFilterRedirect(Model model, Principal principal){
 
-        model.addAttribute("list2", tickedDAO.sortedListById(principal));
+        //model.addAttribute("list2", tickedDAO.sortedListById(principal));
 
         return "testFilter2";
     }
@@ -155,7 +155,7 @@ public class UsersControllers {
     @GetMapping("/sortByDate")
     public String sortByDate(Model model, Principal principal){
 
-        model.addAttribute("list2", tickedDAO.sortedByDate(principal));
+       // model.addAttribute("list2", tickedDAO.sortedByDate(principal));
 
         return "testFilter3";
     }

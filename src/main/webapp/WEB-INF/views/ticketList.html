@@ -53,11 +53,10 @@
 <div id="tabs">
     <ul>
         <!--th:if="${#request.isUserInRole('ROLE_USER')}"-->
-        <li><a href="#tab1">NEW</a></li>
+        <li><a href="#tab1">Ticked</a></li>
         <li><a href="#tab2">Draft</a></li>
 
-        <li><a href="#tab3">IN PROGRESS</a></li>
-        <li><a href="#tab4">DONE</a></li>
+
 
     </ul>
     <div id="tab1">
@@ -70,7 +69,10 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Urgence</th>
         <th>State</th>
+        <th>Engineer name, in progress</th>
+
        <!-- <th>Assign to me</th>-->
 
     </tr>
@@ -87,8 +89,16 @@
             <a th:text="${lis.getName()}"></a>
         </td>
         <td>
+            <a th:text="${lis.getUrgency()}"></a>
+        </td>
+
+        <td>
             <a th:text="${lis.getState()}"></a>
         </td>
+        <td>
+            <a th:if="${lis.getAssignee() != null}" th:text="${lis.getAssignee() + '- your specialist'}"></a>
+        </td>
+
         <!--<td>
             <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
                 <button type="submit" th:href="@{/som}" th:text="ASSIGN TO ME"></button>
@@ -141,6 +151,7 @@
 
     </div>
 
+<!--Draft-->
     <div id="tab2">
         <div th:each="ticked:${draftList}">
             <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
@@ -150,51 +161,8 @@
     </div>
 
 
-    <!--IN PROGRESS-->
-    <div id="tab3">
-        <div class="container">
 
-            <table class="bordered-table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>State</th>
-                    <th>Engineer name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!--просмотреть билет-->
-                <tr th:each="listtt:${in_progress}">
-                    <td>
-                        <form th:action="@{/tickedShow/{id}(id=${listtt.getId()})}" method="POST">
-                            <button type="submit" th:text="${listtt.getId()}"></button>
-                        </form>
-                    </td>
-                    <td>
-                        <a th:text="${listtt.getName()}"></a>
-                    </td>
-                    <td>
-                        <a th:text="${listtt.getState()}"></a>
-                    </td>
-                    <td>
-                        <a th:text="${listtt.getAssignee()}"></a>
-                    </td>
 
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-    <!--DENE-->
-    <div id="tab4">
-        <div th:each="done:${done}">
-            <a th:text="${done.getName()}"></a>
-        </div>
-        <a th:text="${no_done}"></a>
-
-    </div>
 
 </div>
 

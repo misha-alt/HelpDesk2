@@ -17,22 +17,22 @@ public interface TickedDAO {
     List<Ticked> managerAsAppruverAndStateDeclin(String approver);
     void creationTiket (Ticked ticked, String cateorySelect, String state, String UrgencyState,
                         String nameOfAssignee, String nameOfApprover,String engineerSuccessorr, Principal principal);
-    List<Ticked> methodForSort(String var, Principal principal);
-    List<Ticked> sortedlistOfTicked(Principal principal);
-    List<Ticked> sortedListById (Principal principal);
-    List<Ticked> sortedListByIdDecreasing (Principal principal);
-    List<Ticked> sortedByDate(Principal principal);
+    List<Ticked> methodForSort(String var,List<Ticked> list, Principal principal);
+    List<Ticked> sortedlistOfTicked(Principal principal, List<Ticked> list);
+    List<Ticked> sortedListById (Principal principal, List<Ticked> list);
+    List<Ticked> sortedListByIdDecreasing (Principal principal, List<Ticked> list);
+    List<Ticked> sortedByDate(Principal principal, List<Ticked> list);
     List<Ticked> filteredListByCriteria(String var);
-    List<Ticked> sortedByAlphabet(Principal principal);
-    List<Ticked> sortedByState(Principal principal);
-    List<Ticked> sortedByLoinOfCreater(Principal principal);
+    List<Ticked> sortedByAlphabet(Principal principal, List<Ticked> list);
+    List<Ticked> sortedByState(Principal principal, List<Ticked> list);
+    List<Ticked> sortedByLoinOfCreater(Principal principal, List<Ticked> list);
     void updateTcked(Ticked ticked);
     void deleteTicket(int id);
     void installChange(String cateorySelect, Ticked ticked, int id);
     void editDrafTicked(Ticked ticked, String engineerSuccessorr);
     List<Ticked> getByName(String name);
     void saveTicked(Ticked ticked);
-    List<Ticked> sortedByCreationDate(Principal principal);
+    List<Ticked> sortedByCreationDate(Principal principal, List<Ticked> list);
     void saveOrUpdate(Ticked ticked);
     void saveMergeTicked (Ticked ticked);
 
@@ -40,8 +40,10 @@ public interface TickedDAO {
     List <Ticked> getMyDraft(String name);
 
     List<Ticked>getTickedNew();
-    List<Ticked>getTickedInProgress();
-    List<Ticked>getTickedInProgressAndApproving();
+    List<Ticked>getTickedInProgress(String login);
+
+    List<Ticked>getTickedInProgressForUser(String login);
+    List<Ticked> getUserTickedNew (String login);
     List<Ticked>getTickedDone();
 
 
