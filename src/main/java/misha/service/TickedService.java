@@ -161,27 +161,14 @@ public class TickedService implements TickedDAO {
         Categor categor = Categor.valueOf(cateorySelect);
         ticked.setCategor(categor);
 
-       /* Set<Tickethistory> ticketHistory = new HashSet<>();
-        if (ticked.getTickethistories() != null){
 
-        for (Integer historyId : setOfHistoryId) {
-            Tickethistory tickethistory = historyDAO.showeHistory(historyId);
-            ticketHistory.add(tickethistory);
-        }
-
-            historyDAO.createRecord(ticked,ticketHistory);
-
-    }else {ticketHistory.add(historyDAO.createRecord(ticked));}*/
 
         updateTcked(ticked);
     }
 
     @Override
     public void editDrafTicked(Ticked ticked, String engineerSuccessorr) {
-       /* User user = userDAO.findByEmail(principal.getName());
-        if (!engineerSuccessorr.equals("no assignee")){
-            ticked.setAssignee(user.getLogin());
-        }*/
+
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String currentDate = dateFormat.format(new Date());
         ticked.setCreate_date(currentDate);
@@ -218,10 +205,10 @@ public class TickedService implements TickedDAO {
             //sorted ticket by alphabet
             return sortedByState(principal, list);
         }
-        if (var.equals("createByYou")){
+        /*if (var.equals("createByYou")){
             //sorted ticket by alphabet
             return sortedByLoinOfCreater(principal, list);
-        }
+        }*/
 
          filteredListByCriteria(var);
 
@@ -315,14 +302,14 @@ public class TickedService implements TickedDAO {
 
     }
 
-    @Override
+   /* @Override
     public List<Ticked> sortedByLoinOfCreater(Principal principal, List<Ticked> list){
         AlphabetComparator alphabetComparator = new AlphabetComparator();
                 list.sort(alphabetComparator);
 
                 return list;
 
-    }
+    }*/
 
     //________________________________________________________________________________________
     @Override
@@ -413,7 +400,7 @@ public class TickedService implements TickedDAO {
      }
 
      @Override
-     public List<Ticked> getUserTickedNew (String login){
+     public List<Ticked> getAllTickedOfUser (String login){
          Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :login");
          query.setParameter("login", login);
          return query.list();
@@ -422,7 +409,7 @@ public class TickedService implements TickedDAO {
 
 
     @Override
-    public  List<Ticked> getTickedDone(){
+    public  List<Ticked> getUserTickedDone(){
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
         return query.list();
     }

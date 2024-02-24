@@ -58,7 +58,7 @@ public class EngineerController {
        List<Ticked> list1= tickedDAO.getTickedInProgress(userDAO.findByEmail(principal.getName()).getLogin());
         model.addAttribute("inPogressTicked", tickedDAO.methodForSort(var, list1, principal));
 
-        List list2 = tickedDAO.getTickedDone();
+        List list2 = tickedDAO.getUserTickedDone();
         model.addAttribute("doneTicked", tickedDAO.methodForSort(var, list2, principal));
         return "tickedListOfEngineer";
     }
@@ -71,6 +71,8 @@ public class EngineerController {
         ticked.setAssignee(user.getLogin());
         ticked.setState(State.INPROGRESS);
         tickedDAO.updateTcked(ticked);
+
+
         return "redirect:/tiskedListOfEngeneer";
 
     }

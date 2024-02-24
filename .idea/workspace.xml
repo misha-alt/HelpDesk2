@@ -4,12 +4,17 @@
     <list default="true" id="ac5180a0-8a90-4381-af8a-834c366a1b83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/dao/ManagerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/dao/ManagerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/dao/TickedDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/dao/TickedDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/service/ManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/service/ManagerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/service/TickedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/service/TickedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tickedListOfEngineer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tickedListOfEngineer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/05-02-2024.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/05-02-2024.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/engineer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/engineer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/temperedTestForEntity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketListOfManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiskedShow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiskedShow.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="160" column="37" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+            <state relative-caret-position="1369">
+              <caret line="160" column="55" selection-start-line="160" selection-start-column="55" selection-end-line="160" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tickedListOfEngineer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="169" column="30" selection-start-line="167" selection-start-column="24" selection-end-line="169" selection-end-column="30" />
+            <state relative-caret-position="2261">
+              <caret line="166" column="21" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -47,31 +52,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="119">
+              <caret line="7" column="24" selection-start-line="3" selection-start-column="3" selection-end-line="7" selection-end-column="24" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/TickedService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketListOfManager.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="415" column="38" selection-start-line="415" selection-start-column="38" selection-end-line="415" selection-end-column="38" />
+            <state relative-caret-position="68">
+              <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketList.html">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiskedShow.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="98" column="109" selection-start-line="98" selection-start-column="109" selection-end-line="98" selection-end-column="109" />
+            <state relative-caret-position="110">
+              <caret line="181" column="55" selection-start-line="181" selection-start-column="55" selection-end-line="181" selection-end-column="55" />
               <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -90,8 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>log</find>
-      <find>ema</find>
       <find>enterPage</find>
       <find>maven-plugin</find>
       <find>utf</find>
@@ -120,6 +132,8 @@
       <find>methodForSort</find>
       <find>sortedByDate</find>
       <find>sortedByCreationDate</find>
+      <find>sortedByLoinOfCreater</find>
+      <find>sortedByAlphabet</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,10 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" />
-        <option value="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/temperedTestForEntity.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/HistoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/RegistrationUserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/TestControllerSQL.java" />
@@ -155,35 +165,39 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/y23/01/2024.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/draft.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editTicked.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/qwerty.html" />
         <option value="$PROJECT_DIR$/src/main/resources/errorMessage_ru.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/05-02-2024.html" />
         <option value="$PROJECT_DIR$/src/main/java/misha/Valdator/ValidationDraft.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/Valdator/ValidatorTickedCreation.java" />
         <option value="$PROJECT_DIR$/src/main/resources/scripts/fillInTheTables.sql" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create_ticket.html" />
-        <option value="$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/service/EmpioyeeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/DraftController.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/EnterController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/emploee.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/engineer.html" />
         <option value="$PROJECT_DIR$/src/main/resources/scripts/createTable.sql" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiskedShow.html" />
         <option value="$PROJECT_DIR$/src/main/java/misha/domain/ApprovingYesNo.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/domain/Categor.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/domain/State.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/domain/Ticked.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tickedListOfEngineer.html" />
-        <option value="$PROJECT_DIR$/src/main/java/misha/dao/TickedDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" />
-        <option value="$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketList.html" />
         <option value="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" />
         <option value="$PROJECT_DIR$/src/main/java/misha/service/TickedService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/misha/dao/TickedDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/misha/dao/ManagerDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/misha/service/ManagerService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/engineer.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editTicked.html" />
+        <option value="$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/05-02-2024.html" />
+        <option value="$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiskedShow.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketListOfManager.html" />
       </list>
     </option>
   </component>
@@ -233,7 +247,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -311,6 +324,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="misha" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="comparator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HelpDesk2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HelpDesk2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="misha" type="462c0819:PsiDirectoryNode" />
               <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -374,10 +397,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1708538572136" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1708766196559" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -623,7 +647,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708279637739</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="21/02/2024/Sheets">
+      <created>1708543869294</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1708543869294</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -671,7 +702,39 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.17549168" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.17776097" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="DB Browser" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Favorites" order="7" sideWeight="0.50121653" side_tool="true" weight="0.24130106" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.20424837" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49319214" visible="true" weight="0.3529412" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3382353" />
+      <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843137" />
+      <window_info anchor="bottom" id="DB Diagnostics" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50680786" side_tool="true" weight="0.5114379" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.2990196" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.09640523" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Coverage" order="7" sideWeight="0.5026042" side_tool="true" weight="0.120272316" />
+      <window_info anchor="right" id="Maven" order="8" sideWeight="0.4987013" visible="true" weight="0.10665658" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.18003026" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -700,39 +763,7 @@
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Coverage" order="7" sideWeight="0.5026042" side_tool="true" weight="0.120272316" />
-      <window_info active="true" anchor="right" id="Maven" order="8" sideWeight="0.4987013" visible="true" weight="0.10665658" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.19288956" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="DB Browser" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Favorites" order="7" sideWeight="0.50121653" side_tool="true" weight="0.24130106" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.20424837" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49319214" visible="true" weight="0.16013072" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3382353" />
-      <window_info anchor="bottom" id="DB Execution Console" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843137" />
-      <window_info anchor="bottom" id="DB Diagnostics" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50680786" side_tool="true" weight="0.5114379" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.2990196" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.09640523" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Coverage" order="7" sideWeight="0.5026042" side_tool="true" weight="0.120272316" />
-      <window_info anchor="right" id="Maven" order="8" sideWeight="0.4987013" visible="true" weight="0.13086233" />
+      <window_info anchor="right" id="Maven" order="8" sideWeight="0.4987013" visible="true" weight="0.10665658" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -792,76 +823,14 @@
     <MESSAGE value="28/01/2024_Create_ticked_front" />
     <MESSAGE value="13/02/2024/changed user capabilities" />
     <MESSAGE value="18/02/2024/Sheets" />
-    <option name="LAST_COMMIT_MESSAGE" value="18/02/2024/Sheets" />
+    <MESSAGE value="21/02/2024/Sheets" />
+    <option name="LAST_COMMIT_MESSAGE" value="21/02/2024/Sheets" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-663" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/getFile.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tempered.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/qwerty.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="77" column="56" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/Valdator/MyValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="31" column="58" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/errorMessage_en.properties">
-      <provider editor-type-id="ResourceBundle" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/errorMessage_ru.properties">
-      <provider editor-type-id="ResourceBundle" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="31" selection-start-line="18" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/onlyForTest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-482" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/TestControllerSQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/RegistrationUserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/Valdator/ValidationDraft.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/Valdator/ValidatorTickedCreation.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -870,13 +839,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -918,13 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/TicketEditionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/config/SpringConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
@@ -946,19 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/users.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/formEditDraft.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/comments.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/draft.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -966,45 +908,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/emploee.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editTicked.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="72" column="48" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/engineer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create_ticket.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="100" column="52" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/EnterController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="35" column="9" selection-start-line="31" selection-start-column="8" selection-end-line="35" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/05-02-2024.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1028,20 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/Approving.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/scripts/fillInTheTables.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/scripts/createTable.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1056,30 +949,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/EngineerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="42" column="68" lean-forward="true" selection-start-line="42" selection-start-column="68" selection-end-line="43" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="140" selection-start-line="140" selection-end-line="140" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/Ticked.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="147" column="31" selection-start-line="147" selection-start-column="19" selection-end-line="147" selection-end-column="31" />
-          <folding>
-            <element signature="e#2944#2945#0" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3029#3030#0" expanded="true" />
-            <element signature="e#3071#3072#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1090,10 +963,205 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/AlphabetComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/CreateDateCompare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/DataComp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/EnumComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/CopareById.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/TicketIdComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/comparator/StateComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/dao/TickedDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="46" column="28" lean-forward="true" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/EngineerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="42" column="68" lean-forward="true" selection-start-line="42" selection-start-column="68" selection-end-line="43" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/dao/ManagerDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/ManagerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="112" column="7" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/TickedService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="411" column="42" selection-start-line="411" selection-start-column="25" selection-end-line="411" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/emploee.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/editTicked.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="87" column="54" lean-forward="true" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/Ticked.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="123" column="33" selection-start-line="123" selection-start-column="21" selection-end-line="123" selection-end-column="33" />
+          <folding>
+            <element signature="e#2944#2945#0" expanded="true" />
+            <element signature="e#2976#2977#0" expanded="true" />
+            <element signature="e#3029#3030#0" expanded="true" />
+            <element signature="e#3071#3072#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/domain/Approving.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/TicketEditionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/users.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/engineer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/scripts/fillInTheTables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/formEditDraft.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/comments.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create_ticket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="108" column="10" selection-start-line="108" selection-start-column="10" selection-end-line="108" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/05-02-2024.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="106" column="135" selection-start-line="106" selection-start-column="135" selection-end-line="106" selection-end-column="135" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1369">
+          <caret line="160" column="55" selection-start-line="160" selection-start-column="55" selection-end-line="160" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiskedShow.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2652">
-          <caret line="170" column="10" selection-start-line="166" selection-start-column="4" selection-end-line="170" selection-end-column="10" />
+        <state relative-caret-position="110">
+          <caret line="181" column="55" selection-start-line="181" selection-start-column="55" selection-end-line="181" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1102,45 +1170,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="157" column="9" selection-start-line="157" selection-start-column="9" selection-end-line="157" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="235">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/ManagersTicketController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tickedListOfEngineer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="169" column="30" selection-start-line="167" selection-start-column="24" selection-end-line="169" selection-end-column="30" />
+        <state relative-caret-position="2261">
+          <caret line="166" column="21" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/dao/TickedDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="34" column="37" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/EngineerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="98" column="109" selection-start-line="98" selection-start-column="109" selection-end-line="98" selection-end-column="109" />
+        <state relative-caret-position="119">
+          <caret line="7" column="24" selection-start-line="3" selection-start-column="3" selection-end-line="7" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1148,20 +1206,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ticketListOfManager.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="160" column="37" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+        <state relative-caret-position="68">
+          <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/misha/service/TickedService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="415" column="38" selection-start-line="415" selection-start-column="38" selection-end-line="415" selection-end-column="38" />
         </state>
       </provider>
     </entry>

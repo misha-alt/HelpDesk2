@@ -25,7 +25,7 @@ public interface TickedDAO {
     List<Ticked> filteredListByCriteria(String var);
     List<Ticked> sortedByAlphabet(Principal principal, List<Ticked> list);
     List<Ticked> sortedByState(Principal principal, List<Ticked> list);
-    List<Ticked> sortedByLoinOfCreater(Principal principal, List<Ticked> list);
+    //List<Ticked> sortedByLoinOfCreater(Principal principal, List<Ticked> list);
     void updateTcked(Ticked ticked);
     void deleteTicket(int id);
     void installChange(String cateorySelect, Ticked ticked, int id);
@@ -43,8 +43,8 @@ public interface TickedDAO {
     List<Ticked>getTickedInProgress(String login);
 
     List<Ticked>getTickedInProgressForUser(String login);
-    List<Ticked> getUserTickedNew (String login);
-    List<Ticked>getTickedDone();
+    List<Ticked> getAllTickedOfUser (String login);
+    List<Ticked>getUserTickedDone();
 
 
 

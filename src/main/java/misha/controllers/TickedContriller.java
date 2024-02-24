@@ -158,7 +158,7 @@ public class TickedContriller {
     public String ticketList(HttpSession session, Principal principal, Model model, @RequestParam(value = "var", defaultValue = "id") String var){
         /*список билетов пользователя===================*/
         User user = userDAO.findByEmail(principal.getName());
-      List <Ticked> list=  tickedDAO.getUserTickedNew(user.getLogin());
+      List <Ticked> list=  tickedDAO.getAllTickedOfUser(user.getLogin());
         model.addAttribute("list2", tickedDAO.methodForSort(var, list, principal));
 
 

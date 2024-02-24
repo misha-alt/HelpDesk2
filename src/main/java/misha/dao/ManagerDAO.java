@@ -14,5 +14,9 @@ public interface ManagerDAO {
     void seveManagerTicked (Ticked ticked, String name);
     void createTickced (Ticked ticked);
     Ticked getTickedById(int id);
+    List<Ticked> getAllTickedInProgress();
+    List<Ticked> getTickedInProgressForApproving();
+    List<Ticked> getAllTickedDone();
+
 
 }

@@ -170,6 +170,36 @@ p {
         </form>
     </div>
 
+
+
+
+
+
+
+
+    <div th:if="${#request.isUserInRole('ROLE_MANAGER') and  ourTicked.getApproving().getTurn() == 'YES'}">
+    <div id="state5">
+        <button type="button" onclick="submitForm('DONE')">DONE</button>
+        <button type="button" onclick="submitForm('DECLINED')">DECLINED</button>
+        <!--<button type="button" onclick="submitForm('CANCELED')">CANCELED</button>-->
+    </div>
+
+        <script>
+    function submitForm(value) {
+        document.getElementById('stateValue').value = value;
+        document.getElementById('myForm').submit();
+    }
+</script>
+        <form id="myForm" th:action="@{/done/{id}(id=${ourTicked.getId()})}" th:method="POST">
+            <input type="hidden" name="managersSolution" id="stateValue">
+            <!-- Дополнительные поля формы -->
+        </form>
+    </div>
+
+
+
+
+
 <script>
   $(function() {
     $("#tabs").tabs();

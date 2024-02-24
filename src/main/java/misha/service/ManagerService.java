@@ -97,4 +97,37 @@ public class ManagerService implements ManagerDAO {
     }
 
 
+    /*=====================================*/
+
+
+    @Override
+    public  List<Ticked> getAllTickedInProgress(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='INPROGRESS'");
+
+        return query.list();
+    }
+    //для пользователя
+    @Override
+    public  List<Ticked> getTickedInProgressForApproving(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.approving ='YES'");
+
+        return query.list();
+    }
+
+   /* @Override
+    public List<Ticked> getAllTickedOfUser (String login){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :login");
+        query.setParameter("login", login);
+        return query.list();
+    }*/
+
+
+
+    @Override
+    public  List<Ticked> getAllTickedDone(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
+        return query.list();
+    }
+
+
 }
