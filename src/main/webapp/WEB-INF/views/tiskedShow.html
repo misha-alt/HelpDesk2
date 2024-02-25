@@ -175,9 +175,7 @@ p {
 
 
 
-
-
-    <div th:if="${#request.isUserInRole('ROLE_MANAGER') and  ourTicked.getApproving().getTurn() == 'YES'}">
+    <div th:if="${#request.isUserInRole('ROLE_MANAGER') and state == 'APPROVED'}">
     <div id="state5">
         <button type="button" onclick="submitForm('DONE')">DONE</button>
         <button type="button" onclick="submitForm('DECLINED')">DECLINED</button>

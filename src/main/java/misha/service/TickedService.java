@@ -387,14 +387,14 @@ public class TickedService implements TickedDAO {
 
     @Override
      public  List<Ticked> getTickedInProgress(String login){
-         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='INPROGRESS' and t.assignee = :login");
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED') and t.assignee = :login");
         query.setParameter("login", login);
          return query.list();
      }
      //для пользователя
      @Override
      public  List<Ticked> getTickedInProgressForUser(String login){
-         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='INPROGRESS' and t.loginOfcreater = :login");
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED') and t.loginOfcreater = :login");
          query.setParameter("login", login);
          return query.list();
      }

@@ -5,6 +5,7 @@ import misha.dao.HistoryDAO;
 import misha.dao.TickedDAO;
 import misha.dao.UserDAO;
 import misha.domain.*;
+import misha.domain.comparator.SortedHistoryById;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +43,8 @@ public class HistoryController {
         Ticked ticked = tickedDAO.geTickedById(id);
         Set<Tickethistory>  set= ticked.getTickethistories();//достаем билет из базы и берем его сет историй
         List<Tickethistory> list = new ArrayList<>(set);
+        SortedHistoryById sortedHistoryById = new SortedHistoryById();
+        list.sort(sortedHistoryById);
         list.get(0);
 
         Set<MyFile>set1 = list.get(0).getMyFiles();

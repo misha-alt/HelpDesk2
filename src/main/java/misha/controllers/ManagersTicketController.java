@@ -25,7 +25,6 @@ import java.util.List;
 @Transactional
 public class ManagersTicketController {
 
-
     private ManagerDAO managerDAO;
     private UserDAO userDAO;
     private TickedDAO tickedDAO;
@@ -35,6 +34,7 @@ public class ManagersTicketController {
         this.userDAO = userDAO;
         this.tickedDAO = tickedDAO;
     }
+
     @RequestMapping("/ticketListOfManager")
     public String ticketListOfManager(Principal principal, Model model,@RequestParam(value = "var", defaultValue = "id") String var){
         User user = userDAO.findByEmail(principal.getName());

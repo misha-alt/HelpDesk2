@@ -206,7 +206,7 @@ public class TickedContriller {
             model.addAttribute("request", request);
 
             model.addAttribute("loginOfcreater", ticked.getLoginOfcreater());
-            model.addAttribute("state", ticked.getState());
+            model.addAttribute("state", ticked.getState().getCat());
 
             model.addAttribute("userLogin", user.getLogin());
 
