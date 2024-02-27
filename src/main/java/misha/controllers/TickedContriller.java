@@ -139,7 +139,6 @@ public class TickedContriller {
         Tickethistory tickethistory= historyDAO.createRecord(ticked);
          historyDAO.saveRecord(tickethistory);
 
-
          //достаем историю билета из БД, добавляем ее в сет история билета и обновляем билет
          Tickethistory tickethistory1 = historyDAO.getById(tickethistory.getId());
          Ticked ticked1 = tickedDAO.geTickedById(ticked.getId());
@@ -147,8 +146,6 @@ public class TickedContriller {
             set.add(tickethistory1);
          ticked1.setTickethistories(set);
          tickedDAO.updateTcked(ticked1);
-
-
 
         // fileService.saveFile(file_name);
         return modelAndView;
@@ -209,8 +206,6 @@ public class TickedContriller {
             model.addAttribute("state", ticked.getState().getCat());
 
             model.addAttribute("userLogin", user.getLogin());
-
-
 
             return "tiskedShow";
     }

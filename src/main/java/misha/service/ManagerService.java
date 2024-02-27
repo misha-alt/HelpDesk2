@@ -102,7 +102,7 @@ public class ManagerService implements ManagerDAO {
 
     @Override
     public  List<Ticked> getAllTickedInProgress(){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS', 'APPROVED')");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS', 'APPROVED', 'DECLINED')");
 
         return query.list();
     }

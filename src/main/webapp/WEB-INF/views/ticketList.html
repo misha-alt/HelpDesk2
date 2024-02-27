@@ -9,8 +9,6 @@
 </head>
 <body>
 
-
-
 <br/>
 
 <!------------table of ticked----------->
@@ -50,6 +48,30 @@
 </style>
 <h1 style="text-align: center;">Tickets</h1>
 
+<a>Sorted</a>
+<br/>
+<!--фильтр для User-->
+<form  th:action="@{/tickedLis}" th:method="GET">
+
+    <select name="var">
+        <option value="urgency">urgency</option>
+        <option value="id">id</option>
+        <option value="id decreasing">id decreasing</option>
+        <option value="date">date</option>
+        <option value="creationDate">date of creation</option>
+        <option value="alphabet">alphabet</option>
+        <option value="state">state</option>
+        <option value="APPROVED">APPROVED</option>
+        <option value="CANCELED">CANCELED</option>
+        <option value="createByYou">create by you</option>
+
+    </select>
+
+    <input type="submit" value="filer"/>
+
+</form>
+<a th:href="@{/create_ticket}">Create new ticket</a>
+
 <div id="tabs">
     <ul>
         <!--th:if="${#request.isUserInRole('ROLE_USER')}"-->
@@ -69,7 +91,8 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Urgence</th>
+        <th>Description</th>
+        <th>Urgency</th>
         <th>State</th>
         <th>Engineer name, in progress</th>
 
@@ -87,6 +110,9 @@
         </td>
         <td>
             <a th:text="${lis.getName()}"></a>
+        </td>
+        <td>
+            <a th:text="${lis.getDescription()}"></a>
         </td>
         <td>
             <a th:text="${lis.getUrgency()}"></a>
@@ -121,33 +147,6 @@
     }
 </script>
 
-<a>Sorted</a>
-
-<br/>
-<form  th:action="@{/tickedLis}" th:method="GET">
-
-    <select name="var">
-        <option value="urgency">urgency</option>
-        <option value="id">id</option>
-        <option value="id decreasing">id decreasing</option>
-        <option value="date">date</option>
-        <option value="creationDate">date of creation</option>
-        <option value="alphabet">alphabet</option>
-        <option value="state">state</option>
-        <option value="APPROVED">APPROVED</option>
-        <option value="CANCELED">CANCELED</option>
-        <option value="createByYou">create by you</option>
-
-
-
-    </select>
-
-    <input type="submit" value="filer"/>
-
-</form>
-<br/>
-
-<a th:href="@{/create_ticket}">Create new ticket</a>
 
     </div>
 
@@ -160,10 +159,6 @@
         <a th:text="${draftList_message}"></a>
     </div>
 
-
-
-
-
 </div>
 
 <script>
@@ -173,19 +168,7 @@
 </script>
 
 
-
-
-
-
 </body>
 </html>
 
-<!--
-<select name="var" id="forScript">sorted by Id
 
-    <option value="one">sorted by Id</option>
-    <option value="two">sorted by urgency</option>
-    <option value="three">sorted by date</option>
-
-</select>
-<input type="submit" onclick="myFunc()" value="Create"/>-->

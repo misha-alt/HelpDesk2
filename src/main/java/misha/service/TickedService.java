@@ -263,8 +263,8 @@ public class TickedService implements TickedDAO {
         CreateDateCompare createDateCompare = new CreateDateCompare();
 
                 list.sort(createDateCompare);
-                List subList = list.subList(0, 5);
-                return list;
+                List subList = list.subList(0, list.size());
+                return subList;
 
     }
 
@@ -387,14 +387,14 @@ public class TickedService implements TickedDAO {
 
     @Override
      public  List<Ticked> getTickedInProgress(String login){
-         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED') and t.assignee = :login");
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED', 'DECLINED') and t.assignee = :login");
         query.setParameter("login", login);
          return query.list();
      }
      //для пользователя
      @Override
      public  List<Ticked> getTickedInProgressForUser(String login){
-         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED') and t.loginOfcreater = :login");
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED', 'DECLINED') and t.loginOfcreater = :login");
          query.setParameter("login", login);
          return query.list();
      }

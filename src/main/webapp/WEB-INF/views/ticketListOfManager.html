@@ -48,6 +48,30 @@
 }
 </style>
 <h1 style="text-align: center;">Tickets</h1>
+<a>Sorted</a>
+
+<br/>
+<form  th:action="@{/ticketListOfManager}" th:method="GET">
+
+    <select name="var">
+        <option value="urgency">urgency</option>
+        <option value="id">id</option>
+        <option value="id decreasing">id decreasing</option>
+        <option value="date">date</option>
+        <option value="creationDate">date of creation</option>
+        <option value="alphabet">alphabet</option>
+        <option value="state">state</option>
+        <option value="APPROVED">APPROVED</option>
+        <option value="CANCELED">CANCELED</option>
+
+    </select>
+
+    <input type="submit" value="filer"/>
+
+</form>
+<a th:href="@{/create_ticket}">Create new ticket</a>
+
+
 
 <div id="tabs">
     <ul>
@@ -68,8 +92,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Description</th>
+                    <th>Urgency</th>
                     <th>State</th>
-                    <!--<th>Assign to me</th>-->
 
                 </tr>
                 </thead>
@@ -83,6 +108,12 @@
                     </td>
                     <td>
                         <a th:text="${lis.getName()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getDescription()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getUrgency()}"></a>
                     </td>
                     <td>
                         <a th:text="${lis.getState()}"></a>
@@ -105,31 +136,7 @@
     }
 </script>
 
-        <a>Sorted</a>
 
-        <br/>
-        <form  th:action="@{/tickedLis}" th:method="GET">
-
-            <select name="var">
-                <option value="urgency">urgency</option>
-                <option value="id">id</option>
-                <option value="id decreasing">id decreasing</option>
-                <option value="date">date</option>
-                <option value="creationDate">date of creation</option>
-                <option value="alphabet">alphabet</option>
-                <option value="state">state</option>
-                <option value="APPROVED">APPROVED</option>
-                <option value="CANCELED">CANCELED</option>
-
-
-            </select>
-
-            <input type="submit" value="filer"/>
-
-        </form>
-        <br/>
-
-        <a th:href="@{/create_ticket}">Create new ticket</a>
 
     </div>
     <!--IN PROGRESS-->
@@ -142,6 +149,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Description</th>
+                    <th>Urgency</th>
                     <th>State</th>
                     <th>For approval</th>
 
@@ -157,6 +166,12 @@
                     </td>
                     <td>
                         <a th:text="${lis.getName()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getDescription()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getUrgency()}"></a>
                     </td>
                     <td>
                         <a th:text="${lis.getState()}"></a>
@@ -175,13 +190,48 @@
 
     <!--DONE-->
     <div id="tab4">
-        <div th:each="ticked:${doneTicked}">
-            <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
+        <div class="container">
 
+            <table class="bordered-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Urgency</th>
+                    <th>State</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <!--просмотреть билет-->
+                <tr th:each="lis:${inPogressTicked}">
+                    <td>
+                        <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
+                            <button type="submit" th:text="${lis.getId()}"></button>
+                        </form>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getName()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getDescription()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getUrgency()}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${lis.getState()}"></a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
 </div>
+
 
 <script>
   $(function() {

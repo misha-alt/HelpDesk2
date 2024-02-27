@@ -156,14 +156,6 @@
 </form >
 
 
-
-<br/>
-
-<div th:each="specific_tickets:${ticket}">
-    <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
-</div>
-
-
 </div>
 
 
@@ -199,24 +191,4 @@ function autoResize() {
 
 
 
-<!--
-<form id="form2"  th:action="@{/creation_ticked_view}" th:object="${comment}"th:method="POST">
 
-    <label for="comment">Enter comment</label>
-    <input type="text"  th:field="*{comment}" id="comment"/>
-
-    <br/>
-    <input type="submit" value="Create"/>
-
-
-</form>
-<br/>
-<button onclick="submitForms()">Send forms</button>
-
-
-<script>
-function submitForms() {
-  document.getElementById('form1').submit();
-  document.getElementById('form2').submit();
-}
-</script>-->
