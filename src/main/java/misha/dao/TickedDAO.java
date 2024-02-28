@@ -25,7 +25,7 @@ public interface TickedDAO {
     List<Ticked> filteredListByCriteria(String var);
     List<Ticked> sortedByAlphabet(Principal principal, List<Ticked> list);
     List<Ticked> sortedByState(Principal principal, List<Ticked> list);
-    //List<Ticked> sortedByLoinOfCreater(Principal principal, List<Ticked> list);
+    List<Ticked> engineerAssignee(Principal principal);
     void updateTcked(Ticked ticked);
     void deleteTicket(int id);
     void installChange(String cateorySelect, Ticked ticked, int id);

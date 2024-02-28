@@ -205,10 +205,10 @@ public class TickedService implements TickedDAO {
             //sorted ticket by alphabet
             return sortedByState(principal, list);
         }
-        /*if (var.equals("createByYou")){
+        if (var.equals("appointedEngineer")){
             //sorted ticket by alphabet
-            return sortedByLoinOfCreater(principal, list);
-        }*/
+            return engineerAssignee(principal);
+        }
 
          filteredListByCriteria(var);
 
@@ -302,14 +302,20 @@ public class TickedService implements TickedDAO {
 
     }
 
-   /* @Override
-    public List<Ticked> sortedByLoinOfCreater(Principal principal, List<Ticked> list){
+    @Override
+    public List<Ticked> engineerAssignee(Principal principal){
         AlphabetComparator alphabetComparator = new AlphabetComparator();
-                list.sort(alphabetComparator);
+        User user = userDAO.findByEmail(principal.getName());
 
-                return list;
+        String assignee  = user.getLogin();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.assignee = :assignee");
+        query.setParameter("assignee", assignee);
+        query.list();
+        query.list().sort(alphabetComparator);
 
-    }*/
+        return query.list();
+
+    }
 
     //________________________________________________________________________________________
     @Override

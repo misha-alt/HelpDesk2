@@ -9,63 +9,80 @@
 </head>
 <body>
 
+
+<style>
+
+ .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+    }
+
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+    }
+
+    .form-field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-label {
+        width: 150px;
+        margin-right: 10px;
+        text-align: right;
+    }
+
+    .form-input {
+        width: 500px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    #comment {
+    height: 100px;
+    }
+    .form-button {
+    margin-top: 10px;
+    }
+</style>
+
 <p th:text="${userName}"></p>
 
 <p th:text="${myDate}"></p>
 
 <form  th:action="@{/ert/{id}(id=${current_ticket.getId()})}" th:object="${comment}"th:method="POST">
 
-    <label for="comment">Enter comment</label>
-    <input type="text"  th:field="*{comment}" id="comment"/>
+    <div class="form-container">
 
-    <br/>
-    <input type="submit" value="Create"/>
+    <div class="form-field">
+        <label for="comment" class="form-label">Enter comment:</label>
+        <textarea type="text" th:field="*{comment}" id="comment" class="form-input" oninput="autoResizeText()"></textarea>
+        <br/>
+        <input type="submit" value="Create"/>
+    </div>
 
 
+
+
+    </div>
 </form>
+
+<div class="form-container">
 <a>you comments</a>
 <p th:text="${userComment}"></p>
 
 
 
-
-<!--<a>Current ticket</a>
-<p th:text="${current_ticket}"></p>-->
-
-
-
-
-
 <a th:href="@{/logout}">Press here if you want logout</a>
+</div>
 
 
-
-
-
-
-<!--<input type="text" name="withoutName" value="My value" th:value=${myDate}"/>-->
-<!--<p id="current_date"></p>
-    <script>
-date = new Date();
-year = date.getFullYear();
-month = date.getMonth() + 1;
-day = date.getDate();
-document.getElementById("current_date").innerHTML = year + "-" + month + "-" + day;
-</script>
-<p th:text="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"></p>
--->
-
-<!--
-<p id="test"></p>
-<script>
-        function My_Date() {
-            var d = document.getElementById(
-                    "test_Date").autocomplete = "off";
-
-            document.getElementById("test").innerHTML
-                    = "The value was changed to " + d;
-        }
-    </script>
--->
 </body>
 </html>

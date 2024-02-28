@@ -208,6 +208,7 @@ public class TickedContriller {
             model.addAttribute("userLogin", user.getLogin());
 
             return "tiskedShow";
+       // return "05-02-2024";
     }
     //форма добавления файла
     @RequestMapping("/addFile/{id}")
