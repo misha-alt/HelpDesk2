@@ -8,6 +8,13 @@
     <title>Title</title>
 </head>
 <body>
+<style>
+    .link-container a:not(:last-child)::after {
+  content: "|";
+  margin-left: 10px;
+  color: blue;
+}
+</style>
 
 
 <br/>
@@ -69,7 +76,10 @@
     <input type="submit" value="filer"/>
 
 </form>
-<a th:href="@{/create_ticket}">Create new ticket</a>
+<div id="header" class="link-container">
+    <a th:href="@{/create_ticket}">Create new ticket</a>
+    <a th:href="@{/logout}" class="logout-link">Press here if you want logout</a>
+</div>
 
 
 
@@ -205,7 +215,7 @@
                 </thead>
                 <tbody>
                 <!--просмотреть билет-->
-                <tr th:each="lis:${inPogressTicked}">
+                <tr th:each="lis:${doneTicked}">
                     <td>
                         <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
                             <button type="submit" th:text="${lis.getId()}"></button>

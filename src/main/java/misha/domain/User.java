@@ -4,7 +4,6 @@ package misha.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.util.Set;
 
@@ -35,6 +34,9 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Comments> comments;
 
@@ -54,8 +56,8 @@ public class User {
     private Set<RoleOfUser> authority;
 
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private PasswordClass password;
+   /* @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    private Passwords password;*/
 
     public User(){
 
@@ -94,13 +96,13 @@ public class User {
     }
 
 
-   /* public String getPassword() {
+    public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }*/
+    }
 
 
 
@@ -157,13 +159,13 @@ public class User {
         this.authority = authority;
     }
 
-    public PasswordClass getPassword() {
+    /*public Passwords getPassword() {
         return password;
     }
 
-    public void setPassword(PasswordClass password) {
+    public void setPassword(Passwords password) {
         this.password = password;
-    }
+    }*/
 
     @Override
     public String toString() {

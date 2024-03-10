@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,20 +49,18 @@ public class UsersControllers {
     private ManagerDAO managerDAO;
     private TickedDAO tickedDAO;
     private UserDetailsServiceImpl userDetailsService;
+    private PasswordEncoder passwordEncoder;
     private static final Logger logger = LoggerFactory.getLogger(UsersControllers.class);
-   // private ServletContext servletContext;
 
-
-
-   // private State state;
 
     @Autowired
-    public UsersControllers(UserDAO userDAO, CreateCommDAO createCommDAO, ManagerDAO managerDAO, TickedDAO tickedDAO, UserDetailsServiceImpl userDetailsService) {
+    public UsersControllers(UserDAO userDAO, CreateCommDAO createCommDAO, ManagerDAO managerDAO, TickedDAO tickedDAO, UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
         this.createCommDAO = createCommDAO;
         this.managerDAO = managerDAO;
         this.tickedDAO = tickedDAO;
         this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -121,7 +120,26 @@ public class UsersControllers {
 
         createCommDAO.seveUserCmments(comments, user.getLogin());//обновляет пользователя после  добовлени коментариев
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/tickedLis");
+
+
+
+        for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                modelAndView.setViewName( "redirect:/emploeeContr");
+            }
+        }
+        for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                modelAndView.setViewName( "redirect:/engineer");
+            }
+        }
+        for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                modelAndView.setViewName( "redirect:/manager");
+            }
+        }
+
+      //  modelAndView.setViewName("redirect:/tickedLis");
 
         return modelAndView;
     }
@@ -163,6 +181,14 @@ public class UsersControllers {
     @GetMapping(value ="/test"/*, produces = "text/html;charset=UTF-8"*/)
     public String testContr(HttpServletRequest request, Model model, Principal principal){
         model.addAttribute("request", request);
+
+//===============кодируем пароли пользователей которые созданы БД скриптом =============================
+        /*List<User> list = userDAO.getUser();
+        for (User user:list) {
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodedPassword);
+        }*/
+//=========================================
         logger.info("method test worked successfully");
         return "test";
     }

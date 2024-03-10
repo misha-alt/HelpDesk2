@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+//import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -54,6 +56,17 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
 
+    //для YOPmail================
+   /* @Bean
+    public JavaMailSender javaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("omemaleforme.com@yopmail.com");
+        mailSender.setPort(25);
+
+        return mailSender;
+    }
+*/
+//==================================
 
 
 

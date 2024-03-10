@@ -39,28 +39,18 @@ import java.util.Collection;
 
 @Configuration
 @EnableWebSecurity
-/*@Transactional*/
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
 @Autowired
     private UserDetailsServiceImpl userDetailsService;
-  /*  @Autowired
-    private CustomAuthenticationProvider customAuthenticationProvider;*/
 
-    /*@Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }*/
-
-  /* @Autowired
-    private PasswordEncoder passwordEncoder;*/
    @Bean
    public PasswordEncoder passwordEncoder() {
        return NoOpPasswordEncoder.getInstance();
    }
-  /* @Bean
+ /*  @Bean
    public PasswordEncoder encoder() {
        return new BCryptPasswordEncoder();
    }*/

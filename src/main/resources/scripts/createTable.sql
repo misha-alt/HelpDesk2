@@ -53,6 +53,7 @@ first_name varchar(255) not null,
 last_name varchar(255) not null,
 login varchar(255) not null,
 email varchar(255) not null,
+password varchar(255) not null,
 primary key (id)
 );
 
@@ -81,15 +82,15 @@ primary key (id)
 
 create table PASSWORDS
 (
-id integer not null,
+id integer not null auto_increment,
 password varchar(255),
 enabled BOOLEAN,
-user_id integer,
+
 primary key (id)
 );
 
 create table USERROLES (
-id integer not null,
+id integer not null auto_increment,
 role_name varchar(50) not null,
 primary key (id)
 );
@@ -102,7 +103,7 @@ userrole_id integer not null
 
 alter table USER_ROLES add constraint f123UC foreign key (user_id ) references USER;
 alter table USER_ROLES add constraint fo567C foreign key (userrole_id ) references USERROLES;
-alter table PASSWORDS add constraint f5B foreign key (user_id) references USER;
+
 
 
 

@@ -146,7 +146,6 @@ public class TickedService implements TickedDAO {
         ticked.setCreate_date(currentDate);
 
 
-
         //сохранить созданный тикет и историю в БД
         //managerService.createTickced(ticked);
         //обновление юзера в базе которому добавлен билет
@@ -160,8 +159,6 @@ public class TickedService implements TickedDAO {
 
         Categor categor = Categor.valueOf(cateorySelect);
         ticked.setCategor(categor);
-
-
 
         updateTcked(ticked);
     }
@@ -245,7 +242,6 @@ public class TickedService implements TickedDAO {
 
                 list.sort(ticketIdComparator.reversed());
                 return list;
-
     }
 
     @Override

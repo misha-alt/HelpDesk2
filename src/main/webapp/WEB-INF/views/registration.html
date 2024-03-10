@@ -10,49 +10,49 @@
 
 <br/>
 <form  th:action="@{/regForm2}" th:object="${user}" th:method="POST">
-<div>
-    <p th:text="${message}"></p>
-    <label for="first_name">Enter first_name</label>
-    <input type="text"  th:field="*{first_name}" id="first_name"/>
-    <p th:if="${#fields.hasErrors('first_name')}" th:each="err : ${#fields.errors('first_name')}" th:text="${err}"></p>
-    <!--<div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">error</div>-->
-</div>
-<div>
-    <br/>
-    <p th:text="${message}"></p>
-    <label for="last_name">Enter last_name</label>
-    <input type="text"  th:field="*{last_name}" id="last_name"/>
-    <p th:if="${#fields.hasErrors('last_name')}" th:each="err : ${#fields.errors('last_name')}" th:text="${err}"></p>
-  <!--  <div th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}">error</div>-->
-</div>
-<div>
-    <br/>
-    <p th:text="${message}"></p>
-    <label for="login">Enter login</label>
-    <input type="text"  th:field="*{login}" id="login"/>
-    <a th:text="${message}"></a>
-    <p th:if="${#fields.hasErrors('login')}" th:each="err : ${#fields.errors('login')}" th:text="${err}"></p>
-</div>
-<div>
-    <br/>
-    <p th:text="${message}"></p>
-    <label for="password">Enter password</label>
-    <input type="password"  th:field="*{password}" id="password"/>
-    <p th:if="${#fields.hasErrors('password')}" th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
-</div>
-<div>
-    <br/>
-    <label for="authority">Enter authority</label>
-    <input type="text"  th:field="*{authority}" id="authority"/>
-</div>
-<div>
-    <br/>
-    <p th:text="${messageEmail}"></p>
-    <label for="email">Enter email</label>
-    <input type="text"  th:field="*{email}" id="email"/>
-    <p th:if="${#fields.hasErrors('email')}" th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
-    <!--<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</div>-->
-</div>
+    <div>
+        <p th:text="${message}"></p>
+        <label for="first_name">Enter first_name</label>
+        <input type="text"  th:field="*{first_name}" id="first_name"/>
+        <p th:if="${#fields.hasErrors('first_name')}" th:each="err : ${#fields.errors('first_name')}" th:text="${err}"></p>
+        <!--<div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">error</div>-->
+    </div>
+    <div>
+        <br/>
+        <p th:text="${message}"></p>
+        <label for="last_name">Enter last_name</label>
+        <input type="text"  th:field="*{last_name}" id="last_name"/>
+        <p th:if="${#fields.hasErrors('last_name')}" th:each="err : ${#fields.errors('last_name')}" th:text="${err}"></p>
+        <!--  <div th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}">error</div>-->
+    </div>
+    <div>
+        <br/>
+        <p th:text="${message}"></p>
+        <label for="login">Enter login</label>
+        <input type="text"  th:field="*{login}" id="login"/>
+        <a th:text="${message}"></a>
+        <p th:if="${#fields.hasErrors('login')}" th:each="err : ${#fields.errors('login')}" th:text="${err}"></p>
+    </div>
+    <div>
+        <br/>
+        <p th:text="${message}"></p>
+        <label for="password">Enter password</label>
+        <input type="password"  th:field="*{password}" id="password"/>
+        <p th:if="${#fields.hasErrors('password')}" th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+    </div>
+    <!--<div>
+        <br/>
+        <label for="authority">Enter authority</label>
+        <input type="text"  th:field="*{authority}" id="authority"/>
+    </div>-->
+    <div>
+        <br/>
+        <p th:text="${messageEmail}"></p>
+        <label for="email">Enter email</label>
+        <input type="text"  th:field="*{email}" id="email"/>
+        <p th:if="${#fields.hasErrors('email')}" th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+        <!--<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</div>-->
+    </div>
 
     <br/>
     <input type="submit" value="Create user"/>

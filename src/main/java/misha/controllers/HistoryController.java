@@ -71,7 +71,7 @@ public class HistoryController {
             List list = new ArrayList(ticked.getFeedBacks());
 
             FeedBack feedBack = (FeedBack) list.get(0);
-          model.addAttribute("existRate", feedBack.getRate()+" "+ ticked.getId());
+          model.addAttribute("existRate", "you rate:"+feedBack.getRate()+" for Ticked ID "+ ticked.getId());
 
       }else {
           model.addAttribute("existRate", "make you rate");

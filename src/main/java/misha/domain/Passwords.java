@@ -1,28 +1,31 @@
 package misha.domain;
 
 import javax.persistence.*;
-@Entity
-@Table(name = "PASSWORDS")
+/*@Entity
+@Table(name = "PASSWORDS")*/
 
-public class PasswordClass {
+public class Passwords {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable =  false)*/
+    /*private int id;
 
 
     @Column(name = "password")
     private String password;
 
+    @Column(name = "enabled")
+    private boolean enabled;
 
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
 
     private User user;
 
 
-    public PasswordClass() {
+    public Passwords() {
 
     }
 
@@ -46,6 +49,14 @@ public class PasswordClass {
         this.password = password;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public User getUser() {
         return user;
     }
@@ -53,6 +64,6 @@ public class PasswordClass {
     public void setUser(User user) {
         this.user = user;
     }
-
+*/
 }
 

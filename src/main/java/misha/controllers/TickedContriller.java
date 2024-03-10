@@ -155,14 +155,19 @@ public class TickedContriller {
     public String ticketList(HttpSession session, Principal principal, Model model, @RequestParam(value = "var", defaultValue = "id") String var){
         /*список билетов пользователя===================*/
         User user = userDAO.findByEmail(principal.getName());
-      List <Ticked> list=  tickedDAO.getAllTickedOfUser(user.getLogin());
-        model.addAttribute("list2", tickedDAO.methodForSort(var, list, principal));
 
+        if(var.equals("allTicked")){
+            List <Ticked> list=  tickedDAO.getAllTicked();
+            model.addAttribute("list2", tickedDAO.methodForSort(var, list, principal));
+        }else{
+            List <Ticked> list=  tickedDAO.getAllTickedOfUser(user.getLogin());
+            model.addAttribute("list2", tickedDAO.methodForSort(var, list, principal));
+        }
 
 
         /*вкладка черновиик для пользователя=====================*/
         List listDraft = tickedDAO.getMyDraft(user.getLogin());
-        if (list.isEmpty()){
+        if (listDraft.isEmpty()){
             model.addAttribute("draftList_message", "no drafts");
         }else{
             model.addAttribute("draftList",listDraft);
@@ -208,7 +213,7 @@ public class TickedContriller {
             model.addAttribute("userLogin", user.getLogin());
 
             return "tiskedShow";
-       // return "05-02-2024";
+
     }
     //форма добавления файла
     @RequestMapping("/addFile/{id}")
@@ -307,7 +312,6 @@ public class TickedContriller {
             Set<Tickethistory> tickethistorySet = ticked.getTickethistories();
             session.setAttribute("testObject", tickethistorySet);
 
-
         if(ticked.getMyFile()!=null) {
             Set<MyFile> myFileSet = ticked.getMyFile();
             session.setAttribute("myFileSet", myFileSet);
@@ -352,10 +356,8 @@ public class TickedContriller {
         tickedDAO.installChange(cateorySelect,ticked, id);
 
 
-
         return "redirect:/tickedLis";
     }
-
 
 }
 

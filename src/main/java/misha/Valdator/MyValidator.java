@@ -29,7 +29,7 @@ public class MyValidator implements Validator {
         char[] charArray2 = user.getLast_name().toCharArray();
         char[] charArray3 = user.getEmail().toCharArray();
 
-        String strPass = user.getPassword().getPassword();
+        String strPass = user.getPassword();
         String str = new String(charArray3);
 
 
@@ -49,40 +49,40 @@ public class MyValidator implements Validator {
 
 
 
-            //проверка имени на размер
-            if (charArray.length < 2) {
-                errors.rejectValue("first_name", "errorCodeFrsrName");
-            } else if (charArray.length > 30) {
-                errors.rejectValue("first_name", "errorCodeFirstName2");
-            }
+        //проверка имени на размер
+        if (charArray.length < 2) {
+            errors.rejectValue("first_name", "errorCodeFrsrName");
+        } else if (charArray.length > 30) {
+            errors.rejectValue("first_name", "errorCodeFirstName2");
+        }
 
-            //проверка пароля на размер
-            else if (strPass.toCharArray().length < 6||strPass.toCharArray().length > 20) {
-                errors.rejectValue("password", "errorCodePassword");
-            }
-            //проверка фамилии на размео
-            else if (charArray2.length < 2) {
-                errors.rejectValue("last_name", "errorCodeLastName");
-            } else if (charArray2.length > 30) {
-                errors.rejectValue("last_name", "errorCodeLastName2");
-            }
+        //проверка пароля на размер
+        else if (strPass.toCharArray().length < 6||strPass.toCharArray().length > 20) {
+            errors.rejectValue("password", "errorCodePassword");
+        }
+        //проверка фамилии на размео
+        else if (charArray2.length < 2) {
+            errors.rejectValue("last_name", "errorCodeLastName");
+        } else if (charArray2.length > 30) {
+            errors.rejectValue("last_name", "errorCodeLastName2");
+        }
 
-            //проверка Email на первый и последний символ равный '@'
-            else if (charArray3[0] == '@' || charArray3.length - 1 == '@') {
-                errors.rejectValue("email", "errorCodeEmail2");
-            } else if (e != 1) {
-                errors.rejectValue("email", "errorCodeEmail");
-            } else if (str.startsWith(".") || str.endsWith(".")) {
-                errors.rejectValue("email", "errorCodeEmail3");
-            }
-            //проверка пароля на буквы, заглавные, маленькие, на наличчие специальных символов
+        //проверка Email на первый и последний символ равный '@'
+        else if (charArray3[0] == '@' || charArray3.length - 1 == '@') {
+            errors.rejectValue("email", "errorCodeEmail2");
+        } else if (e != 1) {
+            errors.rejectValue("email", "errorCodeEmail");
+        } else if (str.startsWith(".") || str.endsWith(".")) {
+            errors.rejectValue("email", "errorCodeEmail3");
+        }
+        //проверка пароля на буквы, заглавные, маленькие, на наличчие специальных символов
         if (!strPass.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}])[a-zA-Z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]+$")) {
             errors.rejectValue("password", "errorCodePasswordUnicode");
 
         }
 
-        }
     }
+}
 
 
 

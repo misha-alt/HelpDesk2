@@ -45,6 +45,11 @@
   font-size: 2em;
   text-align: center;
 }
+    .link-container a:not(:last-child)::after {
+  content: "|";
+  margin-left: 10px;
+  color: blue;
+}
 </style>
 <h1 style="text-align: center;">Tickets</h1>
 
@@ -63,6 +68,9 @@
         <option value="state">state</option>
         <option value="APPROVED">APPROVED</option>
         <option value="CANCELED">CANCELED</option>
+        <option value="allTicked">all ticket</option>
+
+
 
 
     </select>
@@ -70,7 +78,10 @@
     <input type="submit" value="filer"/>
 
 </form>
-<a th:href="@{/create_ticket}">Create new ticket</a>
+<div id="header" class="link-container">
+    <a th:href="@{/create_ticket}">Create new ticket</a>
+    <a th:href="@{/logout}" class="logout-link">Press here if you want logout</a>
+</div>
 
 <div id="tabs">
     <ul>

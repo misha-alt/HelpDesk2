@@ -56,6 +56,7 @@ public class ManagersTicketController {
        Ticked ticked= tickedDAO.geTickedById(id);
 
        ticked.setState(State.valueOf(managersSolution));
+       ticked.setApprover(userDAO.findByEmail(principal.getName()).getLogin());
        tickedDAO.updateTcked(ticked);
 
         return "redirect:/ticketListOfManager";

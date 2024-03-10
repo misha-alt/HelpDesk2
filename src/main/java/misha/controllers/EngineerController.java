@@ -109,6 +109,7 @@ public class EngineerController {
     public String approvingTicket(Principal principal, @PathVariable("id") int id){
         Ticked ticked = tickedDAO.geTickedById(id);
         ticked.setState(State.APPROVED);
+        ticked.setApproving(Approving.YES);
 
         //создам объект история билета, заполняем его и сохрняем
         Tickethistory tickethistory= historyDAO.createRecord(ticked);

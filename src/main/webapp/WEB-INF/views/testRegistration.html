@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -9,10 +9,19 @@
 </head>
 <body>
 
+<a th:text="${user}"></a>
+<!--
+<a th:text="${userLOg}"></a>
+-->
 
+<!--<div th:each="list:${user}">
+    <p th:text="${list.getRole_name()}"></p>
+</div>-->
 
+<!--<div th:each="list:${list}">
+    <p th:text="${list.getId()}"></p>
+</div>-->
 
-<h>админ лох</h>
 
 </body>
 </html>

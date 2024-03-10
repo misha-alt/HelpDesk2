@@ -9,7 +9,7 @@ public class FormValidationMeth {
 
     public boolean validMeth (User user){
 
-        char[] charArray= user.getPassword().getPassword().toCharArray();
+        char[] charArray= user.getPassword().toCharArray();
         char[] charArray2 = user.getFirst_name().toCharArray();
         char[] charArray3 = user.getLast_name().toCharArray();
         char[] charArray4 = user.getLogin().toCharArray();
@@ -36,7 +36,7 @@ public class FormValidationMeth {
 
     public boolean validSpecialCharacters(User user){
 
-        char[] charArray1= user.getPassword().getPassword().toCharArray();
+        char[] charArray1= user.getPassword().toCharArray();
         char[] charArray2 = user.getFirst_name().toCharArray();
         char[] charArray3 = user.getLast_name().toCharArray();
         char[] charArray4 = user.getLogin().toCharArray();
