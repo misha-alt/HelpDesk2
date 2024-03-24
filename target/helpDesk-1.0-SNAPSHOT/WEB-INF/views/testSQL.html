@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<form th:action="@{/tickedShow/{id}(id=${id})}" method="POST">
+    <button type="submit">
+        <span>&larr; back</span>
+    </button>
+</form>
+<!--<a th:text="${user}"></a>
+
+<a th:text="${allFiles}"></a>
+
+<a th:href="@{/tickedLis}">To ticket list</a>-->
+<a th:text="${showOureFile}"></a>
+
+</body>
+</html>

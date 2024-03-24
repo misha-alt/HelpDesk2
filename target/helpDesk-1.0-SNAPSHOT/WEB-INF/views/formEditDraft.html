@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+
+<form  th:action="@{/updateDraft/{id}(id=${form_ticket.getId()})}" th:object="${form_ticket}"th:method="PATCH" >
+
+
+    <label for="name">Enter name of problem</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+    <br/>
+
+    <label for="description">Enter description</label>
+    <input type="text" th:field="*{description}" id="description"/>
+
+
+    <br/>
+    <label for="desireddate">Enter DesireDate</label>
+    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate"/>
+
+
+
+    <br/>
+    <label for="loginOfcreater">Creator</label>
+    <input type="text" th:field="*{loginOfcreater}" id="loginOfcreater" readonly>
+
+
+    <br/>
+    <label for="rollOfCreater" style="display:none;">Enter description</label>
+    <input type="text" th:field="*{rollOfCreater}" id="rollOfCreater" style="display:none;"/>
+    <!-- <label for="urgency">Выберите необходимый вам вариант:</label>
+        <select th:field="*{urgency}" id="urgency">-->
+    <br/>
+    <!--выбор категории билета-->
+    <label for="categor">Select category:</label>
+    <select th:field="*{categor}" id="categor">
+
+        <option value="APPLICATIONANDSERVICES">Application & Services</option>
+        <option value="BENEFITSANDPAPERWORC">Benefits & Paper Work</option>
+        <option value="HARDWAREANDSOFTWARE">Hardware & Software</option>
+        <option value="PEOPLEANDMANAGEMENT">People Management</option>
+        <option value="SECURITYANDACCESS">Security & Access</option>
+        <option value="WORKPLACESANDFACILITIES">Workplaces & Facilities</option>
+
+    </select>
+
+    <br/>
+
+    <div th:if="${#request.isUserInRole('ROLE_MANAGER')}">
+        <label for="state">only for manager</label>
+        <select th:field="*{state}" id="state">
+            <option value="NEW">NEW</option>
+            <option value="DRAFT">DRAFT</option>
+            <option value="APPROVED">APPROVED</option>
+            <option value="DECLINED">DECLINED</option>
+            <option value="INPROGRESS">INPROGRESS</option>
+            <option value="DONE">DONE</option>
+            <option value="CANCELED">CANCELED</option>
+
+        </select>
+    </div>
+    <!--если отправляем Assign to Me или CANCELED то становишся правоприемником,
+    если отправляеш пустое поле -нет-->
+    <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+        <label for="engineerSuccessorr">appoint a successorr</label>
+        <select name="engineerSuccessorr" id="engineerSuccessorr">
+            <option value=""></option>
+            <option value="AssignToMe">Assign to Me</option>
+            <option value="CANCELED">CANCELED</option>
+        </select>
+    </div>
+
+    <div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_ENGINEER')}">
+        <label for="state">not for manager</label>
+        <select th:field="*{state}" id="state2">
+            <option value="NEW" selected>NEW</option>
+            <option value="DRAFT">DRAFT</option>
+        </select>
+    </div>
+
+    <!--выбор степени срочности-->
+    <label for="urgency">Select urgency</label>
+    <select th:field="*{urgency}" id="urgency">
+
+        <option value="CRITICAL">CRITICAL</option>
+        <option value="HIGHT">HIGHT</option>
+        <option value="AVEREGE">AVEREGE</option>
+        <option value="LOW">LOW</option>
+
+    </select>
+
+    <br/>
+    <!--выбор правоприемника-->
+    <!--<br/>
+    <select name="nameOfAssignee">
+        <option th:each="users:${assignee}"
+                th:text="${users.getLogin()}"></option>
+    </select>
+    <br/>-->
+
+    <!--выбор ободрителя-->
+    <!--<br/>
+    <select name="nameOfApprover">
+    <option th:each="users:${approver}"
+            th:text="${users.getLogin()}"></option>
+    </select>-->
+
+
+
+    <br/>
+
+    <select name="var">
+
+        <option value="one">one</option>
+        <option value="two">two</option>
+        <option value="three">three</option>
+
+    </select>
+
+    <br/>
+    <input type="submit" value="Create"/>
+
+</form >
+
+
+
+<br/>
+
+<div th:each="specific_tickets:${ticket}">
+    <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
+</div>
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+<br/>
+<a th:href="@{/newCom}">Create comment</a>
+
+
+</body>
+</html>
+
+
+
+
+</body>
+</html>

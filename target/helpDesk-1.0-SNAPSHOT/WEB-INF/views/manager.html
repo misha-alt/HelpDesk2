@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+</head>
+<body>
+<style>
+    html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  text-align: center;
+}
+</style>
+<div class="container">
+<p th:text="${ManagerName}"></p>
+<!--<p th:text="${testText}"></p>-->
+
+
+<br/>
+
+<a>Ticked created by Manager</a>
+
+<!--<div th:each="managerTicked:${tickedCreatedByManag}">
+    <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()}+' '+${managerTicked.getDesireddate()}+' '+${managerTicked.getUrgency()}+' '+${managerTicked.getDesireddate()}"></a>
+</div>-->
+
+
+<br/>
+<a th:href="@{/ticketListOfManager}">Go to ticked list</a>
+<br/>
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+</div>
+</body>
+</html>
+
+
+
+<!--<br/>
+<form  th:action="@{/manager}" th:object="${obj}" th:method="GET">
+ <p><input type="text" name="ob" autocomplete="on"></p>
+    <input type="submit" value="Create"/>
+</form>
+<br/>-->
+
+<!--<div th:each="viewOB:${ob}">
+    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}+' '+${viewOB.getDesireddate()}"></a>
+</div>-->

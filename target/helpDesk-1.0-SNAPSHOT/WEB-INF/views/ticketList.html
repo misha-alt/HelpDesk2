@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <title>Title</title>
+</head>
+<body>
+
+<br/>
+
+<!------------table of ticked----------->
+<style>
+ .container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  height: 100vh;
+  padding-top: 20px;
+}
+
+
+  .bordered-table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 100%;
+  }
+
+  .bordered-table th,
+  .bordered-table td {
+    border: 1px solid black;
+  }
+
+  .bordered-table tr:nth-child(even) {
+  background-color: #e6f2ff; /* Цвет второй строки - синий */
+}
+
+.bordered-table tr:nth-child(odd) {
+  background-color: white; /* Цвет первой строки - белый */
+}
+.bordered-table th {
+  font-size: 2em;
+  text-align: center;
+}
+    .link-container a:not(:last-child)::after {
+  content: "|";
+  margin-left: 10px;
+  color: blue;
+}
+</style>
+<h1 style="text-align: center;">Tickets</h1>
+
+<a>Sorted</a>
+<br/>
+<!--фильтр для User-->
+<form  th:action="@{/tickedLis}" th:method="GET">
+
+    <select name="var">
+        <option value="urgency">urgency</option>
+        <option value="id">id</option>
+        <option value="id decreasing">id decreasing</option>
+        <option value="date">date</option>
+        <option value="creationDate">date of creation</option>
+        <option value="alphabet">alphabet</option>
+        <option value="state">state</option>
+        <option value="APPROVED">APPROVED</option>
+        <option value="CANCELED">CANCELED</option>
+        <option value="allTicked">all ticket</option>
+
+
+
+
+    </select>
+
+    <input type="submit" value="filer"/>
+
+</form>
+<div id="header" class="link-container">
+    <a th:href="@{/create_ticket}">Create new ticket</a>
+    <a th:href="@{/logout}" class="logout-link">Press here if you want logout</a>
+</div>
+
+<div id="tabs">
+    <ul>
+        <!--th:if="${#request.isUserInRole('ROLE_USER')}"-->
+        <li><a href="#tab1">Ticked</a></li>
+        <li><a href="#tab2">Draft</a></li>
+
+
+
+    </ul>
+    <div id="tab1">
+
+
+<div class="container">
+
+<table class="bordered-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Urgency</th>
+        <th>State</th>
+        <th>Engineer name, in progress</th>
+
+       <!-- <th>Assign to me</th>-->
+
+    </tr>
+    </thead>
+    <tbody>
+    <!--просмотреть билет-->
+    <tr th:each="lis:${list2}">
+        <td>
+            <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
+                <button type="submit" th:text="${lis.getId()}"></button>
+            </form>
+        </td>
+        <td>
+            <a th:text="${lis.getName()}"></a>
+        </td>
+        <td>
+            <a th:text="${lis.getDescription()}"></a>
+        </td>
+        <td>
+            <a th:text="${lis.getUrgency()}"></a>
+        </td>
+
+        <td>
+            <a th:text="${lis.getState()}"></a>
+        </td>
+        <td>
+            <a th:if="${lis.getAssignee() != null}" th:text="${lis.getAssignee() + '- your specialist'}"></a>
+        </td>
+
+        <!--<td>
+            <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+                <button type="submit" th:href="@{/som}" th:text="ASSIGN TO ME"></button>
+            </div>
+        </td>-->
+
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+<br/>
+<script>
+    function myFunc(){
+    var forScript = document.getElementById('forScript').value;
+    if (forScript=='one'){
+    document.getElementById('dfg').innerHTML = 'Hello JavaScript';
+    }
+    }
+</script>
+
+
+    </div>
+
+<!--Draft-->
+    <div id="tab2">
+        <div th:each="ticked:${draftList}">
+            <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
+            <a th:href="@{/editForm/{id}(id=${ticked.getId()})}">edit draft</a>
+        </div>
+        <a th:text="${draftList_message}"></a>
+    </div>
+
+</div>
+
+<script>
+  $(function() {
+    $("#tabs").tabs();
+  });
+</script>
+
+
+</body>
+</html>
+
+

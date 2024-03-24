@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Person</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+</head>
+<body>
+
+<a>sort by Urgency</a>
+
+<div th:each="viewOB:${ob}">
+    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}"></a>
+</div>
+
+
+
+
+</body>
+</html>

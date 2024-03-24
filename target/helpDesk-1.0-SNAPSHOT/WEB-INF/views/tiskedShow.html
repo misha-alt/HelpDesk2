@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <style>
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000000;
+  padding: 10px;
+}
+
+th {
+  font-weight: bold;
+}
+
+ /* Стили для колонки "Field" */
+    td:first-child {
+        background-color: lightblue;
+    }
+
+    /* Стили для колонки "Value" */
+    td:nth-child(2) {
+        background-color: lightgreen;
+         width: 90%; /* Измените значение ширины на желаемое, например, 90% */
+        padding-right: 1cm; /* Добавьте отступ справа в 1 сантиметр или другое желаемое значение */
+    }
+
+
+div {
+  margin-bottom: 1.5em;
+}
+
+</style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>date of creation:</td>
+        <td th:text="${ourTicked.getCreate_date()}"></td>
+    </tr>
+    <tr>
+        <td>Name of your ticket:</td>
+        <td th:text="${ourTicked.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Description of your ticket:</td>
+        <td style="word-wrap: break-word;" th:text="${ourTicked.getDescription()}"></td>
+    </tr>
+    <tr>
+        <td>State of your ticket:</td>
+        <td th:text="${ourTicked.getState()}"></td>
+    </tr>
+    <tr>
+        <td>Assignee of your ticket:</td>
+        <td th:text="${ourTicked.getAssignee()}"></td>
+    </tr>
+    <tr>
+        <td>Approver of your ticket:</td>
+        <td th:text="${ourTicked.getApprover()}"></td>
+    </tr>
+    <tr>
+        <td>Login of creator:</td>
+        <td th:text="${ourTicked.getLoginOfcreater()}"></td>
+    </tr>
+    <tr>
+        <td>Urgency of your ticket:</td>
+        <td th:text="${ourTicked.getUrgency()}"></td>
+    </tr>
+    <tr>
+        <td>Category of your ticket:</td>
+        <td th:text="${ourTicked.getCategor()}"></td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td th:text="${ourTicked.getDescription()}"></td>
+    </tr>
+    <tr>
+        <td>Desired resolution date:</td>
+        <td th:text="${ourTicked.getDesireddate()}"></td>
+    </tr>
+    <tr>
+        <td>Owner:</td>
+        <td th:text="${ourTicked.getLoginOfcreater()}"></td>
+    </tr>
+</table>
+
+<div th:if="${#lists.isEmpty(coments)}">
+    <a>No comments</a>
+</div>
+<div th:if="${not #lists.isEmpty(coments)}">
+    <table>
+        <tr>
+            <th>Comments:</th>
+        </tr>
+        <tr th:each="commentList : ${coments}">
+            <td>
+                <table>
+                    <tr>
+                        <td>Date of comment:</td>
+                        <td th:text="${commentList.getDate()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Login:</td>
+                        <td th:text="${commentList.getLoginOfCreator()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Comment:</td>
+                        <td th:text="${commentList.getComment()}"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <form th:action="@{/comments/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">Comment page</button>
+    </form>
+</div>
+
+<div th:each="file:${attached_file}">
+    <a>Your file:</a>
+    <br/>
+    <a th:text="${file.getId()} +' '+${file.getFile_name()} " th:href="@{/getFile/{id}(id=${file.getId()})}"></a>
+    <br/>
+    <form th:action="@{/deleteFile/{id}(id=${file.getId()})}" method="POST">
+        <input type="hidden"  name="id2" th:value="${ourTicked.getId()}"/>
+        <input type="submit" value="Delete file"/>
+    </form>
+</div>
+
+<!--<form th:action="@{/deleteFile/{id}(id=${file.getId()})}" method="POST">
+    <input type="hidden"  name="id2" value="${ourTicked.getId()}"/>
+    <input type="submit" value="Delete file"/>
+</form>-->
+<!--  <div>
+                     <a>Your file:</a>
+                 <p th:text="${attached_file}"></p>
+                     <a th:href="@{/getFile/{id}(id=${ourTicked.getId()})}"></a>
+                 </div>-->
+<br/>
+<a th:href="@{/newCom/{id}(id=${ourTicked.getId()})}">add Comment</a>
+<br/>
+<a th:href="@{/addFile/{id}(id=${ourTicked.getId()})}">add file</a>
+<br/>
+
+<!--<div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_MANAGER')}">
+<a th:href="@{/editForm/{id}(id=${ourTicked.getId()})}">Edit Ticked</a>
+</div>-->
+<div th:if="${#request.isUserInRole('ROLE_USER') and !state.equals('DONE')}">
+    <a th:href="@{/editForm/{id}(id=${ourTicked.getId()})}">Edit Ticked</a>
+    <br/>
+</div>
+<form th:action="@{/only/{id}(id=${ourTicked.getId()})}" th:method="POST">
+    <button type="submit">Ticket history</button>
+</form>
+<br/>
+<!--удаление билета-->
+<div th:if="${#request.isUserInRole('ROLE_USER') and !state.equals('DONE')}">
+    <form th:action="@{/deleteTicket/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">Delete Ticket</button>
+    </form>
+</div>
+
+
+<div th:if="${loginOfcreater.equals(userLogin) and state.equals('DONE')}">
+    <form th:action="@{/rate/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">Ticket rate</button>
+    </form>
+</div>
+
+<div th:if="${#request.isUserInRole('ROLE_ENGINEER') and  ourTicked.getAssignee() == null}">
+    <form th:action="@{/appoint/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">appoint</button>
+    </form>
+</div>
+
+<div th:if="${#request.isUserInRole('ROLE_ENGINEER') and  ourTicked.getAssignee() != null and !state.equals('DONE')}">
+    <form th:action="@{/approving/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <button type="submit">approving</button>
+    </form>
+</div>
+
+
+
+<div th:if="${#request.isUserInRole('ROLE_MANAGER') and state == 'APPROVED'}">
+    <div id="state5">
+        <button type="button" onclick="submitForm('DONE')">DONE</button>
+        <button type="button" onclick="submitForm('DECLINED')">DECLINED</button>
+        <!--<button type="button" onclick="submitForm('CANCELED')">CANCELED</button>-->
+    </div>
+
+    <script>
+    function submitForm(value) {
+        document.getElementById('stateValue').value = value;
+        document.getElementById('myForm').submit();
+    }
+</script>
+    <form id="myForm" th:action="@{/done/{id}(id=${ourTicked.getId()})}" th:method="POST">
+        <input type="hidden" name="managersSolution" id="stateValue">
+        <!-- Дополнительные поля формы -->
+    </form>
+</div>
+
+
+<div th:if="${#request.isUserInRole('ROLE_USER')}">
+    <a th:href="@{/tickedLis}">Go to ticked list</a>
+</div>
+<div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+    <a th:href="@{/tiskedListOfEngeneer}">Go to ticked list</a>
+</div>
+<div th:if="${#request.isUserInRole('ROLE_MANAGER')}">
+    <a th:href="@{/ticketListOfManager}">Go to ticked list</a>
+</div>
+
+
+
+<script>
+  $(function() {
+    $("#tabs").tabs();
+  });
+</script>
+</body>
+</html>
+

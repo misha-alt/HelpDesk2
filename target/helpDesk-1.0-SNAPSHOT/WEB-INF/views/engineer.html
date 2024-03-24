@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<p >
+    <span>Приветствую, </span>
+    <span th:text="${EngineerName}"></span>
+</p>
+<br/>
+
+
+<a th:href="@{/tiskedListOfEngeneer}">Go to ticked list</a>
+<br/>
+
+
+<a>List of ticked </a>
+
+    <br/>
+<div th:each="lOT:${listOfTicked}">
+    <a th:text="${lOT.getId()} +' '+${lOT.getLoginOfcreater()} + ' '+${lOT.getState()}+' '+${lOT.getUrgency()}"></a>
+</div>
+<br/>
+
+<a th:href="@{/logout}">Press here if you want logout</a>
+
+</body>
+</html>

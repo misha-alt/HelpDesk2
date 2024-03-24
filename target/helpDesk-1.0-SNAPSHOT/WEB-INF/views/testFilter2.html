@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Person</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}"
+          media="all">
+</head>
+<body>
+
+
+
+
+
+<a>sort by ID</a>
+<div th:each="lis:${list2}">
+    <a th:text="${lis.getId()} +' '+${lis.getDesireddate()} + ' '+${lis.getApprover()} +' '+${lis.getState()}+' '+${lis.getUrgency()}"></a>
+</div>
+<br/>
+
+
+
+</body>
+</html>
