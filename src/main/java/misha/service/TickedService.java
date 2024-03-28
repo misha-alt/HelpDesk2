@@ -28,6 +28,7 @@ public class TickedService implements TickedDAO {
     private HistoryDAO historyDAO;
 
 
+
     @Autowired
 
     public TickedService(SessionFactory sessionFactory, UserService userService, CreateComment createComment, ManagerService managerService, UserDAO userDAO, EngineerDAO engineerDAO, EmployeeDAO employeeDAO, HistoryDAO historyDAO) {

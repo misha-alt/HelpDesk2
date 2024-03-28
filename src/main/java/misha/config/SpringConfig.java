@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.mail.javamail.JavaMailSender;
 //import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -53,6 +55,22 @@ public class SpringConfig implements WebMvcConfigurer {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setMaxUploadSize(1024 * 1024 * 10); // set maximum upload size to 10 MB
         return resolver;
+    }
+
+
+
+
+    @Bean
+    public JavaMailSender javaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com"); // Укажите ваш SMTP-сервер
+        mailSender.setPort(587); // Укажите порт SMTP-сервера
+        mailSender.setUsername("mihailnadia27@gmail.com"); // Укажите ваш адрес электронной почты
+        mailSender.setPassword("akgpstrbjkvcoqxa"); // Укажите пароль от вашей почты
+
+        mailSender.getJavaMailProperties().setProperty("mail.smtp.starttls.enable", "true");
+
+        return mailSender;
     }
 
 

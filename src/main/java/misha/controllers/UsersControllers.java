@@ -50,17 +50,21 @@ public class UsersControllers {
     private TickedDAO tickedDAO;
     private UserDetailsServiceImpl userDetailsService;
     private PasswordEncoder passwordEncoder;
+
+    private MaleSenderService maleSenderService;
     private static final Logger logger = LoggerFactory.getLogger(UsersControllers.class);
 
 
     @Autowired
-    public UsersControllers(UserDAO userDAO, CreateCommDAO createCommDAO, ManagerDAO managerDAO, TickedDAO tickedDAO, UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder) {
+    public UsersControllers(UserDAO userDAO, CreateCommDAO createCommDAO, ManagerDAO managerDAO, TickedDAO tickedDAO, UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder,MaleSenderService maleSenderService) {
         this.userDAO = userDAO;
         this.createCommDAO = createCommDAO;
         this.managerDAO = managerDAO;
         this.tickedDAO = tickedDAO;
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
+        this.maleSenderService= maleSenderService;
+
 
     }
 
@@ -181,6 +185,9 @@ public class UsersControllers {
     @GetMapping(value ="/test"/*, produces = "text/html;charset=UTF-8"*/)
     public String testContr(HttpServletRequest request, Model model, Principal principal){
         model.addAttribute("request", request);
+
+
+        maleSenderService.sendSimpleEmail();
 
 //===============кодируем пароли пользователей которые созданы БД скриптом =============================
         /*List<User> list = userDAO.getUser();
