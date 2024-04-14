@@ -60,6 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
 
+
+                .antMatchers("/testPagination").permitAll()
+                //000000000000000000000000000000000000000000000000000
                 .antMatchers("/test").permitAll()
                 .antMatchers("/regForm").permitAll()
                 .antMatchers("/regForm2").permitAll()

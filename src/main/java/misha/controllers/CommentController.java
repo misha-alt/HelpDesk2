@@ -67,11 +67,27 @@ public class CommentController {
 
 
 
+
         User user = userDAO.findByEmail(principal.getName());//-достаем пользрвателя по Email, по настройкам principal.getName()- возвращает mail
         Ticked ticked = tickedDAO.geTickedById(id);//достаем билет по id
         model.addAttribute("tickedComm", ticked.getComments());
         return "comments";
     }
+    @GetMapping("/testPagination")
+ public String testPaginnationController(Model model, @RequestParam(value = "count",required = false)Integer  count, int id){
+
+    if(count==null){
+        count = 1;
+    }
+
+       List<Comments>list= createCommDAO.getLimitComment(1+count,1);
+
+      model.addAttribute("size",list.size());
+
+       model.addAttribute("testPagi", list);
+
+     return "testPagination";
+ }
 
 
 }

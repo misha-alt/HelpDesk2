@@ -47,7 +47,20 @@ public class EploeeController {
 
 
         return "emploee";
+       // return "onlyTemper";
     }
+
+
+   /* @GetMapping("/emploeeContr")
+    public String viewEngineer(Principal principal, Model model){
+        User user =  userDAO.findByEmail(principal.getName());
+        model.addAttribute("EmploeeName", user.getFirst_name());
+        model.addAttribute("allTickedOfEmplee", employeeDAO.allTiscedCreatedByEmployee(user.getLogin()));
+        String str =user.getFirst_name();
+
+
+        return str;
+    }*/
 
     @RequestMapping("/testRegistration")
     public String testRegViev (Principal principal, Model model){

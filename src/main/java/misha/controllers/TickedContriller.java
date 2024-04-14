@@ -156,6 +156,10 @@ public class TickedContriller {
         /*список билетов пользователя===================*/
         User user = userDAO.findByEmail(principal.getName());
 
+
+
+
+
         if(var.equals("allTicked")){
             List <Ticked> list=  tickedDAO.getAllTicked();
             model.addAttribute("list2", tickedDAO.methodForSort(var, list, principal));
@@ -202,17 +206,18 @@ public class TickedContriller {
                 Ticked ticked = tickedDAO.geTickedById(id);
                 User user = userDAO.findByEmail(principal.getName());
 
-            model.addAttribute("ourTicked", ticked);
-            model.addAttribute("coments",ticked.getComments());
-            model.addAttribute("attached_file", ticked.getMyFile());
-            model.addAttribute("request", request);
+        model.addAttribute("ourTicked", ticked);
+        model.addAttribute("coments",ticked.getComments());
+        model.addAttribute("attached_file", ticked.getMyFile());
+        model.addAttribute("request", request);
 
-            model.addAttribute("loginOfcreater", ticked.getLoginOfcreater());
-            model.addAttribute("state", ticked.getState().getCat());
+        model.addAttribute("loginOfcreater", ticked.getLoginOfcreater());
+        model.addAttribute("state", ticked.getState().getCat());
 
-            model.addAttribute("userLogin", user.getLogin());
+        model.addAttribute("userLogin", user.getLogin());
 
-            return "tiskedShow";
+
+        return "tiskedShow";
 
     }
     //форма добавления файла

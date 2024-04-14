@@ -4,27 +4,39 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac5180a0-8a90-4381-af8a-834c366a1b83" name="Default Changelist" comment="24/03/2024-3">
+    <list default="true" id="ac5180a0-8a90-4381-af8a-834c366a1b83" name="Default Changelist" comment="28/03/2024-1">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_03_2024_22_19_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_03_2024_22_19__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/misha/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/config/SpringConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/EploeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/EploeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/TickedContriller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/dao/CreateCommDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/dao/CreateCommDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/domain/Ticked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/domain/Ticked.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/service/CreateComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/service/CreateComment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/misha/service/TickedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/service/TickedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/comments.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/comments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/misha/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/misha/config/SpringConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/config/SpringConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/controllers/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/controllers/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/controllers/EploeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/controllers/EploeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/controllers/TickedContriller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/controllers/TickedContriller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/misha/controllers/UsersControllers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/controllers/UsersControllers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/dao/CreateCommDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/dao/CreateCommDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/service/CreateComment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/service/CreateComment.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/misha/service/TickedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/service/TickedService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/config/SpringConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/config/SpringConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/EploeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/EploeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/TickedContriller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/TickedContriller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/UsersControllers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/UsersControllers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/dao/CreateCommDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/dao/CreateCommDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/service/CreateComment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/service/CreateComment.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/service/TickedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/service/TickedService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/lib/spring-context-support-6.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/test2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/comments.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/comments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.controllers.TestViewManager.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.controllers.TestViewManager.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestHistoryService.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestHistoryService.xml" afterDir="false" />
@@ -34,11 +46,7 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestHistoryService.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestHistoryService.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestTickedService.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestTickedService.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestUserService.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestUserService.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/conf/logging.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/conf/tomcat-users.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/conf/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2024-03-24" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -433,23 +441,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.helpDesk [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.helpDesk [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.helpDesk [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.helpDesk [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;24/03/2024branch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/IdeaProjects/HelpDesk2/src/main/resources/static&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.helpDesk [clean].executor": "Run",
+    "Maven.helpDesk [compile].executor": "Run",
+    "Maven.helpDesk [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor": "Run",
+    "Maven.helpDesk [package].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "24/03/2024branch",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/PC/IdeaProjects/HelpDesk2/src/main/resources/static",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PC\IdeaProjects\HelpDesk2\src\main\resources\static" />
@@ -650,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711308658265</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="24/03/2024-3">
+      <option name="closed" value="true" />
+      <created>1711642688235</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711642688235</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">

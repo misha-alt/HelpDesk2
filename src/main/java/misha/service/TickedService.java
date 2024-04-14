@@ -208,7 +208,11 @@ public class TickedService implements TickedDAO {
             return engineerAssignee(principal);
         }
 
-         filteredListByCriteria(var);
+        if(var.equals("allTicked")){
+            return getTickedNew();
+        }
+
+         //filteredListByCriteria(var);
 
     return  null;
 

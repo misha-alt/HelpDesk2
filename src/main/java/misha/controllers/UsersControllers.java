@@ -115,12 +115,16 @@ public class UsersControllers {
 
         //устанавливаем кометарию логин создателя
         comments.setLoginOfCreator(user.getLogin());
+        //00000000000000000000-13/04/2024-0000000000000000000000000
+
+        //0000000000000000000000000000000000000000000000000000
 
         //сохраняем коментарии
         createCommDAO.createComentAndSave(comments);
         Ticked ticked= tickedDAO.geTickedById(id);
         ticked.getComments().add(createCommDAO.getById(comments.getId()));
         tickedDAO.updateTcked(ticked);//обновляет билет после добовления коментариев
+
 
         createCommDAO.seveUserCmments(comments, user.getLogin());//обновляет пользователя после  добовлени коментариев
         ModelAndView modelAndView = new ModelAndView();
@@ -187,7 +191,7 @@ public class UsersControllers {
         model.addAttribute("request", request);
 
 
-        maleSenderService.sendSimpleEmail();
+       // maleSenderService.sendSimpleEmail();
 
 //===============кодируем пароли пользователей которые созданы БД скриптом =============================
         /*List<User> list = userDAO.getUser();
