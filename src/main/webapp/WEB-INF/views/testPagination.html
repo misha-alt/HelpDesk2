@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<a>Comments:</a>
+<div th:each="page:${testPagi}">
+    <a th:text="${page.getComment()} + ' '+${page.getLoginOfCreator()}"></a>
+</div>
+
+<a th:text="${size}"></a>
+
+<form th:action="@{/testPagination}" th:method="GET">
+    <input type="hidden" id="count"  name="count" value="1" th:value="${size}">
+    <button type="submit">загрузить комментарии</button>
+</form>
+
+</body>
+</html>
