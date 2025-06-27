@@ -7,6 +7,8 @@ import misha.dao.UserDAO;
 import misha.domain.*;
 import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -39,9 +41,10 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//@RestController
 @Controller
 @Transactional
-
+//@CrossOrigin("*")
 public class UsersControllers {
 
     private UserDAO userDAO;
@@ -113,7 +116,7 @@ public class UsersControllers {
         String dateString = dateFormat.format(new Date());
         comments.setDate(dateString);
 
-        //устанавливаем кометарию логин создателя
+        //устанавливаем коментарию логин создателя
         comments.setLoginOfCreator(user.getLogin());
         //00000000000000000000-13/04/2024-0000000000000000000000000
 
@@ -151,7 +154,6 @@ public class UsersControllers {
 
         return modelAndView;
     }
-
     @RequestMapping("/manager")
     public String viewManager(Principal principal, Model model){
         model.addAttribute("ManagerName",userDAO.findByEmail(principal.getName()).getLogin());
@@ -159,6 +161,14 @@ public class UsersControllers {
 
         return "manager";
     }
+
+   /* @CrossOrigin("*")
+    @RequestMapping("/manager")
+    public ResponseEntity<?> viewManager(Principal principal) {
+        String managerName = userDAO.findByEmail("1somemail").getLogin();
+        return ResponseEntity.status(HttpStatus.OK).body(managerName);
+    }*/
+
 
     //не используется
     @GetMapping("/sotrByUrgense")
@@ -191,7 +201,7 @@ public class UsersControllers {
         model.addAttribute("request", request);
 
 
-       // maleSenderService.sendSimpleEmail();
+        maleSenderService.sendSimpleEmail();
 
 //===============кодируем пароли пользователей которые созданы БД скриптом =============================
         /*List<User> list = userDAO.getUser();

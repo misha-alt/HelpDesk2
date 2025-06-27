@@ -1,0 +1,44 @@
+# IntelliJ IDEA
+.idea/
+
+# VS Code
+.vscode/
+
+# Maven
+target/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Compiled class files
+*.class
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Gradle (если используется)
+.gradle/
+build/
+
+# Other temporary files
+*.iml
+*.iws
+*.ipr
+
+# Docker-related
+Dockerfile.swp
+
+# Miscellaneous
+*.DS_Store
+Thumbs.db
+
+# Application properties (if you don't want to commit them)
+application.properties
+
+# Logging configuration
+log4j.properties

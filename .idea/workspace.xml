@@ -5,7 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac5180a0-8a90-4381-af8a-834c366a1b83" name="Default Changelist" comment="14\04\2024">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/extensions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-06-27" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/controllers/UsersControllers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/dao/CreateCommDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/dao/CreateCommDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/domain/comparator/CreateDateCompare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/domain/comparator/CreateDateCompare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/domain/comparator/SortedHistoryById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/domain/comparator/SortedHistoryById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/service/CreateComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/service/CreateComment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/misha/service/MaleSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/misha/service/MaleSenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/createTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/createTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/misha/controllers/TestViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/misha/controllers/TestViewManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/controllers/UsersControllers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/controllers/UsersControllers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/misha/service/MaleSenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/misha/service/MaleSenderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/scripts/createTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/scripts/createTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/UsersControllers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/controllers/UsersControllers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/service/MaleSenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/misha/service/MaleSenderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/scripts/createTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/classes/scripts/createTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/testPagination.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/helpDesk-1.0-SNAPSHOT/WEB-INF/views/testPagination.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.controllers.TestViewManager.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestHistoryService.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestHistoryService.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestTickedService.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestTickedService.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestUserService.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-misha.service.TestUserService.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.controllers.TestViewManager.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestHistoryService.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestHistoryService.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestTickedService.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestTickedService.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestUserService.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/misha.service.TestUserService.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/misha/controllers/TestViewManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/misha/controllers/TestViewManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2024-04-13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -402,8 +443,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Tests.executor&quot;: &quot;Run&quot;,
     &quot;Maven.helpDesk [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.helpDesk [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.helpDesk [install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.helpDesk [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor&quot;: &quot;Run&quot;,
     &quot;Maven.helpDesk [package].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -412,10 +455,10 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/IdeaProjects/HelpDesk2/src/main/resources/static&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -475,7 +518,7 @@
     </configuration>
     <configuration name="Tests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="misha.test.Tests" />
-      <module name="HelpDesk2" />
+      <module name="helpDesk" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="misha.test.*" />
@@ -510,14 +553,6 @@
         <item itemvalue="JUnit.TestHistoryService" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">

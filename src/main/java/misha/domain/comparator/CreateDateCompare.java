@@ -1,7 +1,7 @@
 package misha.domain.comparator;
 
 import misha.domain.Ticked;
-import sun.security.krb5.internal.Ticket;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

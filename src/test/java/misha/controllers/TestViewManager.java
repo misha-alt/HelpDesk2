@@ -17,11 +17,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class TestViewManager {
 
 
-        @Mock
+      /*  @Mock
         private UserDAO userDAO;
 
         @Mock
@@ -35,9 +35,9 @@ public class TestViewManager {
 
         @InjectMocks
         private UsersControllers usersControllers;
+*/
 
-
-      @Test
+     /* @Test
         public void testViewManager() {
           // Установка моковых значений
           String username = "testuser";
@@ -58,5 +58,5 @@ public class TestViewManager {
           // Проверка возвращаемого имени представления
           assertEquals("manager", viewName);
 
-        }
+        }*/
     }

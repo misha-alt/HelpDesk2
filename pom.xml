@@ -19,7 +19,9 @@
 
     <!-- External libraries versions -->
     <junit.version>4.12</junit.version>
-    <servlet.version>3.1.0</servlet.version>
+  <!-- <servlet.version>3.1.0</servlet.version>-->
+    <servlet.version>4.0.1</servlet.version>
+
     <jstl.version>1.2</jstl.version>
     <orika-core.version>1.5.1</orika-core.version>
 
@@ -38,9 +40,6 @@
   </properties>
 
   <dependencies>
-
-
-
 
     <dependency>
       <groupId>javax.xml.bind</groupId>
@@ -213,6 +212,7 @@
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
+      <!--<version>6.2.5.Final</version>-->
       <version>7.0.1.Final</version>
     </dependency>
 
@@ -277,7 +277,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
-      <version>6.1.0</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
@@ -301,17 +301,6 @@
       <groupId>com.sun.mail</groupId>
       <artifactId>javax.mail</artifactId>
     </dependency>-->
-    <dependency>
-      <groupId>com.sun.mail</groupId>
-      <artifactId>javax.mail</artifactId>
-      <version>1.6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context-support</artifactId>
-
-    </dependency>
-
 
   </dependencies>
 
@@ -376,9 +365,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>${maven-war-plugin.version}</version>
-        <configuration>
-          <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

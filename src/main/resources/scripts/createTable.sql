@@ -109,9 +109,6 @@ alter table USER_ROLES add constraint fo567C foreign key (userrole_id ) referenc
 
 
 
-
-
-
 create sequence hibernate_sequence start with 1 increment by 1;
 
 alter table USER auto_increment=6;

@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    public PasswordEncoder passwordEncoder() {
        return NoOpPasswordEncoder.getInstance();
    }
- /*  @Bean
+  /* @Bean
    public PasswordEncoder encoder() {
        return new BCryptPasswordEncoder();
    }*/
@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/test").permitAll()
                 .antMatchers("/regForm").permitAll()
                 .antMatchers("/regForm2").permitAll()
-                .antMatchers("/manager").hasRole("MANAGER")
+                .antMatchers("/manager").permitAll()/*hasRole("MANAGER")*/
                 .antMatchers("/emploeeContr").hasRole("USER")
                 .antMatchers("/engineer").hasRole("ENGINEER")
                 .antMatchers("/create_ticket").hasAnyRole("USER", "MANAGER")

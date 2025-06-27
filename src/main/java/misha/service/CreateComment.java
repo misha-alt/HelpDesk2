@@ -86,7 +86,7 @@ public class CreateComment implements CreateCommDAO {
     }
 
     @Override
-    public List<Comments> getLimitComment(int limit, int id) {
+    public List<Comments> getLimitComment(int limit) {
 
         Query query = sessionFactory.getCurrentSession().createQuery("from Comments")
                 .setMaxResults(limit);

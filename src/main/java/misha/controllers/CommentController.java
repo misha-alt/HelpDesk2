@@ -74,13 +74,13 @@ public class CommentController {
         return "comments";
     }
     @GetMapping("/testPagination")
- public String testPaginnationController(Model model, @RequestParam(value = "count",required = false)Integer  count, int id){
+ public String testPaginnationController(Model model, @RequestParam(value = "count",required = false)Integer  count){
 
     if(count==null){
         count = 1;
     }
 
-       List<Comments>list= createCommDAO.getLimitComment(1+count,1);
+       List<Comments>list= createCommDAO.getLimitComment(1+count);
 
       model.addAttribute("size",list.size());
 
