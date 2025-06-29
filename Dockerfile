@@ -21,7 +21,7 @@ FROM tomcat:9.0-jdk8-slim
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Копируем WAR из предыдущего этапа
-COPY --from=builder /app/target/helpDesk.war /usr/local/tomcat/webapps/app.war
+COPY --from=builder /app/target/helpDesk-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/app.war
 
 # Открываем порт
 EXPOSE 8080
