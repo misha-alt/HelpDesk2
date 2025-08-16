@@ -1,0 +1,143 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header - Приветствие */
+p {
+    text-align: center;
+    font-size: 24px;
+    color: #2c3e50;
+    margin: 30px 0 20px;
+}
+
+p span:first-child {
+    font-weight: 500;
+}
+
+p span:nth-child(2) {
+    font-weight: 700;
+    color: #3498db;
+}
+
+/* Общие ссылки (навигация) */
+a {
+    display: block;
+    text-align: center;
+    margin: 15px auto;
+    padding: 12px 20px;
+    width: fit-content;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+a:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Секция списка заявок */
+.tickets-section {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 90%;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.tickets-section h3 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Элемент заявки */
+.ticket-item {
+    background-color: #f8f9fa;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #2c3e50;
+    border-left: 4px solid #3498db; /* синий по умолчанию */
+    transition: all 0.2s ease;
+}
+
+.ticket-item:hover {
+    background-color: #f1f7ff;
+    transform: translateX(2px);
+}
+
+/* Цвета по уровню срочности */
+.ticket-item.urgency-high {
+    border-left-color: #e74c3c; /* красный */
+}
+
+.ticket-item.urgency-medium {
+    border-left-color: #f39c12; /* оранжевый */
+}
+
+.ticket-item.urgency-low {
+    border-left-color: #27ae60; /* зелёный */
+}
+
+/* Кнопка выхода — особый стиль */
+a[href*="/logout"] {
+    background-color: #e74c3c !important;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 300px;
+}
+
+a[href*="/logout"]:hover {
+    background-color: #c0392b !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    p {
+        font-size: 20px;
+    }
+
+    a {
+        width: 90%;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .tickets-section {
+        max-width: 100%;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+
+    .ticket-item {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
