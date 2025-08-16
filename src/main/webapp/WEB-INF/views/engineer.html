@@ -2,30 +2,30 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-
+    <title>Engineer Panel</title>
+    <link href="/css/engeneer.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
 
-<p >
-    <span>Приветствую, </span>
-    <span th:text="${EngineerName}"></span>
-</p>
-<br/>
+    <p>
+        <span>Приветствую, </span>
+        <span th:text="${EngineerName}"></span>
+    </p>
 
+    <a th:href="@{/tiskedListOfEngeneer}">Go to ticked list</a>
 
-<a th:href="@{/tiskedListOfEngeneer}">Go to ticked list</a>
-<br/>
+    <div class="tickets-section">
+        <h3>List of Tickets</h3>
+        <div th:each="lOT : ${listOfTicked}"
+             class="ticket-item"
+             th:classappend="'urgency-' + ${lOT.getUrgency().toString().toLowerCase()}">
+            <span th:text="${lOT.getId()} + ' | ' + ${lOT.getLoginOfcreater()} + ' | ' + ${lOT.getState()} + ' | ' + ${lOT.getUrgency()}"></span>
+        </div>
+    </div>
 
+    <a th:href="@{/logout}">Press here if you want logout</a>
 
-<a>List of ticked </a>
-
-    <br/>
-<div th:each="lOT:${listOfTicked}">
-    <a th:text="${lOT.getId()} +' '+${lOT.getLoginOfcreater()} + ' '+${lOT.getState()}+' '+${lOT.getUrgency()}"></a>
 </div>
-<br/>
-
-<a th:href="@{/logout}">Press here if you want logout</a>
-
 </body>
 </html>
