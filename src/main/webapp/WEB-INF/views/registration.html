@@ -41,7 +41,7 @@
 
                 <!-- Username -->
                 <div class="mb-4">
-                    <label for="login" class="form-label">Username</label>
+                    <label for="login" class="form-label">email</label>
                     <input type="text" class="form-control" th:field="*{login}" id="login" placeholder="Choose a username">
                     <div th:if="${#fields.hasErrors('login')}" class="error-message">
                         <p th:each="err : ${#fields.errors('login')}" th:text="${err}"></p>
