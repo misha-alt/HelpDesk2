@@ -1,0 +1,66 @@
+/* Контейнер формы */
+.form-container {
+    background: white;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Поля формы по сетке */
+.form-field {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Лейблы */
+.form-label {
+    font-weight: 600;
+    color: #444;
+    text-align: right;
+}
+
+/* Инпуты, селекты, текстовые поля */
+.form-input, textarea, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 6px rgba(37,99,235,0.4);
+}
+
+/* Кнопка */
+input[type="submit"], .form-button {
+    justify-self: start;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #1e4ed8;
+}
+
+input[type="submit"]:active {
+    transform: scale(0.97);
+}

@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/enterPage") // Set the success login page URL
                 .and().logout()
-                .logoutSuccessUrl("/test")
+                .logoutSuccessUrl("/login")
                 .and()
                 .csrf().disable();
         //https://www.youtube.com/watch?v=Mb8nlh4m0HM
