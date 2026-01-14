@@ -1,45 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" charset="UTF-8">
 <head>
     <meta charset="UTF-8">
     <title>Accumulated work</title>
+    <link th:href="@{/css/create_ticket.css}" rel="stylesheet">
 </head>
 <body>
-<style>
-    html, body {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  text-align: center;
-}
-</style>
-<div class="container">
+
+ <!--показываем черновик пользователя-->
+<div th:if="${draftExist}">
+    <p th:text="${draftExist}"></p>
+</div>
+
+<div id="header" class="link-container">
+    <a th:href="@{/logout}">Press here if you want logout</a>
+    <a th:href="@{/newCom}">Create comment</a>
+    <a th:href="@{/tickedLis}">Go to ticked list</a>
+</div>
+
 <p th:text="${currentDate}"></p>
 
-<form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST" >
+
+    <form  th:action="@{/creation_ticked_view}" th:object="${form_ticket}"th:method="POST" th:accept-charset="UTF-8">
+<div class="form-container">
+    <div class="form-field">
+    <label for="name" class="form-label">Enter name of <br/> problem:</label>
+    <input type="text" th:field="*{name}" id="name" class="form-input"/>
+
+        <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+    </div>
 
 
-    <label for="name">Enter name of problem</label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <p th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
-    <br/>
-
-    <label for="description">Enter description</label>
-    <input type="text" th:field="*{description}" id="description"/>
-
-
-    <br/>
-    <label for="desireddate">Enter DesireDate</label>
-    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate"/>
+<div class="form-field">
+    <label for="description" class="form-label">Enter description:</label>
+    <textarea type="text" th:field="*{description}" id="description" class="form-input" oninput="autoResizeText()"></textarea>
+</div>
+    <div class="form-field">
+    <label for="desireddate" class="form-label">Enter DesireDate:</label>
+    <input type="date" name="calendar" th:field="*{desireddate}" th:attr="min=${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" id="desireddate" class="form-input"/>
+    </div>
 
 
-    <br/>
+    <div class="form-field">
     <!--выбор категории билета-->
-    <label for="cateorySelect">Select category:</label>
-    <select name="cateorySelect" id="cateorySelect">
+    <label for="cateorySelect" class="form-label">Select category:</label>
+    <select name="cateorySelect" id="cateorySelect" class="form-input">
 
         <option value="APPLICATIONANDSERVICES">Application & Services</option>
         <option value="BENEFITSANDPAPERWORC">Benefits & Paper Work</option>
@@ -49,21 +54,22 @@
         <option value="WORKPLACESANDFACILITIES">Workplaces & Facilities</option>
 
     </select>
+    </div>
 
-        <br/>
 
-    <div th:if="${#request.isUserInRole('ROLE_MANAGER')}">
-        <label for="MyState">only for manager</label>
-        <select name="MyState" id="MyState">
+    <div th:if="${#request.isUserInRole('ROLE_USER')}">
+        <label for="state">only for manager</label>
+        <select name="state" th:field="*{state}"  id="state">
             <option value="NEW">NEW</option>
             <option value="DRAFT">DRAFT</option>
 
-
         </select>
+        <p th:if="${#fields.hasErrors('state')}" th:each="err : ${#fields.errors('state')}" th:text="${err}"></p>
     </div>
+
     <!--если отправляем Assign to Me или CANCELED то становишся правоприемником,
     если отправляеш пустое поле -нет-->
-    <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
+  <!--  <div th:if="${#request.isUserInRole('ROLE_ENGINEER')}">
         <label for="engineerSuccessorr">appoint a successorr</label>
         <select name="engineerSuccessorr" id="engineerSuccessorr">
             <option value=""></option>
@@ -72,14 +78,14 @@
         </select>
     </div>
 
-    <div th:if="${#request.isUserInRole('ROLE_USER') or #request.isUserInRole('ROLE_ENGINEER')}">
-        <label for="MyState">not for manager</label>
-        <select name="MyState" id="MyState2">
+    <div th:if="${#request.isUserInRole('ROLE_USER')}">
+        <label for="state">not for manager</label>
+        <select name="state" id="state2">
             <option value="NEW">Submit</option>
             <option value="DRAFT">DRAFT</option>
             <option value="DECLINED">DECLINE</option>
         </select>
-    </div>
+    </div>-->
 
 <!--выбор степени срочности-->
     <label for="UrgencyState">Select urgency</label>
@@ -91,10 +97,6 @@
                 <option value="LOW">LOW</option>
 
              </select>
-
-        <br/>
-
-
 
     <br/>
 
@@ -109,21 +111,38 @@
 
     <br/>
     <input type="submit" value="Create"/>
-
+</div>
 </form >
 
 
-
-<br/>
-
-<div th:each="specific_tickets:${ticket}">
-    <a th:text="${specific_tickets.getName()} + ' '+${specific_tickets.getDescription()}"></a>
 </div>
 
-<a th:href="@{/logout}">Press here if you want logout</a>
-<br/>
-<a th:href="@{/newCom}">Create comment</a>
-</div>
+
+
+<script>
+function autoResize() {
+  const input = document.getElementById('description');
+  input.style.width = 'auto'; // Временно сбрасываем ширину на автоматическую
+  input.style.width = Math.max(input.scrollWidth, 300) + 'px'; // Задаем ширину, выбирая максимальное значение между прокручиваемой шириной и 300px
+}
+
+ function autoResizeText(textarea) {
+    textarea.style.height = "auto"; // Сброс высоты до авто
+    textarea.style.height = (textarea.scrollHeight) + "px";
+  }
+
+</script>
+
+<script>
+    function autoResizeHeight() {
+    const input = document.getElementById('description');
+    element.style.height = "auto"; // Сброс высоты до авто
+
+    // Установка высоты элемента равной высоте содержимого
+    element.style.height = (element.scrollHeight + 2) + "px";
+    }
+</script>
+
 
 </body>
 </html>
@@ -131,24 +150,4 @@
 
 
 
-<!--
-<form id="form2"  th:action="@{/creation_ticked_view}" th:object="${comment}"th:method="POST">
 
-    <label for="comment">Enter comment</label>
-    <input type="text"  th:field="*{comment}" id="comment"/>
-
-    <br/>
-    <input type="submit" value="Create"/>
-
-
-</form>
-<br/>
-<button onclick="submitForms()">Send forms</button>
-
-
-<script>
-function submitForms() {
-  document.getElementById('form1').submit();
-  document.getElementById('form2').submit();
-}
-</script>-->

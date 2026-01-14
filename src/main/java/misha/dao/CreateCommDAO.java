@@ -15,4 +15,8 @@ public interface CreateCommDAO {
     Comments getById(int id);
     List<Comments> getAll();
 
+    List<Comments> getLimitComment(int limit);
+
+
+
 }

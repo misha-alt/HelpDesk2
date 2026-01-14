@@ -2,27 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link th:href="@{/css/styleForEmplee.css}" rel="stylesheet">
 
 </head>
 <body>
+<div class="container">
+    <p class="welcome-message" th:text="'Welcome, ' + ${EmploeeName} + '!'"></p>
 
-<p th:text="${EmploeeName}"></p>
-
-
-<a th:href="@{/create_ticket}">Create Ticket</a>
-<br/>
-
-
-<br/>
-
-<a th:href="@{/create_ticket}">Create Ticket</a>
-
-
-<br/>
-<a th:href="@{/tickedLis}">Go to ticked list</a>
-<br/>
-
-<a th:href="@{/logout}">Press here if you want logout</a>
-
+    <div class="nav-menu">
+        <a class="nav-link" th:href="@{/create_ticket}">Create Ticket</a>
+        <a class="nav-link" th:href="@{/tickedLis}">Go to Ticket List</a>
+        <a class="nav-link logout-link" th:href="@{/logout}">Logout</a>
+    </div>
+</div>
 </body>
 </html>

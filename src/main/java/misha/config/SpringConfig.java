@@ -5,6 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+//import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 
 @Configuration
@@ -33,6 +38,8 @@ public class SpringConfig implements WebMvcConfigurer {
         resourceTemplateResolver.setApplicationContext(applicationContext);
         resourceTemplateResolver.setPrefix("/WEB-INF/views/");
         resourceTemplateResolver.setSuffix(".html");
+        resourceTemplateResolver.setCharacterEncoding("UTF-8");
+        resourceTemplateResolver.setTemplateMode(TemplateMode.HTML);
         return resourceTemplateResolver;
     }
     @Bean
@@ -53,6 +60,33 @@ public class SpringConfig implements WebMvcConfigurer {
 
 
 
+    @Bean
+    public JavaMailSender javaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com"); // Укажите ваш SMTP-сервер
+        mailSender.setPort(587); // Укажите порт SMTP-сервера
+        mailSender.setUsername("mihailnadia27@gmail.com"); // Укажите ваш адрес электронной почты
+        mailSender.setPassword("akgpstrbjkvcoqxa"); // Укажите пароль от вашей почты
+
+        mailSender.getJavaMailProperties().setProperty("mail.smtp.starttls.enable", "true");
+
+        return mailSender;
+    }
+
+
+    //для YOPmail================
+   /* @Bean
+    public JavaMailSender javaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("omemaleforme.com@yopmail.com");
+        mailSender.setPort(25);
+
+        return mailSender;
+    }
+*/
+//==================================
+
+
 
 
     @Override
@@ -65,8 +99,8 @@ public class SpringConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("classpath:/static/css/");
     }
 
 }

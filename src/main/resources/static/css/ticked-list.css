@@ -1,0 +1,248 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* Заголовок страницы */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #2c3e50;
+    margin: 20px 0;
+}
+
+/* Форма фильтрации */
+form {
+    text-align: center;
+    margin: 15px 0;
+}
+
+form select,
+form input[type="submit"] {
+    padding: 10px 15px;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+form select:focus,
+form input[type="submit"]:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+form input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+form input[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Навигационные ссылки сверху */
+#header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 20px auto;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+#header a {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+}
+
+#header a.logout-link {
+    background-color: #e74c3c;
+}
+
+#header a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#header a.logout-link:hover {
+    background-color: #c0392b;
+}
+
+/* Секция вкладок (jQuery UI) */
+#tabs {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Настройка вкладок jQuery UI */
+#tabs .ui-tabs-nav {
+    background: transparent;
+    border-bottom: 2px solid #ddd;
+    padding: 0;
+}
+
+#tabs .ui-tabs-nav li {
+    list-style: none;
+    display: inline-block;
+}
+
+#tabs .ui-tabs-nav li a {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd !important;
+    border-bottom: none !important;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 16px;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#tabs .ui-tabs-nav li.ui-tabs-active a {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db !important;
+}
+
+#tabs .ui-tabs-panel {
+    padding: 20px;
+    background-color: #fcfcfc;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    min-height: 100px;
+}
+
+/* Таблицы */
+.bordered-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bordered-table th,
+.bordered-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.bordered-table th {
+    background-color: #f1f3f5;
+    color: #2c3e50;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.bordered-table tr:hover {
+    background-color: #f8f9ff;
+    cursor: default;
+}
+
+/* Кнопки ID */
+.bordered-table button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bordered-table button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Индикатор "For approval" */
+[th\\:if*="approving"] a {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column;
+    }
+
+    #header a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    form select,
+    form input[type="submit"] {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .bordered-table {
+        font-size: 13px;
+    }
+
+    .bordered-table th,
+    .bordered-table td {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bordered-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .bordered-table th,
+    .bordered-table td {
+        min-width: 120px;
+    }
+
+    #tabs {
+        padding: 10px;
+    }
+}

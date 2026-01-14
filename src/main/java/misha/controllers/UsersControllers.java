@@ -7,6 +7,8 @@ import misha.dao.UserDAO;
 import misha.domain.*;
 import misha.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,9 +41,10 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//@RestController
 @Controller
 @Transactional
-
+//@CrossOrigin("*")
 public class UsersControllers {
 
     private UserDAO userDAO;
@@ -48,20 +52,22 @@ public class UsersControllers {
     private ManagerDAO managerDAO;
     private TickedDAO tickedDAO;
     private UserDetailsServiceImpl userDetailsService;
+    private PasswordEncoder passwordEncoder;
+
+    private MaleSenderService maleSenderService;
     private static final Logger logger = LoggerFactory.getLogger(UsersControllers.class);
-   // private ServletContext servletContext;
 
-
-
-   // private State state;
 
     @Autowired
-    public UsersControllers(UserDAO userDAO, CreateCommDAO createCommDAO, ManagerDAO managerDAO, TickedDAO tickedDAO, UserDetailsServiceImpl userDetailsService) {
+    public UsersControllers(UserDAO userDAO, CreateCommDAO createCommDAO, ManagerDAO managerDAO, TickedDAO tickedDAO, UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder,MaleSenderService maleSenderService) {
         this.userDAO = userDAO;
         this.createCommDAO = createCommDAO;
         this.managerDAO = managerDAO;
         this.tickedDAO = tickedDAO;
         this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
+        this.maleSenderService= maleSenderService;
+
 
     }
 
@@ -110,8 +116,11 @@ public class UsersControllers {
         String dateString = dateFormat.format(new Date());
         comments.setDate(dateString);
 
-        //устанавливаем кометарию логин создателя
+        //устанавливаем коментарию логин создателя
         comments.setLoginOfCreator(user.getLogin());
+        //00000000000000000000-13/04/2024-0000000000000000000000000
+
+        //0000000000000000000000000000000000000000000000000000
 
         //сохраняем коментарии
         createCommDAO.createComentAndSave(comments);
@@ -119,13 +128,32 @@ public class UsersControllers {
         ticked.getComments().add(createCommDAO.getById(comments.getId()));
         tickedDAO.updateTcked(ticked);//обновляет билет после добовления коментариев
 
+
         createCommDAO.seveUserCmments(comments, user.getLogin());//обновляет пользователя после  добовлени коментариев
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/tickedLis");
+
+
+
+        for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_USER")) {
+                modelAndView.setViewName( "redirect:/emploeeContr");
+            }
+        }
+        for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_ENGINEER")) {
+                modelAndView.setViewName( "redirect:/engineer");
+            }
+        }
+        for (RoleOfUser authority : user.getAuthority()) {
+            if (authority.getRole_name().equals("ROLE_MANAGER")) {
+                modelAndView.setViewName( "redirect:/manager");
+            }
+        }
+
+      //  modelAndView.setViewName("redirect:/tickedLis");
 
         return modelAndView;
     }
-
     @RequestMapping("/manager")
     public String viewManager(Principal principal, Model model){
         model.addAttribute("ManagerName",userDAO.findByEmail(principal.getName()).getLogin());
@@ -134,11 +162,19 @@ public class UsersControllers {
         return "manager";
     }
 
-    //сортирует по срочности
+   /* @CrossOrigin("*")
+    @RequestMapping("/manager")
+    public ResponseEntity<?> viewManager(Principal principal) {
+        String managerName = userDAO.findByEmail("1somemail").getLogin();
+        return ResponseEntity.status(HttpStatus.OK).body(managerName);
+    }*/
+
+
+    //не используется
     @GetMapping("/sotrByUrgense")
     public String forTestFilter(Model model, Principal principal ){
 
-        model.addAttribute("list2", tickedDAO.sortedlistOfTicked(principal));
+        //model.addAttribute("list2", tickedDAO.sortedlistOfTicked(principal));
 
         return "testFilter";
     }
@@ -147,7 +183,7 @@ public class UsersControllers {
     @GetMapping("/sortById")
     public String forTestFilterRedirect(Model model, Principal principal){
 
-        model.addAttribute("list2", tickedDAO.sortedListById(principal));
+        //model.addAttribute("list2", tickedDAO.sortedListById(principal));
 
         return "testFilter2";
     }
@@ -155,14 +191,25 @@ public class UsersControllers {
     @GetMapping("/sortByDate")
     public String sortByDate(Model model, Principal principal){
 
-        model.addAttribute("list2", tickedDAO.sortedByDate(principal));
+       // model.addAttribute("list2", tickedDAO.sortedByDate(principal));
 
         return "testFilter3";
     }
-    //не используется
+
     @GetMapping(value ="/test"/*, produces = "text/html;charset=UTF-8"*/)
     public String testContr(HttpServletRequest request, Model model, Principal principal){
         model.addAttribute("request", request);
+
+
+        maleSenderService.sendSimpleEmail();
+
+//===============кодируем пароли пользователей которые созданы БД скриптом =============================
+        /*List<User> list = userDAO.getUser();
+        for (User user:list) {
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodedPassword);
+        }*/
+//=========================================
         logger.info("method test worked successfully");
         return "test";
     }

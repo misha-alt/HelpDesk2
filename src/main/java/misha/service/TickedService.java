@@ -28,6 +28,7 @@ public class TickedService implements TickedDAO {
     private HistoryDAO historyDAO;
 
 
+
     @Autowired
 
     public TickedService(SessionFactory sessionFactory, UserService userService, CreateComment createComment, ManagerService managerService, UserDAO userDAO, EngineerDAO engineerDAO, EmployeeDAO employeeDAO, HistoryDAO historyDAO) {
@@ -39,6 +40,7 @@ public class TickedService implements TickedDAO {
         this.engineerDAO = engineerDAO;
         this.employeeDAO = employeeDAO;
         this.historyDAO = historyDAO;
+
     }
 
 
@@ -71,7 +73,14 @@ public class TickedService implements TickedDAO {
         return query.list();
 
     }
-    // билеты в статусах  DECLINED, APPROVED, CANCELED, INPROGRESS,DONE  и в которых менеждер как утверждающй
+    @Override
+    public  List<Ticked> selectUserDraft(String login){
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from Ticked t where t.loginOfcreater = :login and t.state = 'DRAFT'");
+        query.setParameter("login", login);
+        return query.list();
+    }
+    // билеты в статусах  DECLINED, APPROVED, CANCELED, INPROGRESS, DONE  и в которых менеждер как утверждающй
     @Override
     public List<Ticked> managerAsAppruverAndStateDeclin(String approver){
         CopareById copareById = new CopareById();
@@ -95,14 +104,14 @@ public class TickedService implements TickedDAO {
         return query.list();
     }
     @Override
-    public void creationTiket (Ticked ticked, String cateorySelect, String MyState, String UrgencyState,
+    public void creationTiket (Ticked ticked, String cateorySelect, String state, String UrgencyState,
                                String nameOfAssignee, String nameOfApprover,String engineerSuccessorr, Principal principal){
 
        //присваеваем переменые пришедшие в метод полям объекта ticked
         Categor categor = Categor.valueOf(cateorySelect);
-        State state = State.valueOf(MyState);
+        State myState = State.valueOf(state);
         ticked.setCategor(categor);
-        ticked.setState(state);
+        ticked.setState(myState);
         Urgency urgency = Urgency.valueOf(UrgencyState);
         ticked.setUrgency(urgency);
 
@@ -119,17 +128,23 @@ public class TickedService implements TickedDAO {
         //устанавливаем одобрителя в билете
 
         List<String> listOfstateForAprover = Arrays.asList("APPROVED", "DECLINED", "DONE");
-        if (listOfstateForAprover.contains(MyState)){
+        if (listOfstateForAprover.contains(state)){
             ticked.setApprover(user.getLogin());
         }
 
-        ticked.setRollOfCreater(userService.getByLogin(user.getLogin()).get(0).getAuthority());
+        List<RoleOfUser> roleList= new ArrayList<>(user.getAuthority());
+
+        if (!roleList.isEmpty()) {
+            ticked.setRollOfCreater(roleList.get(0).getRole_name());
+        } else {
+            ticked.setRollOfCreater("ROLE_USER");
+
+        }
 
         //устанавливаем дату создания билета
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String currentDate = dateFormat.format(new Date());
         ticked.setCreate_date(currentDate);
-
 
 
         //сохранить созданный тикет и историю в БД
@@ -146,184 +161,111 @@ public class TickedService implements TickedDAO {
         Categor categor = Categor.valueOf(cateorySelect);
         ticked.setCategor(categor);
 
-       /* Set<Tickethistory> ticketHistory = new HashSet<>();
-        if (ticked.getTickethistories() != null){
-
-        for (Integer historyId : setOfHistoryId) {
-            Tickethistory tickethistory = historyDAO.showeHistory(historyId);
-            ticketHistory.add(tickethistory);
-        }
-
-            historyDAO.createRecord(ticked,ticketHistory);
-
-    }else {ticketHistory.add(historyDAO.createRecord(ticked));}*/
-
         updateTcked(ticked);
     }
 
     @Override
     public void editDrafTicked(Ticked ticked, String engineerSuccessorr) {
-       /* User user = userDAO.findByEmail(principal.getName());
-        if (!engineerSuccessorr.equals("no assignee")){
-            ticked.setAssignee(user.getLogin());
-        }*/
+
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String currentDate = dateFormat.format(new Date());
         ticked.setCreate_date(currentDate);
         saveOrUpdate(ticked);
     }
-//методы для сортирови билетов____________________________________________________________________
+//методы для сортировки билетов____________________________________________________________________
     @Override
-       public  List<Ticked> methodForSort(String var, Principal principal) {
+       public  List<Ticked> methodForSort(String var, List<Ticked> list, Principal principal) {
 
          if (var.equals("urgency")){
              //sorted ticket by urgency
-           return   sortedlistOfTicked(principal);
+           return   sortedlistOfTicked(principal, list);
          }
          if(var.equals("id")){
              //sorted ticket by Id increase
-            return sortedListById(principal);
+            return sortedListById(principal, list);
          }
          //sorted ticket by Id decreasing
          if(var.equals("id decreasing")){
-             return sortedListByIdDecreasing(principal);
+             return sortedListByIdDecreasing(principal, list);
          }
          if (var.equals("date")){
              //sorted ticket by date
-             return sortedByDate(principal);
+             return sortedByDate(principal, list);
          }
          if(var.equals("creationDate")){
-             return sortedByCreationDate(principal);
+             return sortedByCreationDate(principal, list);
          }
         if (var.equals("alphabet")){
             //sorted ticket by alphabet
-            return sortedByAlphabet(principal);
+            return sortedByAlphabet(principal, list);
         }
         if (var.equals("state")){
             //sorted ticket by alphabet
-            return sortedByState(principal);
+            return sortedByState(principal, list);
         }
-         filteredListByCriteria(var);
+        if (var.equals("appointedEngineer")){
+            //sorted ticket by alphabet
+            return engineerAssignee(principal);
+        }
+
+        if(var.equals("allTicked")){
+            return getTickedNew();
+        }
+
+         //filteredListByCriteria(var);
 
     return  null;
 
      }
 
     @Override
-    public  List<Ticked> sortedlistOfTicked(Principal principal){
-     User user = userDAO.findByEmail(principal.getName());
+    public  List<Ticked> sortedlistOfTicked(Principal principal, List<Ticked> list){
+
      EnumComparator enumComparator = new EnumComparator();
-     if(user.getAuthority().equals("ROLE_MANAGER")){
-         List list =managerAsAppruverAndStateDeclin(user.getLogin());
-         list.sort(enumComparator);
-         return list;
-     }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(enumComparator);
-            return list;
-        }
-        List list= userDAO.getByLogin(user.getLogin());
+
         list.sort(enumComparator);
         return list;
 
     }
 
     @Override
-    public List<Ticked> sortedListById (Principal principal){
-        User user = userDAO.findByEmail(principal.getName());
+    public List<Ticked> sortedListById (Principal principal, List<Ticked> list){
+
         TicketIdComparator ticketIdComparator = new TicketIdComparator();
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(ticketIdComparator);
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(ticketIdComparator);
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(ticketIdComparator);
-            return list;
-        }
-        List list= userDAO.getByLogin(user.getLogin());
-        return list;
+
+                list.sort(ticketIdComparator);
+                return list;
+
     }
 
 
     @Override
-    public List<Ticked> sortedListByIdDecreasing(Principal principal) {
-        User user = userDAO.findByEmail(principal.getName());
+    public List<Ticked> sortedListByIdDecreasing(Principal principal, List<Ticked> list) {
+
         TicketIdComparator ticketIdComparator = new TicketIdComparator();
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(ticketIdComparator.reversed());
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(ticketIdComparator.reversed());
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(ticketIdComparator.reversed());
-            return list;
-        }
-        List list= userDAO.getByLogin(user.getLogin());
-        return list;
+
+
+                list.sort(ticketIdComparator.reversed());
+                return list;
     }
 
     @Override
-    public List<Ticked> sortedByDate(Principal principal)  {
-        User user = userDAO.findByEmail(principal.getName());
+    public List<Ticked> sortedByDate(Principal principal, List<Ticked> list)  {
+
         DataComp dataComp = new DataComp();
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(dataComp);
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(dataComp);
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(dataComp);
-            return list;
-        }
-        List list= userDAO.getByLogin(user.getLogin());
-        return list;
+
+                list.sort(dataComp);
+                return list;
     }
 
     @Override
-    public List<Ticked> sortedByCreationDate(Principal principal) {
-        User user = userDAO.findByEmail(principal.getName());
+    public List<Ticked> sortedByCreationDate(Principal principal, List<Ticked> list) {
+
         CreateDateCompare createDateCompare = new CreateDateCompare();
 
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(createDateCompare);
-            List subList= list.subList(0,5);
-            return subList;
-        }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(createDateCompare);
-            List subList= list.subList(0,5);
-            return subList;
-        }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(createDateCompare);
-            List subList= list.subList(0,5);
-            return list;
-        }
-        List list= userDAO.getByLogin(user.getLogin());
-        return list;
+                list.sort(createDateCompare);
+                List subList = list.subList(0, list.size());
+                return subList;
 
     }
 
@@ -341,58 +283,39 @@ public class TickedService implements TickedDAO {
     }
 
     @Override
-    public List<Ticked> sortedByAlphabet(Principal principal) {
+    public List<Ticked> sortedByAlphabet(Principal principal, List<Ticked> list) {
 
-
-        User user = userDAO.findByEmail(principal.getName());
         AlphabetComparator alphabetComparator = new AlphabetComparator();
 
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(alphabetComparator);
+                list.sort(alphabetComparator);
 
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(alphabetComparator);
+                return list;
+    }
 
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(alphabetComparator);
+    @Override
+    public List<Ticked> sortedByState(Principal principal, List<Ticked> list) {
 
-            return list;
-        }
-        return null;
+        StateComparator stateComparator = new StateComparator();
+
+                list.sort(stateComparator);
+
+                return list;
 
     }
 
     @Override
-    public List<Ticked> sortedByState(Principal principal) {
+    public List<Ticked> engineerAssignee(Principal principal){
+        AlphabetComparator alphabetComparator = new AlphabetComparator();
         User user = userDAO.findByEmail(principal.getName());
-        StateComparator stateComparator = new StateComparator();
 
-        if(user.getAuthority().equals("ROLE_MANAGER")){
-            List list =managerAsAppruverAndStateDeclin(user.getLogin());
-            list.sort(stateComparator);
+        String assignee  = user.getLogin();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.assignee = :assignee");
+        query.setParameter("assignee", assignee);
+        query.list();
+        query.list().sort(alphabetComparator);
 
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_ENGINEER")){
-            List list= engineerDAO.ticketsCreatedByAllEmployeesAndManagersInStatusApproved(user.getLogin());
-            list.sort(stateComparator);
+        return query.list();
 
-            return list;
-        }
-        if(user.getAuthority().equals("ROLE_USER")){
-            List list= employeeDAO.allTiscedCreatedByEmployee(user.getLogin());
-            list.sort(stateComparator);
-
-            return list;
-        }
-        return null;
     }
 
     //________________________________________________________________________________________
@@ -402,6 +325,14 @@ public class TickedService implements TickedDAO {
         query.setParameter("name", name);
         List ticked = query.list();
         return ticked;
+    }
+    @Override
+    public List<Ticked> getMyDraft(String name) {
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :name and t.state = 'DRAFT'");
+        query.setParameter("name", name);
+        List<Ticked> list = query.list();
+        return list;
     }
 
     @Override
@@ -448,9 +379,55 @@ public class TickedService implements TickedDAO {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from Ticked");
 
-
         return query.list();
     }
+
+
+
+    //для инженера
+
+    @Override
+    public List<Ticked> getTickedNew(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='NEW'");
+        return query.list();
+    }
+
+    @Override
+     public  List<Ticked> getTickedInProgress(String login){
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED', 'DECLINED') and t.assignee = :login");
+        query.setParameter("login", login);
+         return query.list();
+     }
+     //для пользователя
+     @Override
+     public  List<Ticked> getTickedInProgressForUser(String login){
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state in ('INPROGRESS' ,'APPROVED', 'DECLINED') and t.loginOfcreater = :login");
+         query.setParameter("login", login);
+         return query.list();
+     }
+
+     @Override
+     public List<Ticked> getAllTickedOfUser (String login){
+         Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.loginOfcreater = :login");
+         query.setParameter("login", login);
+         return query.list();
+     }
+
+
+
+    @Override
+    public  List<Ticked> getUserTickedDone(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
+        return query.list();
+    }
+   /* @Override
+    public  List<Ticked> getTickedApproving(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticked t where t.state ='DONE'");
+        return query.list();
+    }*/
+
+
+
 }
 
 

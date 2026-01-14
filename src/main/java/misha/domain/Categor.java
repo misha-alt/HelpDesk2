@@ -18,4 +18,8 @@ public enum Categor {
     public String getCall() {
         return call;
     }
+
+    public void setCall(String call) {
+        this.call = call;
+    }
 }

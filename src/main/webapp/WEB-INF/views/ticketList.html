@@ -2,107 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link th:href="@{/css/cssForUserPage.css}" rel="stylesheet">
+    <title>Tickets</title>
+
 </head>
 <body>
 
-<!------------table of ticked----------->
-<style>
- .container {
-  display: flex;
-  justify-content: flex-start; /* Изменено */
-  align-items: flex-start; /* Изменено */
+<h1>Tickets</h1>
 
-  height: 100vh;
-  padding-top: 20px; /* Добавлено */
-}
+<div class="centered-text">Sorted</div>
 
-
-  .bordered-table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    width: 100%;
-  }
-
-  .bordered-table th,
-  .bordered-table td {
-    border: 1px solid black;
-  }
-
-  .bordered-table tr:nth-child(even) {
-  background-color: #e6f2ff; /* Цвет второй строки - синий */
-}
-
-.bordered-table tr:nth-child(odd) {
-  background-color: white; /* Цвет первой строки - белый */
-}
-.bordered-table th {
-  font-size: 2em;
-  text-align: center; /* Добавлено */
-}
-</style>
-<h1 style="text-align: center;">Tickets</h1>
-<div class="container">
-
-<table class="bordered-table">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>State</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <!--просмотреть билет-->
-    <tr th:each="lis:${list2}">
-        <td>
-            <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
-                <button type="submit" th:text="${lis.getId()}"></button>
-            </form>
-        </td>
-        <td>
-            <a th:text="${lis.getName()}"></a>
-        </td>
-        <td>
-            <a th:text="${lis.getState()}"></a>
-        </td>
-
-    </tr>
-    </tbody>
-</table>
-</div>
-
-
-<br/>
-<script>
-    function myFunc(){
-    var forScript = document.getElementById('forScript').value;
-    if (forScript=='one'){
-    document.getElementById('dfg').innerHTML = 'Hello JavaScript';
-    }
-    }
-</script>
-<!---------______________-->
-
-<!--<p id="dfg">Filter by criteria</p>-->
-
-<!--<br/>
-<form  th:action="@{/tickedLis}" th:object="${obj}" th:method="GET">
-    <p><input type="text" name="ob" autocomplete="on"></p>
-    <input type="submit" value="Create"/>
-</form>
-<br/>-->
-
-<!--<div th:each="viewOB:${ob}">
-    <a th:text="${viewOB.getId()} +' '+${viewOB.getLoginOfcreater()} + ' '+${viewOB.getApprover()} +' '+${viewOB.getState()}+' '+${viewOB.getUrgency()}+' '+${viewOB.getDesireddate()}"></a>
-</div>-->
-
-<a>Sorted</a>
-
-<br/>
-<form  th:action="@{/tickedLis}" th:method="GET">
-
+<!-- Фильтр -->
+<form th:action="@{/tickedLis}" th:method="GET" class="filter-container">
     <select name="var">
         <option value="urgency">urgency</option>
         <option value="id">id</option>
@@ -113,27 +26,71 @@
         <option value="state">state</option>
         <option value="APPROVED">APPROVED</option>
         <option value="CANCELED">CANCELED</option>
-
-
+        <option value="allTicked">all ticket</option>
     </select>
-
-    <input type="submit" value="filer"/>
-
+    <input type="submit" value="filter"/>
 </form>
-<br/>
 
-<a th:href="@{/create_ticket}">Create new ticket</a>
+<!-- Кнопки -->
+<div id="header" class="link-container">
+    <a th:href="@{/create_ticket}">Create new ticket</a>
+    <a th:href="@{/logout}" class="logout-link">Press here if you want logout</a>
+</div>
 
+<!-- Tabs -->
+<div id="tabs">
+    <ul>
+        <li><a href="#tab1">Ticked</a></li>
+        <li><a href="#tab2">Draft</a></li>
+    </ul>
+
+    <div id="tab1">
+        <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Urgency</th>
+                    <th>State</th>
+                    <th>Engineer name, in progress</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lis:${list2}">
+                    <td>
+                        <form th:action="@{/tickedShow/{id}(id=${lis.getId()})}" method="POST">
+                            <button type="submit" th:text="${lis.getId()}"></button>
+                        </form>
+                    </td>
+                    <td><a th:text="${lis.getName()}"></a></td>
+                    <td><a th:text="${lis.getDescription()}"></a></td>
+                    <td><a th:text="${lis.getUrgency()}"></a></td>
+                    <td><a th:text="${lis.getState()}"></a></td>
+                    <td>
+                        <a th:if="${lis.getAssignee() != null}" th:text="${lis.getAssignee() + '- your specialist'}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tab2">
+        <div th:each="ticked:${draftList}">
+            <a th:text="${ticked.getId()} +' '+${ticked.getName()}"></a>
+            <a th:href="@{/editForm/{id}(id=${ticked.getId()})}">edit draft</a>
+        </div>
+        <a th:text="${draftList_message}"></a>
+    </div>
+</div>
+
+<script>
+    $(function () {
+      $("#tabs").tabs();
+    });
+</script>
 
 </body>
 </html>
-
-<!--
-<select name="var" id="forScript">sorted by Id
-
-    <option value="one">sorted by Id</option>
-    <option value="two">sorted by urgency</option>
-    <option value="three">sorted by date</option>
-
-</select>
-<input type="submit" onclick="myFunc()" value="Create"/>-->

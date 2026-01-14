@@ -1,5 +1,6 @@
 package misha.service;
 
+import misha.domain.RoleOfUser;
 import misha.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> getAuthorities(User user) {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(user.getAuthority()));
+        for(RoleOfUser roleOfPerson:user.getAuthority()){
+            authorities.add(new SimpleGrantedAuthority(roleOfPerson.getRole_name()));
+        }
         return authorities;
     }
 }

@@ -4,7 +4,6 @@ package misha.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.util.Set;
 
@@ -26,14 +25,17 @@ public class User {
     @Column(nullable = false)
     private String login;
 
-    @Column(nullable = false)
-    private String password;
+    /*@Column(nullable = false)
+    private String password;*/
 
-    @Column(nullable = false)
-    private String authority;
+   /* @Column(nullable = false)
+    private String authority;*/
 
     @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Comments> comments;
@@ -46,6 +48,16 @@ public class User {
     @JoinTable(name = "USER_TICKED",
             joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "ticked_id"))
     private Set<Ticked> ticked;
+
+
+    @ManyToMany( fetch = FetchType.EAGER)
+    @JoinTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USERROLE_ID"))
+    private Set<RoleOfUser> authority;
+
+
+   /* @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    private Passwords password;*/
 
     public User(){
 
@@ -94,13 +106,13 @@ public class User {
 
 
 
-    public String getAuthority() {
+  /*  public String getAuthority() {
         return authority;
     }
 
     public void setAuthority(String authority) {
         this.authority = authority;
-    }
+    }*/
 
     public String getEmail() {
         return email;
@@ -139,6 +151,22 @@ public class User {
         this.feedBacks = feedBacks;
     }
 
+    public Set<RoleOfUser> getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Set<RoleOfUser> authority) {
+        this.authority = authority;
+    }
+
+    /*public Passwords getPassword() {
+        return password;
+    }
+
+    public void setPassword(Passwords password) {
+        this.password = password;
+    }*/
+
     @Override
     public String toString() {
         return "User{" +
@@ -147,7 +175,7 @@ public class User {
                 ", last_name='" + last_name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", authority='" + authority + '\'' +
+                /*", authority='" + authority + '\'' +*/
                 ", comments='" + comments + '\'' +
                 ", ticked=" + ticked +
                 ", email=" + email +

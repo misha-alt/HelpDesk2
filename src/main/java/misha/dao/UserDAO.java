@@ -21,7 +21,7 @@ public interface UserDAO {
 
     List<User> findUserByName(String login);
     public User findByEmail(String email);
-    List <Ticked> getMyDraft(String name);
+
     void saveOrUpdate(User user);
     void merg(User user);
     void saveUserFeedBack(FeedBack feedBack, String name);

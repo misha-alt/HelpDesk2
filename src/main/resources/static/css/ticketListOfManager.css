@@ -1,0 +1,131 @@
+body {
+          background-color: #f3f3f3;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 20px;
+        }
+
+        h1 {
+          text-align: center;
+          color: #2c3e50;
+        }
+
+        .centered-text {
+          text-align: center;
+          font-size: 18px;
+          margin: 10px 0;
+          color: #333;
+        }
+
+        form {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        select {
+          padding: 6px 10px;
+          font-size: 14px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+          background-color: #3498db;
+          color: white;
+          border: none;
+          padding: 7px 15px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        #header {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin-bottom: 30px;
+        }
+
+        #header a {
+          text-decoration: none;
+          padding: 12px 25px;
+          border-radius: 8px;
+          font-weight: bold;
+          font-size: 16px;
+          color: white;
+        }
+
+        #header a:first-child {
+          background-color: #3498db;
+        }
+
+        #header a.logout-link {
+          background-color: #e74c3c;
+        }
+
+        .container {
+          background-color: white;
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+          margin-bottom: 30px;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+
+        th, td {
+          text-align: left;
+          padding: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        th {
+          background-color: #f9f9f9;
+          color: #555;
+        }
+
+        button {
+          background-color: #3498db;
+          border: none;
+          color: white;
+          padding: 6px 12px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        /* Tabs styling override */
+        #tabs .ui-tabs-nav {
+          background: none;
+          border: none;
+          display: flex;
+          justify-content: flex-start;
+          gap: 5px;
+          padding-left: 5px;
+        }
+
+        #tabs .ui-tabs-tab {
+          background-color: #e0e0e0;
+          padding: 10px 20px;
+          border-radius: 6px 6px 0 0;
+          border: none;
+          font-weight: bold;
+        }
+
+        #tabs .ui-tabs-tab.ui-tabs-active {
+          background-color: #ffffff;
+          border-bottom: none;
+          box-shadow: 0 -3px 0 #3498db inset;
+        }
+
+        #tabs {
+          max-width: 1100px;
+          margin: 0 auto;
+        }

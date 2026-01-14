@@ -20,11 +20,14 @@ public enum State {
     State(String cat) {
         this.cat = cat;
     }
-    State() {
-    }
+
 
     public String getCat() {
         return cat;
+    }
+
+    public void setCat(String cat) {
+        this.cat = cat;
     }
 }
 

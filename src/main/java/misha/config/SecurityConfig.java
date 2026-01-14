@@ -39,23 +39,13 @@ import java.util.Collection;
 
 @Configuration
 @EnableWebSecurity
-/*@Transactional*/
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
 @Autowired
     private UserDetailsServiceImpl userDetailsService;
-  /*  @Autowired
-    private CustomAuthenticationProvider customAuthenticationProvider;*/
 
-    /*@Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }*/
-
-  /* @Autowired
-    private PasswordEncoder passwordEncoder;*/
    @Bean
    public PasswordEncoder passwordEncoder() {
        return NoOpPasswordEncoder.getInstance();
@@ -69,10 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
+
+
+                .antMatchers("/testPagination").permitAll()
+                //000000000000000000000000000000000000000000000000000
                 .antMatchers("/test").permitAll()
                 .antMatchers("/regForm").permitAll()
                 .antMatchers("/regForm2").permitAll()
-                .antMatchers("/manager").hasRole("MANAGER")
+                .antMatchers("/manager").permitAll()/*hasRole("MANAGER")*/
                 .antMatchers("/emploeeContr").hasRole("USER")
                 .antMatchers("/engineer").hasRole("ENGINEER")
                 .antMatchers("/create_ticket").hasAnyRole("USER", "MANAGER")
@@ -83,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/enterPage") // Set the success login page URL
                 .and().logout()
-                .logoutSuccessUrl("/test")
+                .logoutSuccessUrl("/login")
                 .and()
                 .csrf().disable();
         //https://www.youtube.com/watch?v=Mb8nlh4m0HM

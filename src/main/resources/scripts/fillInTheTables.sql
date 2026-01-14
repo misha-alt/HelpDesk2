@@ -1,15 +1,47 @@
-INSERT INTO USER(id, first_name, last_name, login, password, authority,  email)
-VALUES(1, 'Misha', 'Yatskevich', 'Pan', '1987', 'ROLE_MANAGER', '1somemail');
+/*set database collation 'UTF8_GENERAL_CI';*/
+SET CHARSET UTF8;
+/*CREATE ALIAS IF NOT EXISTS BCryptHash FOR "org.mindrot.jbcrypt.BCrypt.hashpw";
+CREATE ALIAS IF NOT EXISTS BCryptCheck FOR "org.mindrot.jbcrypt.BCrypt.checkpw";*/
 
-INSERT INTO USER(id, first_name, last_name, login, password, authority,  email)
-VALUES(2, 'Billy', 'Kid', 'Cowboy', '1945', 'ROLE_USER', '2somemail');
 
-INSERT INTO USER(id, first_name, last_name, login, password, authority,  email)
-VALUES(3, 'Jon', 'Dellenger', 'Gansta', '1930', 'ROLE_USER', '3somemail');
 
-INSERT INTO USER(id, first_name, last_name, login, password, authority,  email)
-VALUES(4, 'Alfred', 'Nooble', 'Bam', '1845', 'ROLE_ENGINEER', '4somemail');
+/* менеджер*/
+INSERT INTO USER(id, first_name, last_name, login, email, password)
+VALUES(1, 'Миша', 'Yatskevich', 'Pan', '1somemail', '100');
 
-INSERT INTO USER(id, first_name, last_name, login, password, authority,  email)
-VALUES(5, 'Ford', 'Henree', 'Car', '1910', 'ROLE_ENGINEER', '5somemail');
+
+
+INSERT INTO USERROLES(id, role_name)
+VALUES(1, 'ROLE_MANAGER');
+
+INSERT INTO USER_ROLES(user_id, userrole_id)
+VALUES(1, 1);
+
+
+
+/*инженер*/
+INSERT INTO USER(id, first_name, last_name, login, email, password)
+VALUES(2, 'Alfred', 'Nooble', 'Bam', '4somemail', '400');
+
+
+
+INSERT INTO USERROLES(id, role_name)
+VALUES(2, 'ROLE_ENGINEER');
+
+INSERT INTO USER_ROLES(user_id, userrole_id)
+VALUES(2, 2);
+
+/*пользователь*/
+INSERT INTO USER(id, first_name, last_name, login, email, password)
+VALUES(3, 'Billy', 'Kid', 'Cowboy', '2somemail', '200');
+
+
+INSERT INTO USERROLES(id, role_name)
+VALUES(3, 'ROLE_USER');
+
+INSERT INTO USER_ROLES(user_id, userrole_id)
+VALUES(3, 3);
+
+
+
 

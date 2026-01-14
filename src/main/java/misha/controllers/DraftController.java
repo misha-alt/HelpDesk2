@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 //не используется
@@ -38,21 +39,22 @@ public class DraftController {
     public String draftView(Principal principal, Model model){
 
        User user = userDAO.findByEmail(principal.getName());
-       List list = userDAO.getMyDraft(user.getLogin());
+       List list = tickedDAO.getMyDraft(user.getLogin());
        if (list.isEmpty()){
            model.addAttribute("draftList_message", "no drafts");
        }
-       model.addAttribute("draftList",userDAO.getMyDraft(user.getLogin()));
+       model.addAttribute("draftList",tickedDAO.getMyDraft(user.getLogin()));
 
         return "draft";
     }
 
-    @GetMapping("/getForm/{id}")
-    public String editDraftForm(HttpServletRequest request, Model model, @PathVariable("id") int id){
-        Ticked ticked = tickedDAO.geTickedById(id);
-        model.addAttribute("form_ticket", ticked);
+    @GetMapping("/getForm")
+    public String editDraftForm(HttpServletRequest request, Model model){
+        Ticked ticked = tickedDAO.geTickedById(1);
 
-        return "formEditDraft";
+        model.addAttribute("form_ticket",ticked.getLoginOfcreater());
+
+        return "05-02-2024";
     }
     @GetMapping("/testSQL")
     public String updateAndShow(Model model){
@@ -89,10 +91,13 @@ public class DraftController {
     //-----------------------------------------------
 
 @GetMapping("/getIt")
-    public String getIt(Model model, Principal principal){
+    public String getIt(Model model, Principal principal) throws UnsupportedEncodingException {
 
-        User user = userDAO.findByEmail(principal.getName());
-        model.addAttribute("someKey", user.getPassword());
+      Ticked ticked = tickedDAO.geTickedById(1);
+
+    User user = userDAO.findByEmail(principal.getName());
+
+        model.addAttribute("someKey", ticked.getName());
         return "temperedTestForEntity";
 }
 }

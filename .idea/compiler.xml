@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="HelpDesk" />
         <module name="HelpDesk2" />
+        <module name="helpDesk" />
       </profile>
     </annotationProcessing>
   </component>

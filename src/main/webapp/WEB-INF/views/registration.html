@@ -2,63 +2,80 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
-    <link rel="stylesheet" data-th-href="@{/css/style.css}"
-          media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">  <!-- с Thymeleaf -->
+   <!-- <link href="/css/style.css" rel="stylesheet">-->
 </head>
 <body>
+<div class="container">
+    <div class="registration-card">
+        <div class="registration-header">
+            <h2>Create New Account</h2>
+        </div>
+        <div class="registration-body">
+            <!-- System Messages -->
+            <div th:if="${message}" class="system-message" th:classappend="${message.contains('success') ? 'message-success' : 'message-error'}">
+                <p th:text="${message}"></p>
+            </div>
 
-<br/>
-<form  th:action="@{/regForm2}" th:object="${user}" th:method="POST">
-<div>
-    <p th:text="${message}"></p>
-    <label for="first_name">Enter first_name</label>
-    <input type="text"  th:field="*{first_name}" id="first_name"/>
-    <p th:if="${#fields.hasErrors('first_name')}" th:each="err : ${#fields.errors('first_name')}" th:text="${err}"></p>
-    <!--<div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">error</div>-->
-</div>
-<div>
-    <br/>
-    <p th:text="${message}"></p>
-    <label for="last_name">Enter last_name</label>
-    <input type="text"  th:field="*{last_name}" id="last_name"/>
-    <p th:if="${#fields.hasErrors('last_name')}" th:each="err : ${#fields.errors('last_name')}" th:text="${err}"></p>
-  <!--  <div th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}">error</div>-->
-</div>
-<div>
-    <br/>
-    <p th:text="${message}"></p>
-    <label for="login">Enter login</label>
-    <input type="text"  th:field="*{login}" id="login"/>
-    <a th:text="${message}"></a>
-    <p th:if="${#fields.hasErrors('login')}" th:each="err : ${#fields.errors('login')}" th:text="${err}"></p>
-</div>
-<div>
-    <br/>
-    <p th:text="${message}"></p>
-    <label for="password">Enter password</label>
-    <input type="password"  th:field="*{password}" id="password"/>
-    <p th:if="${#fields.hasErrors('password')}" th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
-</div>
-<div>
-    <br/>
-    <label for="authority">Enter authority</label>
-    <input type="text"  th:field="*{authority}" id="authority"/>
-</div>
-<div>
-    <br/>
-    <p th:text="${messageEmail}"></p>
-    <label for="email">Enter email</label>
-    <input type="text"  th:field="*{email}" id="email"/>
-    <p th:if="${#fields.hasErrors('email')}" th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
-    <!--<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</div>-->
+            <form th:action="@{/regForm2}" th:object="${user}" th:method="POST">
+                <!-- First Name -->
+                <div class="mb-4">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" th:field="*{first_name}" id="first_name" placeholder="Enter your first name">
+                    <div th:if="${#fields.hasErrors('first_name')}" class="error-message">
+                        <p th:each="err : ${#fields.errors('first_name')}" th:text="${err}"></p>
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="mb-4">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" th:field="*{last_name}" id="last_name" placeholder="Enter your last name">
+                    <div th:if="${#fields.hasErrors('last_name')}" class="error-message">
+                        <p th:each="err : ${#fields.errors('last_name')}" th:text="${err}"></p>
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div class="mb-4">
+                    <label for="login" class="form-label">Login</label>
+                    <input type="text" class="form-control" th:field="*{login}" id="login" placeholder="Choose a username">
+                    <div th:if="${#fields.hasErrors('login')}" class="error-message">
+                        <p th:each="err : ${#fields.errors('login')}" th:text="${err}"></p>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Create a password">
+                    <div th:if="${#fields.hasErrors('password')}" class="error-message">
+                        <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="example@domain.com">
+                    <div th:if="${#fields.hasErrors('email')}" class="error-message">
+                        <p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+                    </div>
+                    <div th:if="${messageEmail}" class="error-message">
+                        <p th:text="${messageEmail}"></p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-submit">Create Account</button>
+            </form>
+        </div>
+    </div>
 </div>
 
-    <br/>
-    <input type="submit" value="Create user"/>
-
-</form>
-<br/>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -30,13 +30,9 @@
     <a th:text="${managerTicked.getDescription()} + ' '+${managerTicked.getName()} +' '+${managerTicked.getState()}+' '+${managerTicked.getDesireddate()}+' '+${managerTicked.getUrgency()}+' '+${managerTicked.getDesireddate()}"></a>
 </div>-->
 
-<br/>
-
-<a th:href="@{/create_ticket}">Create Ticket</a>
-
 
 <br/>
-<a th:href="@{/tickedLis}">Go to ticked list</a>
+<a th:href="@{/ticketListOfManager}">Go to ticked list</a>
 <br/>
 
 <a th:href="@{/logout}">Press here if you want logout</a>

@@ -21,7 +21,7 @@ public class EmpioyeeService implements EmployeeDAO {
     @Override
     public List<Ticked> allTiscedCreatedByEmployee (String login){
         Query query = sessionFactory.getCurrentSession().createQuery
-                ("from Ticked t where t.loginOfcreater = :login");
+                ("from Ticked t where t.loginOfcreater = :login and t.state != 'DRAFT'");
         query.setParameter("login", login);
         return query.list();
     }
